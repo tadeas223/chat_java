@@ -81,7 +81,7 @@ public class SocketConnection implements Runnable {
     private void callListeners(String msg) {
         // Calls every listener that a message was read
         for (MsgReadListener listener : msgReadListeners) {
-
+            listener.messageRead(msg);
         }
     }
 
