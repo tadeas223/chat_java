@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="created structure of the code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="SocketConnection and MsgReadListener written with docs and comments">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/MsgReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/MsgReadListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnectionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/MsgReadListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketReadingThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ConHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +37,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Server.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/programy/Java/messenger/src/main/java/org/example"
   }
@@ -81,12 +81,21 @@
       <option name="project" value="LOCAL" />
       <updated>1711613167811</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="SocketConnection and MsgReadListener written with docs and comments">
+      <option name="closed" value="true" />
+      <created>1711616156519</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1711616156519</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added protocol package" />
     <MESSAGE value="created structure of the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="created structure of the code" />
+    <MESSAGE value="SocketConnection and MsgReadListener written with docs and comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="SocketConnection and MsgReadListener written with docs and comments" />
   </component>
 </project>

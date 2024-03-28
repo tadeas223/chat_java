@@ -19,20 +19,39 @@ import java.util.ArrayList;
  * <p></p>
  * Almost every method throws {@link IOException}, because those method are working with streams and sockets.
  */
-public class SocketConnection implements Runnable{
+public class SocketConnection implements Runnable {
     public static final char BREAK_CHAR = 10;
+    public static final int SERVER_PORT = 60000;
     private final ArrayList<MsgReadListener> msgReadListeners = new ArrayList<>();
     private Socket socket;
-    private Thread readingThread = new Thread(this,"SocketReadingThread");
+    private Thread readingThread = new Thread(this, "SocketReadingThread");
     private boolean close = false;
 
     //region constructors
-    public SocketConnection(Socket socket){
+    public SocketConnection(Socket socket) {
         this.socket = socket;
     }
+
+    /**
+     * Creates a new socket for handling
+     *
+     * @param ip   IP address of the end point
+     * @param port PORT of the end point
+     * @throws IOException if an I/O error occurs when creating the socket
+     */
     public SocketConnection(String ip, int port) throws IOException {
         // Creating a new Socket from the IP and PORT
         socket = new Socket(ip, port);
+    }
+
+    /**
+     * Creates a new socket with the SERVER_PORT as on port of the socket.
+     *
+     * @param ip IP address of the end point
+     * @throws IOException if an I/O error occurs when creating the socket
+     */
+    public SocketConnection(String ip) throws IOException {
+        socket = new Socket(ip, SERVER_PORT);
     }
     //endregion
 
@@ -40,6 +59,7 @@ public class SocketConnection implements Runnable{
      * Closes the socket and stops the thread.
      * <br></br>
      * This method should be used at the end of the use of this class.
+     *
      * @throws IOException when an IO error occurs when trying to close the socket
      */
     public void close() throws IOException {
@@ -53,14 +73,14 @@ public class SocketConnection implements Runnable{
      * <br>
      * The thread can only be stopped by the close() method.
      */
-    public void startReading(){
+    public void startReading() {
         // Nothing very special here
         readingThread.start();
     }
 
-    private void callListeners(String msg){
+    private void callListeners(String msg) {
         // Calls every listener that a message was read
-        for(MsgReadListener listener : msgReadListeners){
+        for (MsgReadListener listener : msgReadListeners) {
 
         }
     }
@@ -71,8 +91,8 @@ public class SocketConnection implements Runnable{
 
         // Reading the message char by char from the socket's InputStream
         // Until the message contains the BREAK_CHAR than the message is over
-        while((currentChar = socket.getInputStream().read()) != BREAK_CHAR){
-            if(currentChar == -1){
+        while ((currentChar = socket.getInputStream().read()) != BREAK_CHAR) {
+            if (currentChar == -1) {
                 // When the char == -1 that means that the connection was closed :(
                 throw new IOException("InputStream closed");
             }
@@ -89,12 +109,13 @@ public class SocketConnection implements Runnable{
      * Adds a BREAK_CHAR character at the end of the message to indicate that the message is over.
      * <br>
      * This method is synchronized to prevent sending more messages at the time - this would end up with a garbled message being sent.
+     *
      * @param message that needs to be sent by the socket
      * @throws IOException when an I/O error occurs when trying to write the message to the socket
      */
     public synchronized void writeString(String message) throws IOException {
         // Writing the message char by char
-        for(char c : message.toCharArray()){
+        for (char c : message.toCharArray()) {
             socket.getOutputStream().write(c);
         }
 
@@ -106,9 +127,11 @@ public class SocketConnection implements Runnable{
     public void addMsgReadListener(MsgReadListener listener) {
         msgReadListeners.add(listener);
     }
-    public void removeMsgReadListener(MsgReadListener listener){
+
+    public void removeMsgReadListener(MsgReadListener listener) {
         msgReadListeners.remove(listener);
     }
+
     public ArrayList<MsgReadListener> getMsgReadListeners() {
         return msgReadListeners;
     }
@@ -121,12 +144,12 @@ public class SocketConnection implements Runnable{
     @Override
     public void run() {
         // This loop will stop only when the close method is run.
-        while(!close){
-            try{
+        while (!close) {
+            try {
                 // Constantly reading for incoming messages and notifying listeners that a message came
                 String msg = readString();
                 callListeners(msg);
-            }catch (IOException e){
+            } catch (IOException e) {
                 //logging code will be here
 
                 // Close the socket and the thread when an error occurs

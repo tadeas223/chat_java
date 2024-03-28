@@ -7,6 +7,7 @@ package org.connection;
 public interface MsgReadListener {
     /**
      * This Method is called every time the message was read
+     *
      * @param msg the message that was read
      */
     void messageRead(String msg);
