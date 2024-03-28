@@ -1,4 +1,4 @@
-package org.example.protocol;
+package org.protocol;
 
 public class InvalidStringException extends ChatProtocolException {
     public InvalidStringException() {

@@ -1,4 +1,4 @@
-package org.example.protocol;
+package org.protocol;
 
 import java.util.HashMap;
 

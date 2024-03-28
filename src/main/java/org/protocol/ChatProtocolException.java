@@ -1,4 +1,4 @@
-package org.example.protocol;
+package org.protocol;
 
 public class ChatProtocolException extends Exception {
     public ChatProtocolException() {

@@ -1,4 +1,4 @@
-package org.example.protocol;
+package org.protocol;
 
 public class ProtocolTranslator {
     public static String encode(Instruction instruction){
