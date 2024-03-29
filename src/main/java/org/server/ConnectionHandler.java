@@ -1,11 +1,55 @@
 package org.server;
 
+import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 
-public class ConnectionHandler {
-    private SocketConnection connection;
+import java.io.IOException;
+
+/**
+ * This class is used for handling incoming messages from {@link SocketConnection}.
+ * <br>
+ * When this class is instantiated, it adds itself as an {@link MsgReadListener} into socketConnection.
+ * <br>
+ * When this class is no longer used, the close() or closeSocket() method should be called.
+ */
+public class ConnectionHandler implements MsgReadListener {
+    private final SocketConnection connection;
 
     public ConnectionHandler(SocketConnection connection) {
         this.connection = connection;
+        connection.addMsgReadListener(this);
+    }
+
+    /**
+     * Removes its self from the listener list in the socketConnection.
+     */
+    public void close(){
+        connection.removeMsgReadListener(this);
+    }
+
+    /**
+     * Removes its self from the listener list in the socketConnection. And attempts to close the socketConnection.
+     * @throws IOException if an I/O error occurs when trying to close the socketConnection.
+     */
+    public void closeSocket() throws IOException {
+        close();
+        connection.close();
+    }
+
+    /**
+     * Runs the handle method and puts the msg parameter into it.
+     * @param msg the message that was read
+     */
+    @Override
+    public void messageRead(String msg) {
+        handle(msg);
+    }
+
+    /**
+     * Handles the incoming message and runs an appropriate code that should be run to for a tne message to be handled.
+     * @param msg incoming message
+     */
+    public void handle(String msg) {
+        // imagine that there is some sort of handling code here ok :)
     }
 }

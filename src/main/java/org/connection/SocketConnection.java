@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class SocketConnection implements Runnable {
     public static final char BREAK_CHAR = 10;
-    public static final int SERVER_PORT = 60000;
+    public static final int SERVER_PORT = 60;
     private final ArrayList<MsgReadListener> msgReadListeners = new ArrayList<>();
     private Socket socket;
     private Thread readingThread = new Thread(this, "SocketReadingThread");
