@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 
+/**
+ * This class is used for a server.
+ * It also contains a main() method for easy execution.
+ */
 public class Server {
     private final ArrayList<ConnectionHandler> handlers = new ArrayList<>();
     private boolean close = false;
@@ -24,6 +28,8 @@ public class Server {
             server.start();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            server.close();
         }
     }
 
@@ -31,6 +37,7 @@ public class Server {
      * Starts the server at the {@link SocketConnection SocketConnection's} SERVER_PORT.
      *
      * @throws IOException if I/O error occurs when listening at the port
+     * @see SocketConnection
      */
     public void start() throws IOException {
         start(SocketConnection.SERVER_PORT);
@@ -43,17 +50,37 @@ public class Server {
      * @throws IOException if I/O error occurs when listening at the port
      */
     public void start(int port) throws IOException {
-        // Creating a ServerSocket for listening at the port
-        ServerSocket serverSocket = new ServerSocket(port);
+        ServerSocket serverSocket = null;
+        try {
+            serverSocket = new ServerSocket(port);
 
+            catchConnections(serverSocket);
+        } catch (IOException e) {
+            // There is nothing else a can do when the port listening is not working
+            throw new RuntimeException(e);
+        } finally {
+            // This is just to remove a warning
+            assert serverSocket != null;
+
+            serverSocket.close();
+        }
+
+    }
+
+    /**
+     * Method used for catching every connection that is trying to access the server.
+     * This method contains a while loop that will be iterating until the close() method is called.
+     *
+     * @param serverSocket that should be used for catching (accepting) the connections
+     */
+    public void catchConnections(ServerSocket serverSocket) throws IOException {
         // This loop will close only when the close() method is called
         while (!close) {
-            // When a socket is caught at the port SocketConnection object is created for it
             SocketConnection connection = new SocketConnection(serverSocket.accept());
             connection.startReading();
 
             // Creating a handler for the connection and adding it to the handler list
-            ConnectionHandler handler = new ConnectionHandler(connection);
+            ConnectionHandler handler = new ConnectionHandler(connection, this);
             addConnectionHandler(handler);
         }
     }
@@ -66,7 +93,6 @@ public class Server {
     }
 
     //region Get&Set
-
     public ArrayList<ConnectionHandler> getHandlers() {
         return handlers;
     }

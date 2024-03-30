@@ -13,22 +13,27 @@ import java.io.IOException;
  * When this class is no longer used, the close() or closeSocket() method should be called.
  */
 public class ConnectionHandler implements MsgReadListener {
+    private final Server server;
     private final SocketConnection connection;
 
-    public ConnectionHandler(SocketConnection connection) {
+    public ConnectionHandler(SocketConnection connection, Server server) {
+        this.server = server;
         this.connection = connection;
         connection.addMsgReadListener(this);
     }
 
     /**
-     * Removes its self from the listener list in the socketConnection.
+     * Removes its self from the listener list in the socketConnection and
+     * from the server's handler list if it is present there.
      */
-    public void close(){
+    public void close() {
+        server.removeConnectionHandler(this);
         connection.removeMsgReadListener(this);
     }
 
     /**
-     * Removes its self from the listener list in the socketConnection. And attempts to close the socketConnection.
+     * Runs the close() method. And attempts to close the socketConnection.
+     *
      * @throws IOException if an I/O error occurs when trying to close the socketConnection.
      */
     public void closeSocket() throws IOException {
@@ -38,6 +43,7 @@ public class ConnectionHandler implements MsgReadListener {
 
     /**
      * Runs the handle method and puts the msg parameter into it.
+     *
      * @param msg the message that was read
      */
     @Override
@@ -47,6 +53,7 @@ public class ConnectionHandler implements MsgReadListener {
 
     /**
      * Handles the incoming message and runs an appropriate code that should be run to for a tne message to be handled.
+     *
      * @param msg incoming message
      */
     public void handle(String msg) {

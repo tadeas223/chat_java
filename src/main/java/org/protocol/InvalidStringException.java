@@ -1,5 +1,9 @@
 package org.protocol;
 
+
+/**
+ * This exception is used when a {@link String} doesn't match an expected pattern.
+ */
 public class InvalidStringException extends ChatProtocolException {
     public InvalidStringException() {
     }

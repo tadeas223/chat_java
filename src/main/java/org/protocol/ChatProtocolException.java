@@ -1,5 +1,9 @@
 package org.protocol;
 
+/**
+ * This exception is used to convert instruction ERROR messages into a throwable object.
+ * It is also used to indicate any problems with the instruction based communication.
+ */
 public class ChatProtocolException extends Exception {
     public ChatProtocolException() {
     }
