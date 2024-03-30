@@ -1,5 +1,8 @@
 package org.connection;
 
+import org.protocol.Instruction;
+import org.protocol.ProtocolTranslator;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
  */
 public class SocketConnection implements Runnable {
     public static final char BREAK_CHAR = 10;
-    public static final int SERVER_PORT = 60;
+    public static final int SERVER_PORT = 60000;
     private final ArrayList<MsgReadListener> msgReadListeners = new ArrayList<>();
     private final Socket socket;
     private final Thread readingThread = new Thread(this, "SocketReadingThread");
@@ -124,6 +127,18 @@ public class SocketConnection implements Runnable {
 
         // Adding the BREAK_CHAR at the end of the message to indicate that the message is over
         socket.getOutputStream().write(BREAK_CHAR);
+    }
+
+    /**
+     * Converts the instruction into {@link String} with {@link ProtocolTranslator}.
+     * Writes the converted instruction into the socket's {@link java.io.OutputStream} by the writeString method.
+     * @param instruction that needs to be written into the socket
+     * @throws IOException if an I/O error occurs when trying to write the instruction to the socket
+     */
+    public void writeInstruction(Instruction instruction) throws IOException{
+        String msg = ProtocolTranslator.encode(instruction);
+
+        writeString(msg);
     }
 
     //region Get&Set

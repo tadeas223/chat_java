@@ -2,6 +2,10 @@ package org.server;
 
 import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
+import org.protocol.Instruction;
+import org.protocol.InstructionBuilder;
+import org.protocol.InvalidStringException;
+import org.protocol.ProtocolTranslator;
 
 import java.io.IOException;
 
@@ -15,7 +19,7 @@ import java.io.IOException;
 public class ConnectionHandler implements MsgReadListener {
     private final Server server;
     private final SocketConnection connection;
-
+    private InstructionExecutor instructionExecutor = new InstructionExecutor();
     public ConnectionHandler(SocketConnection connection, Server server) {
         this.server = server;
         this.connection = connection;
@@ -57,6 +61,17 @@ public class ConnectionHandler implements MsgReadListener {
      * @param msg incoming message
      */
     public void handle(String msg) {
-        // imagine that there is some sort of handling code here ok :)
+        try{
+            Instruction instruction = ProtocolTranslator.decode(msg);
+
+            instructionExecutor.execute(instruction, connection);
+
+        } catch (InvalidStringException e){
+            try{
+                connection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
+            } catch (IOException ex){
+                throw new RuntimeException(ex);
+            }
+        }
     }
 }
