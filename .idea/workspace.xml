@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Code cleanup and fewer warnings&#10;also the Main class was deleted :(">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="InstructionExecutor working&#10;Finally communication between the server and client works in some way.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/security/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,16 +38,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "newBranch",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tad/Documents/java/messenger"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;newBranch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -91,13 +93,22 @@
       <option name="project" value="LOCAL" />
       <updated>1711616156519</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="InstructionExecutor working&#10;Finally communication between the server and client works in some way.">
+      <option name="closed" value="true" />
+      <created>1711829995439</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1711829995439</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added protocol package" />
     <MESSAGE value="created structure of the code" />
     <MESSAGE value="SocketConnection and MsgReadListener written with docs and comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="SocketConnection and MsgReadListener written with docs and comments" />
+    <MESSAGE value="InstructionExecutor working&#10;Finally communication between the server and client works in some way." />
+    <option name="LAST_COMMIT_MESSAGE" value="InstructionExecutor working&#10;Finally communication between the server and client works in some way." />
   </component>
 </project>

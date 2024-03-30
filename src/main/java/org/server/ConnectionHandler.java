@@ -6,6 +6,7 @@ import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
+import org.security.User;
 
 import java.io.IOException;
 
@@ -19,8 +20,15 @@ import java.io.IOException;
 public class ConnectionHandler implements MsgReadListener {
     private final Server server;
     private final SocketConnection connection;
-    private InstructionExecutor instructionExecutor = new InstructionExecutor();
-    public ConnectionHandler(SocketConnection connection, Server server) {
+    private User user = null;
+    private InstructionExecutor instructionExecutor;
+    public ConnectionHandler(SocketConnection connection, Server server,InstructionExecutor instructionExecutor) {
+        if(instructionExecutor == null){
+            this.instructionExecutor = new InstructionExecutor();
+        } else {
+            this.instructionExecutor = instructionExecutor;
+        }
+
         this.server = server;
         this.connection = connection;
         connection.addMsgReadListener(this);
@@ -64,7 +72,7 @@ public class ConnectionHandler implements MsgReadListener {
         try{
             Instruction instruction = ProtocolTranslator.decode(msg);
 
-            instructionExecutor.execute(instruction, connection);
+            instructionExecutor.execute(instruction, this);
 
         } catch (InvalidStringException e){
             try{
@@ -73,5 +81,17 @@ public class ConnectionHandler implements MsgReadListener {
                 throw new RuntimeException(ex);
             }
         }
+    }
+
+    public SocketConnection getConnection() {
+        return connection;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

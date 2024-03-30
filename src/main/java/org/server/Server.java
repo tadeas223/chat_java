@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class Server {
     private final ArrayList<ConnectionHandler> handlers = new ArrayList<>();
+    private final InstructionExecutor instructionExecutor = new InstructionExecutor();
     private boolean close = false;
 
     /**
@@ -80,7 +81,7 @@ public class Server {
             connection.startReading();
 
             // Creating a handler for the connection and adding it to the handler list
-            ConnectionHandler handler = new ConnectionHandler(connection, this);
+            ConnectionHandler handler = new ConnectionHandler(connection, this,instructionExecutor);
             addConnectionHandler(handler);
         }
     }
