@@ -1,6 +1,7 @@
 package org.server;
 
 import org.connection.SocketConnection;
+import org.protocolHandling.InstructionExecutor;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -11,8 +12,8 @@ import java.util.ArrayList;
  * It also contains a main() method for easy execution.
  */
 public class Server {
-    private final ArrayList<ConnectionHandler> handlers = new ArrayList<>();
-    private final InstructionExecutor instructionExecutor = new InstructionExecutor();
+    private final ArrayList<ServerConnectionHandler> handlers = new ArrayList<>();
+    private final ServerExecutor serverExecutor = new ServerExecutor();
     private boolean close = false;
 
     /**
@@ -81,7 +82,7 @@ public class Server {
             connection.startReading();
 
             // Creating a handler for the connection and adding it to the handler list
-            ConnectionHandler handler = new ConnectionHandler(connection, this,instructionExecutor);
+            ServerConnectionHandler handler = new ServerConnectionHandler(connection, this,serverExecutor);
             addConnectionHandler(handler);
         }
     }
@@ -94,15 +95,15 @@ public class Server {
     }
 
     //region Get&Set
-    public ArrayList<ConnectionHandler> getHandlers() {
+    public ArrayList<ServerConnectionHandler> getHandlers() {
         return handlers;
     }
 
-    public void addConnectionHandler(ConnectionHandler handler) {
+    public void addConnectionHandler(ServerConnectionHandler handler) {
         handlers.add(handler);
     }
 
-    public void removeConnectionHandler(ConnectionHandler handler) {
+    public void removeConnectionHandler(ServerConnectionHandler handler) {
         handlers.remove(handler);
     }
     //endregion

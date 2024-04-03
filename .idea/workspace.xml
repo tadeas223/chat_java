@@ -4,13 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="InstructionExecutor working&#10;Finally communication between the server and client works in some way.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/security/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Instruction execution divided into objects.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/DEFAULT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/ERROR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/protocolHandling/Executable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/protocolHandling/InstructionExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/protocolHandling/MissingDefaultException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutionBundle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/DEFAULT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/ERROR.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_ID.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/HELLO_WORLD.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_DONE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_OUTPUT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/IS_ONLINE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGOUT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SEND_MESSAGE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SIGN_UP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/security/SHA256.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/security/SHA256.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/InstructionExecutor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,16 +63,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;newBranch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Server.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "newBranch",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -101,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711829995439</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Working authentication using SQL">
+      <option name="closed" value="true" />
+      <created>1711834003461</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711834003461</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -109,6 +143,8 @@
     <MESSAGE value="created structure of the code" />
     <MESSAGE value="SocketConnection and MsgReadListener written with docs and comments" />
     <MESSAGE value="InstructionExecutor working&#10;Finally communication between the server and client works in some way." />
-    <option name="LAST_COMMIT_MESSAGE" value="InstructionExecutor working&#10;Finally communication between the server and client works in some way." />
+    <MESSAGE value="Working authentication using SQL" />
+    <MESSAGE value="Instruction execution divided into objects." />
+    <option name="LAST_COMMIT_MESSAGE" value="Instruction execution divided into objects." />
   </component>
 </project>

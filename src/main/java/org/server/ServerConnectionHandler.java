@@ -1,11 +1,13 @@
 package org.server;
 
+import org.connection.ConnectionHandler;
 import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
+import org.protocolHandling.MissingDefaultException;
 import org.security.User;
 
 import java.io.IOException;
@@ -17,16 +19,14 @@ import java.io.IOException;
  * <br>
  * When this class is no longer used, the close() or closeSocket() method should be called.
  */
-public class ConnectionHandler implements MsgReadListener {
+public class ServerConnectionHandler extends ConnectionHandler {
     private final Server server;
-    private final SocketConnection connection;
     private User user = null;
-    private InstructionExecutor instructionExecutor;
-    public ConnectionHandler(SocketConnection connection, Server server,InstructionExecutor instructionExecutor) {
-        if(instructionExecutor == null){
-            this.instructionExecutor = new InstructionExecutor();
+    public ServerConnectionHandler(SocketConnection connection, Server server, ServerExecutor serverExecutor) {
+        if(serverExecutor == null){
+            this.executor = new ServerExecutor();
         } else {
-            this.instructionExecutor = instructionExecutor;
+            this.executor = serverExecutor;
         }
 
         this.server = server;
@@ -72,7 +72,7 @@ public class ConnectionHandler implements MsgReadListener {
         try{
             Instruction instruction = ProtocolTranslator.decode(msg);
 
-            instructionExecutor.execute(instruction, this);
+            executor.execute(instruction, this);
 
         } catch (InvalidStringException e){
             try{
@@ -80,11 +80,17 @@ public class ConnectionHandler implements MsgReadListener {
             } catch (IOException ex){
                 throw new RuntimeException(ex);
             }
+        } catch (IOException e){
+            try{
+                closeSocket();
+            } catch (IOException ex){
+                // Stop the program if the socket fails to close
+                throw new RuntimeException(ex);
+            }
+        } catch (MissingDefaultException e) {
+            // Default executable instruction is missing
+            throw new RuntimeException(e);
         }
-    }
-
-    public SocketConnection getConnection() {
-        return connection;
     }
 
     public User getUser() {
@@ -93,5 +99,12 @@ public class ConnectionHandler implements MsgReadListener {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public boolean checkUser(){
+        return user != null;
+    }
+
+    public Server getServer() {
+        return server;
     }
 }

@@ -27,7 +27,7 @@ public class SHA256 {
      * @param string original text
      * @return encoded text
      */
-    public String encode(String string) {
+    public static String encode(String string) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedHash = digest.digest(string.getBytes(StandardCharsets.UTF_8));
