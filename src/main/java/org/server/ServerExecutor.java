@@ -9,6 +9,7 @@ import org.server.executables.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.function.Consumer;
 
 public class ServerExecutor extends InstructionExecutor {
     private final SQLConnection sqlConnection = new SQLConnection();
@@ -32,6 +33,7 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("IS_ONLINE", new IS_ONLINE());
         instMethodList.put("SEND_MESSAGE", new SEND_MESSAGE());
         instMethodList.put("ERROR", new ERROR());
+
     }
 
     @Override

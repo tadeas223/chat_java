@@ -36,4 +36,8 @@ public class ClientConnectionHandler extends ConnectionHandler {
             }
         }
     }
+
+    public Client getClient() {
+        return client;
+    }
 }

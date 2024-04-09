@@ -4,22 +4,20 @@ import org.client.Client;
 import org.protocol.ChatProtocolException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ChatProtocolException {
+    public static void main(String[] args) throws IOException, ChatProtocolException, SQLException {
 
         Client client = new Client();
-        System.out.println("asd");
+
+        System.out.println("connected to server");
 
         client.login("test1","secretpassword");
 
-        System.out.println("login");
+        client.sendMessage("hello from user 1", "test2");
 
-        client.sendMessage("hello", "test2");
-
-        System.out.println("send msg");
-
-        System.out.println("msg sent");
+        System.out.println("waiting for incoming messages...");
 
     }
 }

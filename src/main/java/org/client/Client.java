@@ -4,19 +4,32 @@ import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.*;
 import org.security.SHA256;
+import org.security.User;
+import org.sqlite.SQLiteConnection;
 
+import java.io.CharConversionException;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Objects;
 
 public class Client implements MsgReadListener {
-    private String message = "";
+    private String message = null;
     private final SocketConnection socketConnection;
     private final ClientConnectionHandler clientConnectionHandler;
-    public Client() throws IOException {
+    private String username;
+    public Client() throws IOException, SQLException {
         this.socketConnection = new SocketConnection("localhost",SocketConnection.SERVER_PORT);
         clientConnectionHandler = new ClientConnectionHandler(this);
         socketConnection.addMsgReadListener(clientConnectionHandler);
         socketConnection.addMsgReadListener(this);
         socketConnection.startReading();
+
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect();
+        if(!messageDB.containsChatsTable()){
+            messageDB.createChatsTable();
+        }
+        messageDB.close();
     }
 
     public void login(String username, String password) throws IOException, ChatProtocolException {
@@ -29,6 +42,8 @@ public class Client implements MsgReadListener {
         if(instruction.getName().equals("ERROR")){
             throw new ChatProtocolException(instruction.getParam("message"));
         }
+
+        this.username = username;
     }
 
     public void signup(String username, String password) throws IOException, ChatProtocolException {
@@ -41,6 +56,8 @@ public class Client implements MsgReadListener {
         if(instruction.getName().equals("ERROR")){
             throw new ChatProtocolException(instruction.getParam("message"));
         }
+
+        this.username = username;
     }
 
     public void signupWithoutEncryption(String username, String password) throws IOException, ChatProtocolException {
@@ -51,6 +68,8 @@ public class Client implements MsgReadListener {
         if(instruction.getName().equals("ERROR")){
             throw new ChatProtocolException(instruction.getParam("message"));
         }
+
+        this.username = username;
     }
 
     public void loginWithoutEncryption(String username,String password) throws ChatProtocolException, IOException {
@@ -61,6 +80,8 @@ public class Client implements MsgReadListener {
         if(instruction.getName().equals("ERROR")){
             throw new ChatProtocolException(instruction.getParam("message"));
         }
+
+        this.username = username;
     }
 
     public boolean isOnline(String username) throws IOException, ChatProtocolException {
@@ -77,19 +98,32 @@ public class Client implements MsgReadListener {
         }
     }
 
-    public void sendMessage(String message, String username) throws IOException, ChatProtocolException {
+    public void sendMessage(String message, String username) throws IOException, ChatProtocolException, SQLException {
         socketConnection.writeInstruction(InstructionBuilder.sendMessage(message, username));
 
-//        Instruction instruction = stringToInst(waitForMessage());
-//
-//        if(instruction.getName().equals("ERROR")){
-//            throw new ChatProtocolException(instruction.getParam("message"));
-//        }
-    }
-    public String waitForMessage(){
-        String previousMessage = new String(message);
+        Instruction instruction = stringToInst(waitForMessage());
 
-        while(previousMessage.equals(message)){
+        if (instruction.getName().equals("ERROR")) {
+            throw new ChatProtocolException(instruction.getParam("message"));
+        }
+
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect();
+        if(!messageDB.containsChat(username)){
+            messageDB.createChat(username);
+        }
+
+        Message msg = new Message(this.username,message);
+
+        messageDB.addMessage(msg,username);
+
+        messageDB.close();
+    }
+
+    public String waitForMessage(){
+        message = null;
+
+        while(Objects.equals(null,message)){
             try{
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -116,5 +150,9 @@ public class Client implements MsgReadListener {
 
     public SocketConnection getSocketConnection() {
         return socketConnection;
+    }
+
+    public void close() throws IOException, SQLException {
+        socketConnection.close();
     }
 }

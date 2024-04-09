@@ -4,8 +4,8 @@ package org.security;
  * This class is used to save information about a user.
  */
 public class User {
-    private String username;
-    private int id;
+    private final String username;
+    private final int id;
 
     public User(String username, int id) {
         this.username = username;
