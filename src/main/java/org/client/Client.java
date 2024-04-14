@@ -9,6 +9,7 @@ import org.sqlite.SQLiteConnection;
 
 import java.io.CharConversionException;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -82,6 +83,20 @@ public class Client implements MsgReadListener {
         }
 
         this.username = username;
+    }
+
+    public boolean invokeDone() throws IOException, ChatProtocolException {
+        socketConnection.writeInstruction(InstructionBuilder.invokeDone());
+
+        Instruction instruction = stringToInst(waitForMessage());
+
+        if(instruction.getName().equals("DONE")){
+            return true;
+        } else if(instruction.getName().equals("ERROR")){
+            throw new ChatProtocolException(instruction.getParam("message"));
+        } else{
+            return false;
+        }
     }
 
     public boolean isOnline(String username) throws IOException, ChatProtocolException {
