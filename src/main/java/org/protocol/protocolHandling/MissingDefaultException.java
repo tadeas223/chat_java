@@ -1,4 +1,4 @@
-package org.protocolHandling;
+package org.protocol.protocolHandling;
 
 public class MissingDefaultException extends Exception{
     public MissingDefaultException() {

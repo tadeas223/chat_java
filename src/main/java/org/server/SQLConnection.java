@@ -1,8 +1,10 @@
 package org.server;
 
+import org.chat.Message;
 import org.security.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class SQLConnection {
     private final String db = "secret";
@@ -62,5 +64,26 @@ public class SQLConnection {
         preparedStatement.setString(3,receiver);
 
         preparedStatement.executeUpdate();
+    }
+
+    public Message[] getMessages(String sender) throws SQLException {
+        String sql = "SELECT message,receiver,date FROM messages WHERE sender=?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, sender);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        ArrayList<Message> messages = new ArrayList<>();
+        while(resultSet.next()){
+            String message = resultSet.getString("message");
+            String receiver = resultSet.getString("receiver");
+            Date date = resultSet.getDate("date");
+
+            messages.add(new Message(receiver,message,date));
+        }
+
+        return messages.toArray(Message[]::new);
     }
 }

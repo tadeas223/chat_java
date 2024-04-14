@@ -1,15 +1,11 @@
 package org.client.executables;
 
-import org.client.Client;
-import org.client.ClientConnectionHandler;
-import org.client.Message;
+import org.chat.Message;
 import org.client.MessageDB;
 import org.protocol.Instruction;
-import org.protocol.ParamList;
-import org.protocolHandling.Executable;
-import org.protocolHandling.ExecutionBundle;
+import org.protocol.protocolHandling.Executable;
+import org.protocol.protocolHandling.ExecutionBundle;
 
-import javax.print.MultiDocPrintService;
 import java.io.IOException;
 import java.sql.SQLException;
 

@@ -1,4 +1,4 @@
-package org.protocolHandling;
+package org.protocol.protocolHandling;
 
 import java.io.IOException;
 

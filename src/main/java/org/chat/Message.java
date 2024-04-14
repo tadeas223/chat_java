@@ -1,4 +1,4 @@
-package org.client;
+package org.chat;
 
 import java.util.Date;
 

@@ -1,13 +1,12 @@
 package org.client;
 
 import org.connection.ConnectionHandler;
-import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
-import org.protocolHandling.MissingDefaultException;
+import org.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
 

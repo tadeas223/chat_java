@@ -1,7 +1,7 @@
 package org.server;
 
 import org.protocol.Instruction;
-import org.protocolHandling.ExecutionBundle;
+import org.protocol.protocolHandling.ExecutionBundle;
 
 public class ServerExecutionBundle extends ExecutionBundle {
     public SQLConnection sqlConnection;

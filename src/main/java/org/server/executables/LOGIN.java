@@ -2,9 +2,8 @@ package org.server.executables;
 
 import org.protocol.InstructionBuilder;
 import org.security.User;
-import org.protocolHandling.Executable;
-import org.protocolHandling.ExecutionBundle;
-import org.server.Server;
+import org.protocol.protocolHandling.Executable;
+import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.ServerConnectionHandler;
 import org.server.ServerExecutionBundle;
 

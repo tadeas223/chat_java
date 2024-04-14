@@ -1,7 +1,7 @@
 package org.client;
 
-import java.io.File;
-import java.io.IOException;
+import org.chat.Message;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class MessageDB {
         statement.execute();
     }
 
-    public void addMessage(Message message,String chat) throws SQLException {
+    public void addMessage(Message message, String chat) throws SQLException {
         String query = "INSERT INTO "+chat+" (username,message,date) " +
                 "VALUES (?,?,DATETIME('now'));";
 

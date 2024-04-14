@@ -3,7 +3,7 @@ package org.client;
 import org.client.executables.DEFAULT;
 import org.client.executables.ERROR;
 import org.client.executables.MESSAGE;
-import org.protocolHandling.InstructionExecutor;
+import org.protocol.protocolHandling.InstructionExecutor;
 
 public class ClientExecutor extends InstructionExecutor {
     public ClientExecutor(){

@@ -1,13 +1,11 @@
 package org.client;
 
+import org.chat.Message;
 import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.*;
 import org.security.SHA256;
-import org.security.User;
-import org.sqlite.SQLiteConnection;
 
-import java.io.CharConversionException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
