@@ -51,4 +51,16 @@ public class SQLConnection {
 
         return login(username, password);
     }
+
+    public void saveMessage(String message, String sender, String receiver) throws SQLException {
+        String sql = "INSERT INTO messages (message, sender, receiver) VALUES (?, ?, ?)";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1,message);
+        preparedStatement.setString(2,sender);
+        preparedStatement.setString(3,receiver);
+
+        preparedStatement.executeUpdate();
+    }
 }
