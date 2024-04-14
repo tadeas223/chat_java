@@ -13,7 +13,7 @@ public class SQLConnection {
     private Connection connection;
 
     public void connect() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://"+ip+":3306/"+db,user,password);
+         connection = DriverManager.getConnection("jdbc:mysql://"+ip+":3306/"+db,user,password);
     }
 
     public void close() throws SQLException {

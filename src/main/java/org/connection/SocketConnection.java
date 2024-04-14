@@ -86,7 +86,8 @@ public class SocketConnection implements Runnable {
 
     private void callListeners(String msg) {
         // Calls every listener that a message was read
-        for (MsgReadListener listener : msgReadListeners) {
+        MsgReadListener[] listeners = msgReadListeners.toArray(MsgReadListener[]::new);
+        for (MsgReadListener listener : listeners) {
             listener.messageRead(msg);
         }
     }
@@ -119,7 +120,7 @@ public class SocketConnection implements Runnable {
      * @param message that needs to be sent by the socket
      * @throws IOException when an I/O error occurs when trying to write the message to the socket
      */
-    public synchronized void writeString(String message) throws IOException {
+    public void writeString(String message) throws IOException {
         // Writing the message char by char
         for (char c : message.toCharArray()) {
             socket.getOutputStream().write(c);
