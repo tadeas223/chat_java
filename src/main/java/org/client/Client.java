@@ -99,6 +99,20 @@ public class Client implements MsgReadListener {
         }
     }
 
+    public String invokeOutput(String message) throws IOException, ChatProtocolException {
+        socketConnection.writeInstruction(InstructionBuilder.invokeOutput(message));
+
+        Instruction instruction = stringToInst(waitForMessage());
+
+        if (instruction.getName().equals("OUTPUT")){
+            return instruction.getParam("message");
+        } else if(instruction.getName().equals("ERROR")){
+            throw new ChatProtocolException(instruction.getParam("message"));
+        } else {
+            throw new ChatProtocolException("Unknown error");
+        }
+
+    }
     public boolean isOnline(String username) throws IOException, ChatProtocolException {
         socketConnection.writeInstruction(InstructionBuilder.isOnline(username));
 
