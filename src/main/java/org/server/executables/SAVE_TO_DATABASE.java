@@ -35,6 +35,6 @@ public class SAVE_TO_DATABASE implements Executable {
             return;
         }
 
-        executionBundle.connection.writeInstruction(InstructionBuilder.invokeDone());
+        executionBundle.connection.writeInstruction(InstructionBuilder.done());
     }
 }
