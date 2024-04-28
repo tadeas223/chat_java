@@ -22,10 +22,15 @@ public class GET_FROM_DATABASE implements Executable {
 
         Message[] messages = new Message[0];
 
+        if(!serverHandler.checkUser()){
+            executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
+            return;
+        }
         try{
             messages = sqlConnection.getMessages(serverHandler.getUser().getUsername());
         } catch (SQLException e){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
+            return;
         }
 
         ArrayList<Instruction> instructionList = new ArrayList<>();
@@ -36,7 +41,7 @@ public class GET_FROM_DATABASE implements Executable {
 
         Instruction[] instructions = instructionList.toArray(Instruction[]::new);
 
-        instructions = InstructionBuilder.arrayWrap(instructions);
+        instructions = InstructionBuilder.messageArrayWrap(instructions);
 
         for(Instruction i : instructions){
             executionBundle.connection.writeInstruction(i);

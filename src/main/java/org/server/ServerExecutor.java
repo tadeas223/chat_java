@@ -33,6 +33,7 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("SEND_MESSAGE", new SEND_MESSAGE());
         instMethodList.put("ERROR", new ERROR());
         instMethodList.put("SAVE_TO_DATABASE", new SAVE_TO_DATABASE());
+        instMethodList.put("GET_FROM_DATABASE", new GET_FROM_DATABASE());
 
     }
 

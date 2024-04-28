@@ -29,7 +29,7 @@ public class SAVE_TO_DATABASE implements Executable {
         String message = instruction.getParam("message");
 
         try{
-            sqlConnection.saveMessage(sender,receiver,message);
+            sqlConnection.saveMessage(message,sender,receiver);
         } catch (SQLException e){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
             return;

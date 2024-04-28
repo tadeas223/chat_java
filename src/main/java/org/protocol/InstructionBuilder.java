@@ -76,7 +76,7 @@ public class InstructionBuilder {
         return new Instruction("MESSAGE", paramList);
     }
 
-    public static Instruction array(int count){
+    public static Instruction messageArray(int count){
         return new Instruction("ARRAY",new ParamList("count",String.valueOf(count)));
     }
 
@@ -84,10 +84,10 @@ public class InstructionBuilder {
         return new Instruction("ARRAY_END");
     }
 
-    public static Instruction[] arrayWrap(Instruction[] arrayContent){
+    public static Instruction[] messageArrayWrap(Instruction[] arrayContent){
         ArrayList<Instruction> arrayList = new ArrayList<>(List.of(arrayContent));
 
-        arrayList.add(0,array(arrayContent.length));
+        arrayList.add(0,messageArray(arrayContent.length));
         arrayList.add(arrayEnd());
 
         return arrayList.toArray(Instruction[]::new);

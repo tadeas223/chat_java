@@ -16,6 +16,7 @@ public class MESSAGE implements Executable {
         MessageDB messageDB = new MessageDB();
 
         Instruction instruction = executionBundle.instruction;
+        System.out.println(instruction);
         String usename = instruction.getParam("sender");
         String message = instruction.getParam("message");
 
