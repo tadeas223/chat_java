@@ -2,6 +2,10 @@ package org.client;
 
 import java.util.Date;
 
+/**
+ * This class is a code representation of a message.
+ * It only holds a username, message, date variables.
+ */
 public class Message {
     String username;
     String message;
