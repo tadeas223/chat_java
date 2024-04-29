@@ -9,28 +9,36 @@ import org.protocol.protocolHandling.ExecutionBundle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This executable handles the MESSAGE instruction that can be received from the server.
+ * It saves the message into a local database - {@link MessageDB}.
+ */
 public class MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {
-
+        // Creating a Database object
         MessageDB messageDB = new MessageDB();
 
+        // Getting information from the instruction
         Instruction instruction = executionBundle.instruction;
-        System.out.println(instruction);
-        String usename = instruction.getParam("sender");
+        String username = instruction.getParam("sender");
         String message = instruction.getParam("message");
 
-        try{
+        try {
+            // Connect to the database
             messageDB.connect();
-            if(!messageDB.containsChat(usename)) {
-                messageDB.createChat(usename);
+
+            // If the message is from a new person - create a new chat for it
+            if (!messageDB.containsChat(username)) {
+                messageDB.createChat(username);
             }
 
-            messageDB.addMessage(new Message(usename,message), usename);
+            // Save the message to the db
+            messageDB.addMessage(new Message(username, message), username);
 
             messageDB.close();
-        } catch (SQLException e){
-            // :(
+        } catch (SQLException e) {
+            // I don't know how to handle this :(
             throw new RuntimeException(e);
         }
 
