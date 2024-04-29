@@ -1,10 +1,10 @@
 package org.client.executables;
 
-import org.client.Message;
+import org.chat.Message;
 import org.client.MessageDB;
 import org.protocol.Instruction;
-import org.protocolHandling.Executable;
-import org.protocolHandling.ExecutionBundle;
+import org.protocol.protocolHandling.Executable;
+import org.protocol.protocolHandling.ExecutionBundle;
 
 import java.io.IOException;
 import java.sql.SQLException;

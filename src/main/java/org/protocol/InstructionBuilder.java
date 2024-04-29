@@ -1,5 +1,8 @@
 package org.protocol;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Builds a different kinds of instructions with given parameters.
  */
@@ -71,5 +74,22 @@ public class InstructionBuilder {
         paramList.put("sender",sender);
 
         return new Instruction("MESSAGE", paramList);
+    }
+
+    public static Instruction messageArray(int count){
+        return new Instruction("ARRAY",new ParamList("count",String.valueOf(count)));
+    }
+
+    public static Instruction arrayEnd(){
+        return new Instruction("ARRAY_END");
+    }
+
+    public static Instruction[] messageArrayWrap(Instruction[] arrayContent){
+        ArrayList<Instruction> arrayList = new ArrayList<>(List.of(arrayContent));
+
+        arrayList.add(0,messageArray(arrayContent.length));
+        arrayList.add(arrayEnd());
+
+        return arrayList.toArray(Instruction[]::new);
     }
 }

@@ -2,14 +2,13 @@ package org.server;
 
 import org.connection.ConnectionHandler;
 import org.protocol.Instruction;
-import org.protocolHandling.Executable;
-import org.protocolHandling.InstructionExecutor;
-import org.protocolHandling.MissingDefaultException;
+import org.protocol.protocolHandling.Executable;
+import org.protocol.protocolHandling.InstructionExecutor;
+import org.protocol.protocolHandling.MissingDefaultException;
 import org.server.executables.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.function.Consumer;
 
 public class ServerExecutor extends InstructionExecutor {
     private final SQLConnection sqlConnection = new SQLConnection();
@@ -33,6 +32,8 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("IS_ONLINE", new IS_ONLINE());
         instMethodList.put("SEND_MESSAGE", new SEND_MESSAGE());
         instMethodList.put("ERROR", new ERROR());
+        instMethodList.put("SAVE_TO_DATABASE", new SAVE_TO_DATABASE());
+        instMethodList.put("GET_FROM_DATABASE", new GET_FROM_DATABASE());
 
     }
 

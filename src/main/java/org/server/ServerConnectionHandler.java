@@ -7,7 +7,7 @@ import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
-import org.protocolHandling.MissingDefaultException;
+import org.protocol.protocolHandling.MissingDefaultException;
 import org.security.User;
 
 import java.io.IOException;

@@ -4,8 +4,8 @@ import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
-import org.protocolHandling.InstructionExecutor;
-import org.protocolHandling.MissingDefaultException;
+import org.protocol.protocolHandling.InstructionExecutor;
+import org.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
 

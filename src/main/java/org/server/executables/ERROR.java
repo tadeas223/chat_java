@@ -1,7 +1,7 @@
 package org.server.executables;
 
-import org.protocolHandling.Executable;
-import org.protocolHandling.ExecutionBundle;
+import org.protocol.protocolHandling.Executable;
+import org.protocol.protocolHandling.ExecutionBundle;
 
 import java.io.IOException;
 

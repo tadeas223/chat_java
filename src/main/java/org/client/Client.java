@@ -1,5 +1,6 @@
 package org.client;
 
+import org.chat.Message;
 import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.*;
