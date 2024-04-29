@@ -152,6 +152,35 @@ public class Client implements MsgReadListener {
         this.username = username;
     }
 
+    public boolean invokeDone() throws IOException, ChatProtocolException {
+        socketConnection.writeInstruction(InstructionBuilder.invokeDone());
+
+        Instruction instruction = stringToInst(waitForMessage());
+
+        if(instruction.getName().equals("DONE")){
+            return true;
+        } else if(instruction.getName().equals("ERROR")){
+            throw new ChatProtocolException(instruction.getParam("message"));
+        } else{
+            return false;
+        }
+    }
+
+    public String invokeOutput(String message) throws IOException, ChatProtocolException {
+        socketConnection.writeInstruction(InstructionBuilder.invokeOutput(message));
+
+        Instruction instruction = stringToInst(waitForMessage());
+
+        if (instruction.getName().equals("OUTPUT")){
+            return instruction.getParam("message");
+        } else if(instruction.getName().equals("ERROR")){
+            throw new ChatProtocolException(instruction.getParam("message"));
+        } else {
+            throw new ChatProtocolException("Unknown error");
+        }
+
+    }
+
     /**
      * This method is used to find if the user is logged into the server.
      * @param username that needs to be checked
