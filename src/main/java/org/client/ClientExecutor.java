@@ -5,6 +5,10 @@ import org.client.executables.ERROR;
 import org.client.executables.MESSAGE;
 import org.protocolHandling.InstructionExecutor;
 
+/**
+ * This is an executor for the client.
+ * It has instruction executables for handling the client connection.
+ */
 public class ClientExecutor extends InstructionExecutor {
     public ClientExecutor(){
         instMethodList.put("DEFAULT", new DEFAULT());

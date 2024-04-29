@@ -5,14 +5,30 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * This class is used to communicate with a local SQLite database.
+ * The database is used to save chats and messages.
+ */
 public class MessageDB {
-    private String databaseFile = "data/messages.db";
+    private final String DATABASE_FILE = "data/messages.db";
     private Connection connection;
 
+    /**
+     * This method needs to be called before any other method is called.
+     * If it is not called, this class will not be connected to the
+     * local database ane every other method will throw an exception.
+     * @throws SQLException When the method fails to connect to the database.
+     */
     public void connect() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+databaseFile);
+        connection = DriverManager.getConnection("jdbc:sqlite:"+DATABASE_FILE);
     }
 
+    /**
+     * Initializes a chat table.
+     * This table needs to exist in the database to look up all chats in it.
+     * This method should be called at the creation of the database.
+     * @throws SQLException when an error occurs when creating the table
+     */
     public void createChatsTable() throws SQLException {
         String query = "CREATE TABLE chats (" +
                 "  `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -22,6 +38,11 @@ public class MessageDB {
         statement.execute(query);
     }
 
+    /**
+     * Creates a new chat with the inputted name, and adds the chat into chats table.
+     * @param name of the chat
+     * @throws SQLException when an error occurs when adding the chat
+     */
     public void createChat(String name) throws SQLException {
         String query = "CREATE TABLE "+name+" (" +
                 "  `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -40,6 +61,12 @@ public class MessageDB {
         statement.execute();
     }
 
+    /**
+     * Adds a message to a chat.
+     * @param message to be added to a chat
+     * @param chat where the message should be added
+     * @throws SQLException when an error occurs when adding the message
+     */
     public void addMessage(Message message,String chat) throws SQLException {
         String query = "INSERT INTO "+chat+" (username,message,date) " +
                 "VALUES (?,?,DATETIME('now'));";
@@ -51,6 +78,13 @@ public class MessageDB {
         statement.execute();
     }
 
+    /**
+     * This method returns the last messages from a chat.
+     * @param chatName name of the chat with the messages
+     * @param count number of messages that should be returned
+     * @return the messages from the chat
+     * @throws SQLException when an error occurs when getting the messages
+     */
     public Message[] getMessages(String chatName,int count) throws SQLException {
         ArrayList<Message> messageList = new ArrayList<>();
 
@@ -72,6 +106,12 @@ public class MessageDB {
         return messageList.toArray(Message[]::new);
     }
 
+    /**
+     * This method is used to find if the chat exists or not.
+     * @param chat that needs to be checked
+     * @return true of the chat exists, false if not
+     * @throws SQLException when an error occurs while checking the chat
+     */
     public boolean containsChat(String chat) throws SQLException {
         String query = "SELECT EXISTS " +
                 "(SELECT name FROM sqlite_schema" +
@@ -89,6 +129,11 @@ public class MessageDB {
         return false;
     }
 
+    /**
+     * This chat is used to find if the chats table exists or not.
+     * @return true if the chats table exists, false if not
+     * @throws SQLException when an error occurs while checking the chats table.
+     */
     public boolean containsChatsTable() throws SQLException {
         String query = "SELECT EXISTS " +
                 "(SELECT name FROM sqlite_schema" +
@@ -106,6 +151,11 @@ public class MessageDB {
     }
 
 
+    /**
+     * Closes the database connection.
+     * This method should be called at the end of the use of this class.
+     * @throws SQLException when an error occurs while closing the database connection
+     */
     public void close() throws SQLException {
         connection.close();
     }
