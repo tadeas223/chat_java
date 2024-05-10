@@ -158,6 +158,10 @@ public class SocketConnection implements Runnable {
     public Socket getSocket() {
         return socket;
     }
+
+    public String getIp(){
+        return socket.getInetAddress().toString();
+    }
     //endregion
 
     @Override
