@@ -70,18 +70,22 @@ public class ServerConnectionHandler extends ConnectionHandler {
      */
     public void handle(String msg) {
         try{
+            server.getLog().println("[" + connection.getIp() + "] REQUEST \"" + msg + "\"");
             Instruction instruction = ProtocolTranslator.decode(msg);
 
             executor.execute(instruction, this);
+            server.getLog().println("[" + connection.getIp() + "] - REQUEST HANDLED");
 
         } catch (InvalidStringException e){
             try{
+                server.getLog().println("[" + connection.getIp() + "] - Invalid Instruction");
                 connection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
             } catch (IOException ex){
                 throw new RuntimeException(ex);
             }
         } catch (IOException e){
             try{
+                server.getLog().println("[" + connection.getIp() + "] - Closing Socket");
                 closeSocket();
             } catch (IOException ex){
                 // Stop the program if the socket fails to close
@@ -89,7 +93,22 @@ public class ServerConnectionHandler extends ConnectionHandler {
             }
         } catch (MissingDefaultException e) {
             // Default executable instruction is missing
-            throw new RuntimeException(e);
+            missingDefaultExceptionHandle();
+        }
+    }
+
+    private void missingDefaultExceptionHandle(){
+        try {
+            connection.writeInstruction(InstructionBuilder.error("Missing Default Instruction"));
+        } catch (IOException ex) {
+            // If this fails - disconnect
+            server.getLog().println("[" + connection.getIp() + "] - Failed to write instruction = Closing Session");
+            try {
+                closeSocket();
+            } catch (IOException exc) {
+                // :(
+                throw new RuntimeException(exc);
+            }
         }
     }
 

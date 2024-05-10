@@ -4,29 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Working message saving and retrieving from a database.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/MessagePanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/MessagePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI works until you try to view the messages">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -72,23 +55,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;371&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;clientGUI&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28850573&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.Server.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
+    "git-widget-placeholder": "serverLogging",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28850573",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -219,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712149723098</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="GUI works until you try to view the messages">
+      <option name="closed" value="true" />
+      <created>1715331446379</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715331446379</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -244,7 +235,8 @@
     <MESSAGE value="Working authentication using SQL" />
     <MESSAGE value="Instruction execution divided into objects." />
     <MESSAGE value="Package cleanup&#10;Executable interface added&#10;All sorts of instructions working now&#10;SendMessage still doesn't work :(" />
-    <option name="LAST_COMMIT_MESSAGE" value="Package cleanup&#10;Executable interface added&#10;All sorts of instructions working now&#10;SendMessage still doesn't work :(" />
+    <MESSAGE value="GUI works until you try to view the messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI works until you try to view the messages" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

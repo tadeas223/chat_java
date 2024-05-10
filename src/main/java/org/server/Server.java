@@ -1,8 +1,14 @@
 package org.server;
 
 import org.connection.SocketConnection;
+import org.server.log.Log;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 
@@ -13,6 +19,7 @@ import java.util.ArrayList;
 public class Server {
     private final ArrayList<ServerConnectionHandler> handlers = new ArrayList<>();
     private final ServerExecutor serverExecutor = new ServerExecutor();
+    private final Log log = new Log();
     private boolean close = false;
 
     /**
@@ -51,18 +58,23 @@ public class Server {
      * @throws IOException if I/O error occurs when listening at the port
      */
     public void start(int port) throws IOException {
+        log.setConsoleStream(System.out);
+
+        log.println("---------Messenger SERVER---------");
         ServerSocket serverSocket = null;
         try {
             serverSocket = new ServerSocket(port);
-
+            log.println("ServerSocket at port " + port + " configured");
             catchConnections(serverSocket);
         } catch (IOException e) {
             // There is nothing else a can do when the port listening is not working
+            log.println("Failed to open port " + port);
             throw new RuntimeException(e);
         } finally {
             // This is just to remove a warning
             assert serverSocket != null;
 
+            log.println("Closing ServerSocket at port " + port);
             serverSocket.close();
         }
 
@@ -75,9 +87,13 @@ public class Server {
      * @param serverSocket that should be used for catching (accepting) the connections
      */
     public void catchConnections(ServerSocket serverSocket) throws IOException {
+        log.println("Starting socket listening");
+
         // This loop will close only when the close() method is called
         while (!close) {
             SocketConnection connection = new SocketConnection(serverSocket.accept());
+            log.println("Accepted client at - " + connection.getSocket().getInetAddress().toString());
+
             connection.startReading();
 
             // Creating a handler for the connection and adding it to the handler list
@@ -90,12 +106,17 @@ public class Server {
      * Stops the server.
      */
     public void close() {
+        log.println("Server stop");
         close = true;
     }
 
     //region Get&Set
     public ArrayList<ServerConnectionHandler> getHandlers() {
         return handlers;
+    }
+
+    public Log getLog() {
+        return log;
     }
 
     public void addConnectionHandler(ServerConnectionHandler handler) {
