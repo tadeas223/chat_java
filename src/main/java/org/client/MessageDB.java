@@ -150,6 +150,21 @@ public class MessageDB {
         return false;
     }
 
+    public String[] getChats() throws SQLException {
+        String query = "SELECT name FROM chats";
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery(query);
+
+        ArrayList<String> chats = new ArrayList<>();
+
+        while(resultSet.next()){
+            chats.add(resultSet.getString("name"));
+        }
+
+        return chats.toArray(String[]::new);
+    }
+
 
     /**
      * Closes the database connection.

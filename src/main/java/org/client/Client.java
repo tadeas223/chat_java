@@ -8,6 +8,7 @@ import org.security.SHA256;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
 import java.util.Objects;
 
 /**
@@ -28,9 +29,9 @@ public class Client implements MsgReadListener {
      * @throws IOException when in I/O error occurs when connection to the server
      * @throws SQLException when a message database fails to initialize
      */
-    public Client() throws IOException, SQLException {
+    public Client(String ip) throws IOException, SQLException {
         // Connecting to the server
-        this.socketConnection = new SocketConnection("localhost", SocketConnection.SERVER_PORT);
+        this.socketConnection = new SocketConnection(ip, SocketConnection.SERVER_PORT);
         clientConnectionHandler = new ClientConnectionHandler(this);
 
         // Starting the listening thread
@@ -223,7 +224,7 @@ public class Client implements MsgReadListener {
 
         // Throw an Exception when an error is received
         if (instruction.getName().equals("ERROR")) {
-            throw new ChatProtocolException(instruction.getParam("message"));
+            //throw new ChatProtocolException(instruction.getParam("message"));
         }
 
         // Connect to a local database
@@ -260,6 +261,28 @@ public class Client implements MsgReadListener {
         }
 
         return message;
+    }
+
+    public String[] getChats() throws SQLException {
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect();
+
+        String[] chats = messageDB.getChats();
+
+        messageDB.close();
+
+        return chats;
+    }
+
+    public Message[] getMessages(String chat, int count) throws SQLException {
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect();
+
+        Message[] messages = messageDB.getMessages(chat,count);
+
+        messageDB.close();
+
+        return messages;
     }
 
     /**
