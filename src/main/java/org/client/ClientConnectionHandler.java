@@ -31,14 +31,11 @@ public class ClientConnectionHandler extends ConnectionHandler {
     @Override
     public void messageRead(String msg) {
         try{
-            // Convert the message to instruction
             Instruction instruction = ProtocolTranslator.decode(msg);
 
-            // run the correct executable for the instruction
             executor.execute(instruction, this);
         } catch (InvalidStringException | IOException | MissingDefaultException e){
             try{
-                // Sent an error message when anything fails
                 connection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
             } catch (IOException ex){
                 // Failed to send an error message

@@ -9,6 +9,9 @@ import org.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
 
+/**
+ * This class is used for handling connection between a client and a server.
+ */
 public class ConnectionHandler implements MsgReadListener {
     protected SocketConnection connection;
     protected InstructionExecutor executor;
@@ -18,6 +21,10 @@ public class ConnectionHandler implements MsgReadListener {
         handle(msg);
     }
 
+    /**
+     * This method executes the appropriate executable for the request.
+     * @param msg the request
+     */
     public void handle(String msg){
         try{
             Instruction instruction = ProtocolTranslator.decode(msg);
@@ -38,10 +45,24 @@ public class ConnectionHandler implements MsgReadListener {
                 throw new RuntimeException(ex);
             }
         } catch (MissingDefaultException e) {
-            // Default executable instruction is missing
-            throw new RuntimeException(e);
+            missingDefaultExceptionHandle();
         }
     }
+
+    private void missingDefaultExceptionHandle(){
+        try {
+            connection.writeInstruction(InstructionBuilder.error("Missing Default Instruction"));
+        } catch (IOException ex) {
+            // If this fails - disconnect
+            try {
+                closeSocket();
+            } catch (IOException exc) {
+                // :(
+                throw new RuntimeException(exc);
+            }
+        }
+    }
+
 
     /**
      * Removes its self from the listener list in the socketConnection and

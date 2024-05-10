@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * This class is used for executing code for a specific instructions.
+ * This class is used for executing code for specific instructions.
  */
 public class InstructionExecutor {
     protected final HashMap<String, Executable> instMethodList = new HashMap<>();

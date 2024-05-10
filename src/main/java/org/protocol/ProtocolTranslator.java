@@ -12,21 +12,16 @@ public class ProtocolTranslator {
      */
     public static @NotNull String encode(Instruction instruction) {
         StringBuilder msg = new StringBuilder(instruction.getName());
-        // msg now - NAME
 
         msg.append("{");
-        // msg now - NAME{
 
-        // If there are some parameters, then add them to the message
         if (instruction.getParamList() != null) {
             for (String key : instruction.getParamList().keySet()) {
                 msg.append(key).append("=").append(instruction.getParamList().get(key)).append(";");
             }
         }
-        // msg now - NAME{key=value;
 
         msg.append("}");
-        // msg now - NAME{key=value;}
 
 //        if(!checkValidity(msg.toString())){
 //            I don't know what to do here, but it should not happen, so I won't do anything
@@ -72,20 +67,15 @@ public class ProtocolTranslator {
     // and this class gives me a warning that ParamList is a map not a list in the JavaDocs
     @SuppressWarnings("MismatchedJavadocCode")
     private static ParamList getParamList(String message, int bracketIndex) throws InvalidStringException {
-        // Creating a new paramList
         ParamList paramList = new ParamList();
 
-        // Checking if the instruction contains one or more parameters.
         if (message.contains(";")) {
-            // Extracting the parameter section of the instruction
             String params = message.substring(bracketIndex + 1, message.length() - 1);
 
-            // Separating each parameter
             String[] choppedParams = params.split(";");
 
             try {
                 for (String param : choppedParams) {
-                    // Separating a key from a value and adding it to the paramList
                     String[] kvp = param.split("=");
                     paramList.put(kvp[0], kvp[1]);
                 }

@@ -10,6 +10,10 @@ import org.server.ServerExecutionBundle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This executable registers the user and then logs him in.
+ * The instruction for this executable takes in parameters password and username.
+ */
 public class SIGN_UP implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

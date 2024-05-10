@@ -8,6 +8,9 @@ import org.server.ServerExecutionBundle;
 
 import java.io.IOException;
 
+/**
+ * This executable returns the id of the currently registered user.
+ */
 public class GET_ID implements Executable {
 
     @Override

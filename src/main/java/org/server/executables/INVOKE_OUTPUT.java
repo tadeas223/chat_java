@@ -6,6 +6,9 @@ import org.protocol.protocolHandling.ExecutionBundle;
 
 import java.io.IOException;
 
+/**
+ * This executable is used for debugging. It returns an OUTPUT instruction with a inputted message.
+ */
 public class INVOKE_OUTPUT implements Executable {
 
     @Override

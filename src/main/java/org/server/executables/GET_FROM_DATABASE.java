@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * This executable returns all messages for the logged-in user.
+ */
 public class GET_FROM_DATABASE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

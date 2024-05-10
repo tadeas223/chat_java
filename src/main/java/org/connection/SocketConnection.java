@@ -169,11 +169,11 @@ public class SocketConnection implements Runnable {
         // This loop will stop only when the close method is run.
         while (!close) {
             try {
-                // Constantly reading for incoming messages and notifying listeners that a message came
                 String msg = readString();
                 callListeners(msg);
             } catch (IOException e) {
                 //logging code will be here
+                //update logging code will not be here :(
 
                 // Close the socket and the thread when an error occurs
                 try {

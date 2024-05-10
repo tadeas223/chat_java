@@ -12,6 +12,10 @@ import org.server.ServerExecutionBundle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This executable saves a message to a database.
+ * The instruction for this executable takes parameter username and message.
+ */
 public class SAVE_TO_DATABASE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

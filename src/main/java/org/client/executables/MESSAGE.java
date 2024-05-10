@@ -16,24 +16,19 @@ import java.sql.SQLException;
 public class MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {
-        // Creating a Database object
         MessageDB messageDB = new MessageDB();
 
-        // Getting information from the instruction
         Instruction instruction = executionBundle.instruction;
         String username = instruction.getParam("sender");
         String message = instruction.getParam("message");
 
         try {
-            // Connect to the database
             messageDB.connect();
 
-            // If the message is from a new person - create a new chat for it
             if (!messageDB.containsChat(username)) {
                 messageDB.createChat(username);
             }
 
-            // Save the message to the db
             messageDB.addMessage(new Message(username, message), username);
 
             messageDB.close();

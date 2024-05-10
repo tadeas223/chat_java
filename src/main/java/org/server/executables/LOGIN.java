@@ -10,6 +10,10 @@ import org.server.ServerExecutionBundle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This class logs in a user.
+ * The instruction for this executable takes in parameter username and password.
+ */
 public class LOGIN implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

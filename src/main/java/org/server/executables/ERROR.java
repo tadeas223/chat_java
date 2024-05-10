@@ -5,6 +5,9 @@ import org.protocol.protocolHandling.ExecutionBundle;
 
 import java.io.IOException;
 
+/**
+ * Executables that handles errors.
+ */
 public class ERROR implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

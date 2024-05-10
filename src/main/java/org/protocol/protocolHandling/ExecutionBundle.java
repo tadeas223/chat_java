@@ -4,6 +4,9 @@ import org.connection.SocketConnection;
 import org.protocol.Instruction;
 import org.connection.ConnectionHandler;
 
+/**
+ * This bundle holds everything needed to execute an instruction
+ */
 public class ExecutionBundle {
     public Instruction instruction;
     public ConnectionHandler connectionHandler;

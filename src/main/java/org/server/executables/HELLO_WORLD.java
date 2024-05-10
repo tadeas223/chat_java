@@ -6,6 +6,9 @@ import org.protocol.protocolHandling.ExecutionBundle;
 
 import java.io.IOException;
 
+/**
+ * This executable returns HELLO_WORLD instruction.
+ */
 public class HELLO_WORLD implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

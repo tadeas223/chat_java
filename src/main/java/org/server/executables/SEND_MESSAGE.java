@@ -8,6 +8,10 @@ import org.protocol.protocolHandling.ExecutionBundle;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This executable sends a message to different user.
+ * The instruction for this executable takes in parameters username and message.
+ */
 public class SEND_MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

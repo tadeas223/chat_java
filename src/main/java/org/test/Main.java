@@ -6,6 +6,9 @@ import org.protocol.ChatProtocolException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This class is user for testing, it will be deleted later
+ */
 public class Main {
     public static void main(String[] args) throws IOException, ChatProtocolException, SQLException {
 
@@ -13,7 +16,7 @@ public class Main {
 
         System.out.println("connected to server");
 
-        client.login("test1","secretpassword");
+        client.login("test1", "secretpassword");
 
         client.sendMessage("hello from user 1", "test");
 

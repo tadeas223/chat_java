@@ -9,6 +9,10 @@ import org.server.ServerExecutionBundle;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This executable indicates if a user is online.
+ * The instruction for this executable takes username as a parameter.
+ */
 public class IS_ONLINE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

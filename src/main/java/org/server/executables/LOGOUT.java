@@ -7,6 +7,10 @@ import org.server.ServerConnectionHandler;
 
 import java.io.IOException;
 
+/**
+ * This executable logs out the user.
+ * The instruction for this executable does not take any parameters.
+ */
 public class LOGOUT implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {

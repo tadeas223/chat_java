@@ -30,11 +30,9 @@ public class Client implements MsgReadListener {
      * @throws SQLException when a message database fails to initialize
      */
     public Client(String ip) throws IOException, SQLException {
-        // Connecting to the server
         this.socketConnection = new SocketConnection(ip, SocketConnection.SERVER_PORT);
         clientConnectionHandler = new ClientConnectionHandler(this);
 
-        // Starting the listening thread
         socketConnection.addMsgReadListener(clientConnectionHandler);
         socketConnection.addMsgReadListener(this);
         socketConnection.startReading();
@@ -60,21 +58,16 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      */
     public void login(String username, String password) throws IOException, ChatProtocolException {
-        // Hashing the password
         password = SHA256.encode(password);
 
-        // Sending a login instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Throw an Exception when the server returns an error
         if (instruction.getName().equals("ERROR")) {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        // Save the username
         this.username = username;
     }
 
@@ -88,21 +81,16 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      */
     public void signup(String username, String password) throws IOException, ChatProtocolException {
-        // Hash the password
         password = SHA256.encode(password);
 
-        // Sending a signup instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.signup(username, password));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Throw an Exception when the server returns an error
         if (instruction.getName().equals("ERROR")) {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        // Save the username
         this.username = username;
     }
 
@@ -115,18 +103,14 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      */
     public void signupWithoutEncryption(String username, String password) throws IOException, ChatProtocolException {
-        // Sending the signup instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.signup(username, password));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Throw an Exception when the server throws an error
         if (instruction.getName().equals("ERROR")) {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        // Save the username
         this.username = username;
     }
 
@@ -138,21 +122,23 @@ public class Client implements MsgReadListener {
      * @throws IOException when an I/O error occurs in the server communication
      */
     public void loginWithoutEncryption(String username, String password) throws ChatProtocolException, IOException {
-        // Sending the login instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Throw an Exception when the server throws an error
         if (instruction.getName().equals("ERROR")) {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        // Save the username
         this.username = username;
     }
 
+    /**
+     * This method sends an INVOKE_DONE instruction and waits for a response.
+     * @return true if the response returned, false if not
+     * @throws IOException when an I/O error occurs when sending the instruction
+     * @throws ChatProtocolException when an error occurs with the message communication
+     */
     public boolean invokeDone() throws IOException, ChatProtocolException {
         socketConnection.writeInstruction(InstructionBuilder.invokeDone());
 
@@ -167,6 +153,13 @@ public class Client implements MsgReadListener {
         }
     }
 
+    /**
+     * This method calls INVOKE_OUTPUT instruction and returns the response.
+     * @param message in the output
+     * @return the output message
+     * @throws IOException when an I/O error occurs
+     * @throws ChatProtocolException when an error occurs with the message communication
+     */
     public String invokeOutput(String message) throws IOException, ChatProtocolException {
         socketConnection.writeInstruction(InstructionBuilder.invokeOutput(message));
 
@@ -190,13 +183,10 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an I/O error occurs in the server communication
      */
     public boolean isOnline(String username) throws IOException, ChatProtocolException {
-        // Sending the is online instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.isOnline(username));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Return the response or throw Exception when an error is received
         if (instruction.getName().equals("FALSE")) {
             return false;
         } else if (instruction.getName().equals("TRUE")) {
@@ -216,28 +206,22 @@ public class Client implements MsgReadListener {
      * @throws SQLException when the message fails to save to the database
      */
     public void sendMessage(String message, String username) throws IOException, ChatProtocolException, SQLException {
-        // Sending the send message instruction to the server
         socketConnection.writeInstruction(InstructionBuilder.sendMessage(message, username));
 
-        // Waiting for response
         Instruction instruction = stringToInst(waitForMessage());
 
-        // Throw an Exception when an error is received
         if (instruction.getName().equals("ERROR")) {
             //throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        // Connect to a local database
         MessageDB messageDB = new MessageDB();
         messageDB.connect();
         if (!messageDB.containsChat(username)) {
             messageDB.createChat(username);
         }
 
-        // Create a message object
         Message msg = new Message(this.username, message);
 
-        // Save message to the DB
         messageDB.addMessage(msg, username);
 
         messageDB.close();
@@ -248,10 +232,8 @@ public class Client implements MsgReadListener {
      * @return the message that the server sent
      */
     public String waitForMessage() {
-        // Reset the message
         message = null;
 
-        // Until the message is the same busy wait
         while (Objects.equals(null, message)) {
             try {
                 Thread.sleep(100);
@@ -263,6 +245,11 @@ public class Client implements MsgReadListener {
         return message;
     }
 
+    /**
+     * This method is used to get all chats from the database
+     * @return all chat names
+     * @throws SQLException when an SQL error occurs
+     */
     public String[] getChats() throws SQLException {
         MessageDB messageDB = new MessageDB();
         messageDB.connect();
@@ -274,6 +261,13 @@ public class Client implements MsgReadListener {
         return chats;
     }
 
+    /**
+     * This method is used to get messages from a chat.
+     * @param chat with the messages
+     * @param count number of the messages that should be returned
+     * @return the messages
+     * @throws SQLException when a SQL error occurs
+     */
     public Message[] getMessages(String chat, int count) throws SQLException {
         MessageDB messageDB = new MessageDB();
         messageDB.connect();
@@ -294,13 +288,10 @@ public class Client implements MsgReadListener {
      */
     public Instruction stringToInst(String string) throws IOException {
         try {
-            // Convert the string into a instruction
             return ProtocolTranslator.decode(string);
         } catch (InvalidStringException e) {
-            // Send an error to the server
             socketConnection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
 
-            // Return a non-null instruction
             return new Instruction("PlS DoN'T UsE tHiS eXaCt TeXt FoR InStRuCtIoN");
         }
     }

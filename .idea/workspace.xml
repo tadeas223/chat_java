@@ -4,12 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI works until you try to view the messages">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Log working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/ExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/ExecutionBundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/InstructionExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/InstructionExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutionBundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/DEFAULT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/DEFAULT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/ERROR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/ERROR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_FROM_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_ID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/HELLO_WORLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/HELLO_WORLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_DONE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_DONE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_OUTPUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_OUTPUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/IS_ONLINE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/IS_ONLINE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGOUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SAVE_TO_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SEND_MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SIGN_UP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,23 +77,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
-    "git-widget-placeholder": "serverLogging",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.28850573",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;371&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.28850573&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -90,7 +112,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ApplicationRunner">
     <configuration name="ApplicationRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.app.ApplicationRunner" />
       <module name="messenger" />
@@ -237,6 +259,15 @@
     <MESSAGE value="Package cleanup&#10;Executable interface added&#10;All sorts of instructions working now&#10;SendMessage still doesn't work :(" />
     <MESSAGE value="GUI works until you try to view the messages" />
     <option name="LAST_COMMIT_MESSAGE" value="GUI works until you try to view the messages" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.server.Server" memberName="log" />
+        <PinnedItemInfo parentTag="org.server.Server" memberName="handlers" />
+        <PinnedItemInfo parentTag="org.server.Server" memberName="serverExecutor" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

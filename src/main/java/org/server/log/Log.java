@@ -2,6 +2,9 @@ package org.server.log;
 
 import java.io.PrintStream;
 
+/**
+ * Class used for logging messages.
+ */
 public class Log {
     private PrintStream fileStream = null;
     private PrintStream consoleStream = null;
@@ -14,6 +17,10 @@ public class Log {
     public Log() {
     }
 
+    /**
+     * Prints the message to every {@link PrintStream}.
+     * @param s
+     */
     public void println(String s){
         if(fileStream != null) fileStream.println(s);
         if(consoleStream != null) consoleStream.println(s);

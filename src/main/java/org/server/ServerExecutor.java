@@ -10,8 +10,15 @@ import org.server.executables.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+/**
+ * This class contains all valid instructions and the appropriate {@link Executable}.
+ * This class is user with {@link ServerConnectionHandler}
+ * to handle communication between the server and a client.
+ * This class also creates a new {@link SQLConnection} session that is not closed anywhere :(.
+ */
 public class ServerExecutor extends InstructionExecutor {
     private final SQLConnection sqlConnection = new SQLConnection();
+
     public ServerExecutor(){
         try {
             sqlConnection.connect();
