@@ -4,34 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Log working">
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="MOREEEEE Documentation&#10;Also removed unnecessary comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/ExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/ExecutionBundle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/InstructionExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/protocolHandling/InstructionExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutionBundle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/DEFAULT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/DEFAULT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/ERROR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/ERROR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_FROM_DATABASE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/GET_ID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/HELLO_WORLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/HELLO_WORLD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_DONE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_DONE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_OUTPUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/INVOKE_OUTPUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/IS_ONLINE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/IS_ONLINE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/LOGOUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SAVE_TO_DATABASE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SEND_MESSAGE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/executables/SIGN_UP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/log/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715331446379</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="MOREEEEE Documentation&#10;Also removed unnecessary comments">
+      <option name="closed" value="true" />
+      <created>1715360995014</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715360995014</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -258,7 +240,8 @@
     <MESSAGE value="Instruction execution divided into objects." />
     <MESSAGE value="Package cleanup&#10;Executable interface added&#10;All sorts of instructions working now&#10;SendMessage still doesn't work :(" />
     <MESSAGE value="GUI works until you try to view the messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI works until you try to view the messages" />
+    <MESSAGE value="MOREEEEE Documentation&#10;Also removed unnecessary comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="MOREEEEE Documentation&#10;Also removed unnecessary comments" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

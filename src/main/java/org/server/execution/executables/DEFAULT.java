@@ -1,4 +1,4 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;

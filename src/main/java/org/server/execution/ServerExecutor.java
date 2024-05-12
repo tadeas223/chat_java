@@ -1,11 +1,13 @@
-package org.server;
+package org.server.execution;
 
 import org.connection.ConnectionHandler;
 import org.protocol.Instruction;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.InstructionExecutor;
 import org.protocol.protocolHandling.MissingDefaultException;
-import org.server.executables.*;
+import org.server.SQLConnection;
+import org.server.ServerConnectionHandler;
+import org.server.execution.executables.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -28,6 +30,8 @@ public class ServerExecutor extends InstructionExecutor {
         }
 
         instMethodList.put("DEFAULT", new DEFAULT());
+
+        instMethodList.put("INIT", new INIT());
 
         instMethodList.put("HELLO_WORLD", new HELLO_WORLD());
         instMethodList.put("INVOKE_DONE", new INVOKE_DONE());

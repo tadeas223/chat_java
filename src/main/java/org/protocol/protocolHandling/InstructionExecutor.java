@@ -18,7 +18,7 @@ public class InstructionExecutor {
      * @param connectionHandler the source of the instruction
      * @throws IOException if an I/O error occurs when writing to the connectionHandler's socket
      */
-    public synchronized void execute(Instruction instruction, ConnectionHandler connectionHandler) throws IOException, MissingDefaultException {
+    public void execute(Instruction instruction, ConnectionHandler connectionHandler) throws IOException, MissingDefaultException {
         Executable executable = instMethodList.get(instruction.getName());
 
         ExecutionBundle executionBundle = new ExecutionBundle(instruction, connectionHandler);
@@ -26,7 +26,8 @@ public class InstructionExecutor {
         executeExecutable(executable,executionBundle);
     }
 
-    public synchronized void executeExecutable(Executable executable,ExecutionBundle executionBundle) throws IOException, MissingDefaultException {
+
+    public void executeExecutable(Executable executable,ExecutionBundle executionBundle) throws IOException, MissingDefaultException {
         if (executable != null) {
             try {
                 executable.execute(executionBundle);

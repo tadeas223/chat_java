@@ -1,7 +1,9 @@
-package org.server;
+package org.server.execution;
 
 import org.protocol.Instruction;
 import org.protocol.protocolHandling.ExecutionBundle;
+import org.server.SQLConnection;
+import org.server.ServerConnectionHandler;
 
 /**
  * This is class holds everything that the server needs to know to execute an instruction.

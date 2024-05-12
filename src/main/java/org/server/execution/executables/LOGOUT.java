@@ -1,9 +1,10 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.ServerConnectionHandler;
+import org.server.socketData.AuthenticationData;
 
 import java.io.IOException;
 
@@ -16,12 +17,12 @@ public class LOGOUT implements Executable {
     public void execute(ExecutionBundle executionBundle) throws IOException {
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) executionBundle.connectionHandler;
 
-        if(serverHandler.checkUser()){
+        if(serverHandler.containsData(AuthenticationData.class)){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("User is already logged in"));
             return;
         }
 
-        serverHandler.setUser(null);
+        serverHandler.removeData(AuthenticationData.class);
 
         executionBundle.connection.writeInstruction(InstructionBuilder.done());
     }

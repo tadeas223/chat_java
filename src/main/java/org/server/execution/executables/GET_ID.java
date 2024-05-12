@@ -1,10 +1,11 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.ServerConnectionHandler;
-import org.server.ServerExecutionBundle;
+import org.server.execution.ServerExecutionBundle;
+import org.server.socketData.AuthenticationData;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ public class GET_ID implements Executable {
         ServerExecutionBundle serverExecutionBundle = (ServerExecutionBundle) executionBundle;
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) serverExecutionBundle.connectionHandler;
 
-        if(!serverHandler.checkUser()){
+        if(!serverHandler.containsData(AuthenticationData.class)){
             serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
             return;
         }
@@ -26,6 +27,6 @@ public class GET_ID implements Executable {
         serverExecutionBundle.connection.writeInstruction(
                 InstructionBuilder.output(
                         String.valueOf(
-                                serverHandler.getUser().getId())));
+                                serverHandler.getData(AuthenticationData.class).getUser().getId())));
     }
 }

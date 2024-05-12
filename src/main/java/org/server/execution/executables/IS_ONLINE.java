@@ -1,10 +1,11 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.protocol.InstructionBuilder;
 import org.server.ServerConnectionHandler;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
-import org.server.ServerExecutionBundle;
+import org.server.execution.ServerExecutionBundle;
+import org.server.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class IS_ONLINE implements Executable {
         ServerExecutionBundle serverExecutionBundle = (ServerExecutionBundle) executionBundle;
 
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) serverExecutionBundle.connectionHandler;
-        if(!serverHandler.checkUser()){
+        if(!serverHandler.containsData(AuthenticationData.class)){
             serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
             return;
         }
@@ -34,8 +35,9 @@ public class IS_ONLINE implements Executable {
         ArrayList<ServerConnectionHandler> handlers = serverHandler.getServer().getHandlers();
 
         for(ServerConnectionHandler handler : handlers){
-            if(handler.getUser() != null){
-                if(handler.getUser().getUsername().equals(username)){
+            AuthenticationData authData = handler.getData(AuthenticationData.class);
+            if(authData != null){
+                if(authData.getUser().getUsername().equals(username)){
                     serverExecutionBundle.connection.writeInstruction(InstructionBuilder.trueInstruction());
                     return;
                 }

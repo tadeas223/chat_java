@@ -9,8 +9,11 @@ import org.protocol.InvalidStringException;
 import org.protocol.ProtocolTranslator;
 import org.protocol.protocolHandling.MissingDefaultException;
 import org.security.User;
+import org.server.execution.ServerExecutor;
+import org.server.socketData.SocketData;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * This class is used for handling incoming messages from {@link SocketConnection}.
@@ -21,8 +24,8 @@ import java.io.IOException;
  */
 public class ServerConnectionHandler extends ConnectionHandler {
     private final Server server;
-    private User user = null;
-    public ServerConnectionHandler(SocketConnection connection, Server server, ServerExecutor serverExecutor) {
+    private ArrayList<SocketData> socketDataList;
+    public ServerConnectionHandler(SocketConnection connection, Server server, ServerExecutor serverExecutor) throws IOException {
         if(serverExecutor == null){
             this.executor = new ServerExecutor();
         } else {
@@ -32,6 +35,13 @@ public class ServerConnectionHandler extends ConnectionHandler {
         this.server = server;
         this.connection = connection;
         connection.addMsgReadListener(this);
+
+        try {
+            executor.execute(new Instruction("INIT"),this);
+        } catch (MissingDefaultException e) {
+            connection.writeInstruction(InstructionBuilder.error("Impossible error"));
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -112,15 +122,41 @@ public class ServerConnectionHandler extends ConnectionHandler {
         }
     }
 
-    public User getUser() {
-        return user;
+    public <T extends SocketData> T getData(Class<T> dataClass){
+        for(SocketData sd : socketDataList){
+            if(sd.getClass().equals(dataClass)){
+                return (T) sd;
+            }
+        }
+        return null;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public boolean addData(SocketData socketData){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(socketData.getClass())){
+              return false;
+            }
+        }
+
+        socketDataList.add(socketData);
+        return true;
     }
-    public boolean checkUser(){
-        return user != null;
+
+    public <T extends SocketData>boolean containsData(Class<T> dataClass){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(dataClass)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public <T extends SocketData> void removeData(Class<T> dataClass){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(dataClass)){
+               socketDataList.remove(s);
+            }
+        }
     }
 
     public Server getServer() {

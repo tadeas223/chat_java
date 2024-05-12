@@ -1,4 +1,4 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.chat.Message;
 import org.protocol.Instruction;
@@ -7,7 +7,8 @@ import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.SQLConnection;
 import org.server.ServerConnectionHandler;
-import org.server.ServerExecutionBundle;
+import org.server.execution.ServerExecutionBundle;
+import org.server.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,12 +26,16 @@ public class GET_FROM_DATABASE implements Executable {
 
         Message[] messages = new Message[0];
 
-        if(!serverHandler.checkUser()){
+        if(!serverHandler.containsData(AuthenticationData.class)){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
             return;
         }
         try{
-            messages = sqlConnection.getMessages(serverHandler.getUser().getUsername());
+            messages = sqlConnection.getMessages(serverHandler
+                    .getData(AuthenticationData.class)
+                    .getUser()
+                    .getUsername());
+
         } catch (SQLException e){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
             return;

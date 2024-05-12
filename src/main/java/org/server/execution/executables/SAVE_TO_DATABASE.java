@@ -1,4 +1,4 @@
-package org.server.executables;
+package org.server.execution.executables;
 
 import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
@@ -7,7 +7,8 @@ import org.protocol.protocolHandling.ExecutionBundle;
 import org.security.User;
 import org.server.SQLConnection;
 import org.server.ServerConnectionHandler;
-import org.server.ServerExecutionBundle;
+import org.server.execution.ServerExecutionBundle;
+import org.server.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class SAVE_TO_DATABASE implements Executable {
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) executionBundle.connectionHandler;
         SQLConnection sqlConnection = serverExecutionBundle.sqlConnection;
 
-        User user = serverHandler.getUser();
+        User user = serverHandler.getData(AuthenticationData.class).getUser();
 
         Instruction instruction = executionBundle.instruction;
 
