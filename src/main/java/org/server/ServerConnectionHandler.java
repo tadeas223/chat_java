@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class ServerConnectionHandler extends ConnectionHandler {
     private final Server server;
-    private ArrayList<SocketData> socketDataList;
+    private ArrayList<SocketData> socketDataList = new ArrayList<>();
     public ServerConnectionHandler(SocketConnection connection, Server server, ServerExecutor serverExecutor) throws IOException {
         if(serverExecutor == null){
             this.executor = new ServerExecutor();
