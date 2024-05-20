@@ -34,18 +34,22 @@ public class LOGIN implements Executable {
             return;
         }
 
-        try {
-            User user = serverExecutionBundle.sqlConnection.login(username,password);
-
-            if (user != null) {
-                AuthenticationData authData = new AuthenticationData(user);
-                serverHandler.addData(authData);
-                serverExecutionBundle.connection.writeInstruction(InstructionBuilder.done());
-            } else {
-                serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Wrong username or password"));
-            }
-        } catch (SQLException e) {
-            serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
-        }
+        User user = new User("a",1);
+        AuthenticationData authData = new AuthenticationData(user);
+        serverHandler.addData(authData);
+        executionBundle.connection.writeInstruction(InstructionBuilder.done());
+//        try {
+//            User user = serverExecutionBundle.sqlConnection.login(username,password);
+//
+//            if (user != null) {
+//                AuthenticationData authData = new AuthenticationData(user);
+//                serverHandler.addData(authData);
+//                serverExecutionBundle.connection.writeInstruction(InstructionBuilder.done());
+//            } else {
+//                serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Wrong username or password"));
+//            }
+//        } catch (SQLException e) {
+//            serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
+//        }
     }
 }

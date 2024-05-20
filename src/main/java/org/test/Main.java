@@ -12,13 +12,13 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws IOException, ChatProtocolException, SQLException {
 
-        Client client = new Client("localhost");
+        Client client = new Client("localhost",60001);
 
         System.out.println("connected to server");
 
         client.login("test1", "secretpassword");
 
-        client.sendMessage("hello from user 1", "test");
+        client.invokeOutput("hello from user 1");
 
 
         System.out.println("waiting for incoming messages...");

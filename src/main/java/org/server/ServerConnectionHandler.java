@@ -84,8 +84,6 @@ public class ServerConnectionHandler extends ConnectionHandler {
             Instruction instruction = ProtocolTranslator.decode(msg);
 
             executor.execute(instruction, this);
-            server.getLog().println("[" + connection.getIp() + "] - REQUEST HANDLED");
-
         } catch (InvalidStringException e){
             try{
                 server.getLog().println("[" + connection.getIp() + "] - Invalid Instruction");

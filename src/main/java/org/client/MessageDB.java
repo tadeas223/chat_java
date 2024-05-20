@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * The database is used to save chats and messages.
  */
 public class MessageDB {
-    private final String DATABASE_FILE = "data/messages.db";
+    private final String DATABASE_FILE = "data/client/messages.db";
     private Connection connection;
 
     /**

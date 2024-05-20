@@ -46,6 +46,23 @@ public class Client implements MsgReadListener {
         messageDB.close();
     }
 
+    public Client(String ip, int port) throws IOException, SQLException {
+        this.socketConnection = new SocketConnection(ip, port);
+        clientConnectionHandler = new ClientConnectionHandler(this);
+
+        socketConnection.addMsgReadListener(clientConnectionHandler);
+        socketConnection.addMsgReadListener(this);
+        socketConnection.startReading();
+
+        // Configuring the DB
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect();
+        if (!messageDB.containsChatsTable()) {
+            messageDB.createChatsTable();
+        }
+        messageDB.close();
+    }
+
     /**
      * Logs in the user in the server.
      * If the user is not logged in,
@@ -211,7 +228,7 @@ public class Client implements MsgReadListener {
         Instruction instruction = stringToInst(waitForMessage());
 
         if (instruction.getName().equals("ERROR")) {
-            //throw new ChatProtocolException(instruction.getParam("message"));
+            throw new ChatProtocolException(instruction.getParam("message"));
         }
 
         MessageDB messageDB = new MessageDB();
