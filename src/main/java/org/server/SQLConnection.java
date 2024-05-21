@@ -11,11 +11,7 @@ import java.util.ArrayList;
  * This class has methods for easier data saving and retrieving from the database.
  */
 public class SQLConnection {
-    private final String db = "messenger";
-    private final String user = "tad";
-    private final String password = "tadeas223";
-
-    private final String ip = "192.168.0.150";
+    private final String DB_FILE = "data/server/messenger.db";
     private Connection connection;
 
     /**
@@ -24,7 +20,60 @@ public class SQLConnection {
      * @throws SQLException when the connection fails
      */
     public void connect() throws SQLException {
-        //connection = DriverManager.getConnection("jdbc:mysql://"+ip+":3306/"+db,user,password);
+        connection = DriverManager.getConnection("jdbc:sqlite:"+DB_FILE);
+
+        if (!isInitialized()){
+            init();
+        }
+    }
+
+    /**
+     * Initializes the database.
+     * Every action with the database will not work until the database is initialized.
+     * The initialization should be called only at the first start of the program.
+     * @throws SQLException when SQL error occurs
+     */
+    private void init() throws SQLException {
+        Statement statement = connection.createStatement();
+
+        String usersTable = "CREATE TABLE users (" +
+                "  id INTEGER PRIMARY KEY," +
+                "  username VARCHAR(45)," +
+                "  password VARCHAR(64));";
+
+        String messagesTable = "CREATE TABLE messages (" +
+                "  id INTEGER PRIMARY KEY," +
+                "  receiver VARCHAR(45)," +
+                "  sender VARCHAR(45)," +
+                "  message VARCHAR(200));";
+
+        statement.execute(usersTable);
+        statement.execute(messagesTable);
+    }
+
+
+    /**
+     * This method is used to find if the database is initialized correctly.
+     * @return true it the database is initialized, false if not.
+     * @throws SQLException when an SQL error occurs
+     */
+    private boolean isInitialized() throws SQLException {
+        String sql = "SELECT name FROM sqlite_master WHERE type='table';";
+
+        Statement statement = connection.createStatement();
+
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        int count = 0;
+
+        while (resultSet.next()){
+            if(resultSet.getString("name").equals("users") ||
+                    resultSet.getString("name").equals("messages")){
+                count++;
+            }
+        }
+
+        return count == 2;
     }
 
     /**
