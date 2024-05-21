@@ -12,11 +12,11 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws IOException, ChatProtocolException, SQLException {
 
-        Client client = new Client("localhost",60001);
+        Client client = new Client("localhost");
 
         System.out.println("connected to server");
 
-        client.login("test1", "secretpassword");
+        client.loginWithoutEncryption("", "");
 
         client.invokeOutput("hello from user 1");
 

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -37,6 +38,8 @@ public class LoginPanel extends JPanel {
                     errLabel.setText("Error: Communication with the server failed");
                 } catch (ChatProtocolException ex) {
                     errLabel.setText("Error: " + ex.getMessage());
+                } catch (SQLException ex) {
+                    errLabel.setText("Error: local Database error");
                 }
             }
         });

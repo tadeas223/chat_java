@@ -1,5 +1,7 @@
 package org.client.app;
 
+import org.client.ClientNotLoggedInException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,6 +34,8 @@ public class AppPanel extends JPanel {
         try {
             contacts = clientApp.getClient().getChats();
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClientNotLoggedInException e) {
             throw new RuntimeException(e);
         }
 

@@ -8,7 +8,7 @@ import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.SQLConnection;
 import org.server.ServerConnectionHandler;
 import org.server.execution.ServerExecutionBundle;
-import org.server.socketData.AuthenticationData;
+import org.connection.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.sql.SQLException;

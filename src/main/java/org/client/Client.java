@@ -1,14 +1,15 @@
 package org.client;
 
 import org.chat.Message;
+import org.connection.socketData.AuthenticationData;
 import org.connection.MsgReadListener;
 import org.connection.SocketConnection;
 import org.protocol.*;
 import org.security.SHA256;
+import org.security.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
 import java.util.Objects;
 
 /**
@@ -21,29 +22,20 @@ public class Client implements MsgReadListener {
     private final SocketConnection socketConnection;
     private final ClientConnectionHandler clientConnectionHandler;
     private String message = null;
-    private String username;
-
+    private User user;
     /**
      * Connects to the server at the default server port.
      * Starts a listening thread for server messages.
      * @throws IOException when in I/O error occurs when connection to the server
      * @throws SQLException when a message database fails to initialize
      */
-    public Client(String ip) throws IOException, SQLException {
+    public Client(String ip) throws IOException {
         this.socketConnection = new SocketConnection(ip, SocketConnection.SERVER_PORT);
         clientConnectionHandler = new ClientConnectionHandler(this);
 
         socketConnection.addMsgReadListener(clientConnectionHandler);
         socketConnection.addMsgReadListener(this);
         socketConnection.startReading();
-
-        // Configuring the DB
-        MessageDB messageDB = new MessageDB();
-        messageDB.connect();
-        if (!messageDB.containsChatsTable()) {
-            messageDB.createChatsTable();
-        }
-        messageDB.close();
     }
 
     public Client(String ip, int port) throws IOException, SQLException {
@@ -53,14 +45,24 @@ public class Client implements MsgReadListener {
         socketConnection.addMsgReadListener(clientConnectionHandler);
         socketConnection.addMsgReadListener(this);
         socketConnection.startReading();
+    }
 
-        // Configuring the DB
+    private void configureDB() throws SQLException {
         MessageDB messageDB = new MessageDB();
-        messageDB.connect();
+        messageDB.connect(user.getUsername());
         if (!messageDB.containsChatsTable()) {
             messageDB.createChatsTable();
         }
         messageDB.close();
+    }
+
+    private MessageDB configureDBNoClose() throws SQLException {
+        MessageDB messageDB = new MessageDB();
+        messageDB.connect(user.getUsername());
+        if (!messageDB.containsChatsTable()) {
+            messageDB.createChatsTable();
+        }
+        return messageDB;
     }
 
     /**
@@ -74,18 +76,27 @@ public class Client implements MsgReadListener {
      * @throws IOException when an I/O error occurs in the server communication
      * @throws ChatProtocolException when an error occurs with the message communication
      */
-    public void login(String username, String password) throws IOException, ChatProtocolException {
+    public void login(String username, String password) throws IOException, ChatProtocolException, SQLException {
         password = SHA256.encode(password);
 
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
-
         Instruction instruction = stringToInst(waitForMessage());
-
         if (instruction.getName().equals("ERROR")) {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        this.username = username;
+        socketConnection.writeInstruction(InstructionBuilder.getId());
+        instruction = stringToInst(waitForMessage());
+        if (instruction.getName().equals("ERROR")) {
+            throw new ChatProtocolException(instruction.getParam("message"));
+        }
+
+        user = new User(username,Integer.parseInt(instruction.getParam("message")));
+
+        AuthenticationData authenticationData = new AuthenticationData(user);
+        clientConnectionHandler.addData(authenticationData);
+
+        configureDB();
     }
 
     /**
@@ -97,7 +108,7 @@ public class Client implements MsgReadListener {
      * @throws IOException when an I/O error occurs in the server communication
      * @throws ChatProtocolException when an error occurs with the message communication
      */
-    public void signup(String username, String password) throws IOException, ChatProtocolException {
+    public void signup(String username, String password) throws IOException, ChatProtocolException, SQLException {
         password = SHA256.encode(password);
 
         socketConnection.writeInstruction(InstructionBuilder.signup(username, password));
@@ -108,18 +119,26 @@ public class Client implements MsgReadListener {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        this.username = username;
+        socketConnection.writeInstruction(InstructionBuilder.getId());
+        instruction = stringToInst(waitForMessage());
+        if (instruction.getName().equals("ERROR")) {
+            throw new ChatProtocolException(instruction.getParam("message"));
+        }
+
+        user = new User(username,Integer.parseInt(instruction.getParam("message")));
+
+        configureDB();
     }
 
     /**
      * Registers and logs in the user without hashing the password.
-     * If use register by this method, then you can only log in by the loginWithoutEncryption() method.
+     * If a user registers by this method, then he can only log in by the loginWithoutEncryption() method.
      * @param username of the user
      * @param password of the user
      * @throws IOException when an I/O error occurs in the server communication
      * @throws ChatProtocolException when an error occurs with the message communication
      */
-    public void signupWithoutEncryption(String username, String password) throws IOException, ChatProtocolException {
+    public void signupWithoutEncryption(String username, String password) throws IOException, ChatProtocolException, SQLException {
         socketConnection.writeInstruction(InstructionBuilder.signup(username, password));
 
         Instruction instruction = stringToInst(waitForMessage());
@@ -128,7 +147,15 @@ public class Client implements MsgReadListener {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        this.username = username;
+        socketConnection.writeInstruction(InstructionBuilder.getId());
+        instruction = stringToInst(waitForMessage());
+        if (instruction.getName().equals("ERROR")) {
+            throw new ChatProtocolException(instruction.getParam("message"));
+        }
+
+        user = new User(username,Integer.parseInt(instruction.getParam("message")));
+
+        configureDB();
     }
 
     /**
@@ -138,7 +165,7 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      * @throws IOException when an I/O error occurs in the server communication
      */
-    public void loginWithoutEncryption(String username, String password) throws ChatProtocolException, IOException {
+    public void loginWithoutEncryption(String username, String password) throws ChatProtocolException, IOException, SQLException {
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
 
         Instruction instruction = stringToInst(waitForMessage());
@@ -147,7 +174,15 @@ public class Client implements MsgReadListener {
             throw new ChatProtocolException(instruction.getParam("message"));
         }
 
-        this.username = username;
+        socketConnection.writeInstruction(InstructionBuilder.getId());
+        instruction = stringToInst(waitForMessage());
+        if (instruction.getName().equals("ERROR")) {
+            throw new ChatProtocolException(instruction.getParam("message"));
+        }
+
+        user = new User(username,Integer.parseInt(instruction.getParam("message")));
+
+        configureDB();
     }
 
     /**
@@ -232,12 +267,12 @@ public class Client implements MsgReadListener {
         }
 
         MessageDB messageDB = new MessageDB();
-        messageDB.connect();
+        messageDB.connect(user.getUsername());
         if (!messageDB.containsChat(username)) {
             messageDB.createChat(username);
         }
 
-        Message msg = new Message(this.username, message);
+        Message msg = new Message(user.getUsername(), message);
 
         messageDB.addMessage(msg, username);
 
@@ -267,9 +302,13 @@ public class Client implements MsgReadListener {
      * @return all chat names
      * @throws SQLException when an SQL error occurs
      */
-    public String[] getChats() throws SQLException {
+    public String[] getChats() throws SQLException, ClientNotLoggedInException {
+        if(user == null){
+            throw new ClientNotLoggedInException("Client is not logged in");
+        }
+
         MessageDB messageDB = new MessageDB();
-        messageDB.connect();
+        messageDB.connect(user.getUsername());
 
         String[] chats = messageDB.getChats();
 
@@ -283,11 +322,16 @@ public class Client implements MsgReadListener {
      * @param chat with the messages
      * @param count number of the messages that should be returned
      * @return the messages
-     * @throws SQLException when a SQL error occurs
+     * @throws SQLException when SQL error occurs
      */
-    public Message[] getMessages(String chat, int count) throws SQLException {
+    public Message[] getMessages(String chat, int count) throws SQLException, ClientNotLoggedInException {
+        if(user == null){
+            throw new ClientNotLoggedInException("Client is not logged in");
+        }
+
         MessageDB messageDB = new MessageDB();
-        messageDB.connect();
+
+        messageDB.connect(user.getUsername());
 
         Message[] messages = messageDB.getMessages(chat,count);
 
@@ -320,6 +364,14 @@ public class Client implements MsgReadListener {
 
     public SocketConnection getSocketConnection() {
         return socketConnection;
+    }
+
+    public MessageDB getDatabase() throws ClientNotLoggedInException, SQLException {
+        if(user == null){
+            throw new ClientNotLoggedInException("Client is not logged in");
+        }
+
+        return configureDBNoClose();
     }
 
     /**

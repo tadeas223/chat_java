@@ -1,6 +1,8 @@
 package org.server.socketData;
 
-public class InitCallData implements SocketData{
+import org.connection.socketData.SocketData;
+
+public class InitCallData implements SocketData {
     private boolean initCalled;
 
     public boolean isInitCalled() {

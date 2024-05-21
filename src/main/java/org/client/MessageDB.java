@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * The database is used to save chats and messages.
  */
 public class MessageDB {
-    private final String DATABASE_FILE = "data/client/messages.db";
+    private final String DATABASE_FOLDER = "data/client/";
     private Connection connection;
 
     /**
@@ -19,8 +19,8 @@ public class MessageDB {
      * local database ane every other method will throw an exception.
      * @throws SQLException When the method fails to connect to the database.
      */
-    public void connect() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:sqlite:"+DATABASE_FILE);
+    public void connect(String dbName) throws SQLException {
+        connection = DriverManager.getConnection("jdbc:sqlite:"+DATABASE_FOLDER+dbName+".db");
     }
 
     /**

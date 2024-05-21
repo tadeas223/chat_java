@@ -1,8 +1,8 @@
-package org.server.socketData;
+package org.connection.socketData;
 
 import org.security.User;
 
-public class AuthenticationData implements SocketData{
+public class AuthenticationData implements SocketData {
     private User user;
 
     public AuthenticationData(User user) {

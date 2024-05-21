@@ -92,4 +92,8 @@ public class InstructionBuilder {
 
         return arrayList.toArray(Instruction[]::new);
     }
+
+    public static Instruction getId(){
+        return new Instruction("GET_ID");
+    }
 }

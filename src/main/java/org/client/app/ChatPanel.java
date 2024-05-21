@@ -1,6 +1,7 @@
 package org.client.app;
 
 import org.chat.Message;
+import org.client.ClientNotLoggedInException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,8 @@ public class ChatPanel extends JPanel {
         try {
             messages = clientApp.getClient().getMessages(chat, Integer.MAX_VALUE);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClientNotLoggedInException e) {
             throw new RuntimeException(e);
         }
 

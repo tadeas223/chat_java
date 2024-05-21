@@ -1,5 +1,7 @@
 package org.server.socketData;
 
+import org.connection.socketData.SocketData;
+
 public class AutoDBSaveData implements SocketData {
     private boolean autoSave;
 

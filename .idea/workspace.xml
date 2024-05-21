@@ -4,13 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="NullPointerException Fixed">
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Server migrated to SQLite">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientNotLoggedInException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_ID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/IS_ONLINE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/IS_ONLINE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/AuthenticationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/socketData/AuthenticationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/AutoDBSaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/AutoDBSaveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/InitCallData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/InitCallData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/SocketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/socketData/SocketData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,18 +57,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tadeas223"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tadeas223&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tadeas223/messenger.git",
-    "accountId": "eae03b48-89eb-4acc-bdd5-21c32147d9d6"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tadeas223/messenger.git&quot;,
+    &quot;accountId&quot;: &quot;eae03b48-89eb-4acc-bdd5-21c32147d9d6&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -69,26 +87,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.ClientApp.executor": "Run",
-    "Application.ConnectionDisplay.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Server.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.28850573",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editor.preferences.tabs"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ConnectionDisplay.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;371&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.28850573&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -229,7 +247,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715360995014</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Connection Display working&#10;And small changes to the code">
+      <option name="closed" value="true" />
+      <created>1716232836088</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716232836089</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Server migrated to SQLite">
+      <option name="closed" value="true" />
+      <created>1716307236460</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716307236460</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -256,7 +290,9 @@
     <MESSAGE value="Package cleanup&#10;Executable interface added&#10;All sorts of instructions working now&#10;SendMessage still doesn't work :(" />
     <MESSAGE value="GUI works until you try to view the messages" />
     <MESSAGE value="MOREEEEE Documentation&#10;Also removed unnecessary comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="MOREEEEE Documentation&#10;Also removed unnecessary comments" />
+    <MESSAGE value="Connection Display working&#10;And small changes to the code" />
+    <MESSAGE value="Server migrated to SQLite" />
+    <option name="LAST_COMMIT_MESSAGE" value="Server migrated to SQLite" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

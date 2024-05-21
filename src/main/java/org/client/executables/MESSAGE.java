@@ -1,8 +1,11 @@
 package org.client.executables;
 
 import org.chat.Message;
+import org.client.ClientConnectionHandler;
+import org.client.ClientNotLoggedInException;
 import org.client.MessageDB;
 import org.protocol.Instruction;
+import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
 
@@ -16,14 +19,15 @@ import java.sql.SQLException;
 public class MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {
-        MessageDB messageDB = new MessageDB();
+        ClientConnectionHandler clientHandler = (ClientConnectionHandler) executionBundle.connectionHandler;
+
 
         Instruction instruction = executionBundle.instruction;
         String username = instruction.getParam("sender");
         String message = instruction.getParam("message");
 
         try {
-            messageDB.connect();
+            MessageDB messageDB = clientHandler.getClient().getDatabase();
 
             if (!messageDB.containsChat(username)) {
                 messageDB.createChat(username);
@@ -35,7 +39,8 @@ public class MESSAGE implements Executable {
         } catch (SQLException e) {
             // I don't know how to handle this :(
             throw new RuntimeException(e);
+        } catch (ClientNotLoggedInException e) {
+            // This should not happen
         }
-
     }
 }

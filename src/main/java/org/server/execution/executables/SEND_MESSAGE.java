@@ -1,12 +1,11 @@
 package org.server.execution.executables;
 
 import org.protocol.InstructionBuilder;
-import org.protocol.ParamList;
 import org.server.ServerConnectionHandler;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
 import org.server.execution.ServerExecutionBundle;
-import org.server.socketData.AuthenticationData;
+import org.connection.socketData.AuthenticationData;
 import org.server.socketData.AutoDBSaveData;
 
 import java.io.IOException;

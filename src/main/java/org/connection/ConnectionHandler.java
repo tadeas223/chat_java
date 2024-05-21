@@ -1,5 +1,6 @@
 package org.connection;
 
+import org.connection.socketData.SocketData;
 import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.InvalidStringException;
@@ -8,6 +9,7 @@ import org.protocol.protocolHandling.InstructionExecutor;
 import org.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * This class is used for handling connection between a client and a server.
@@ -15,6 +17,7 @@ import java.io.IOException;
 public class ConnectionHandler implements MsgReadListener {
     protected SocketConnection connection;
     protected InstructionExecutor executor;
+    protected ArrayList<SocketData> socketDataList = new ArrayList<>();
 
     @Override
     public void messageRead(String msg) {
@@ -88,5 +91,42 @@ public class ConnectionHandler implements MsgReadListener {
 
     public InstructionExecutor getExecutor() {
         return executor;
+    }
+
+    public <T extends SocketData> T getData(Class<T> dataClass){
+        for(SocketData sd : socketDataList){
+            if(sd.getClass().equals(dataClass)){
+                return (T) sd;
+            }
+        }
+        return null;
+    }
+
+    public boolean addData(SocketData socketData){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(socketData.getClass())){
+                return false;
+            }
+        }
+
+        socketDataList.add(socketData);
+        return true;
+    }
+
+    public <T extends SocketData>boolean containsData(Class<T> dataClass){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(dataClass)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public <T extends SocketData> void removeData(Class<T> dataClass){
+        for(SocketData s : socketDataList){
+            if(s.getClass().equals(dataClass)){
+                socketDataList.remove(s);
+            }
+        }
     }
 }
