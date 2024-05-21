@@ -95,6 +95,14 @@ public class Server {
             // Creating a handler for the connection and adding it to the handler list
             ServerConnectionHandler handler = new ServerConnectionHandler(connection, this,serverExecutor);
             addConnectionHandler(handler);
+
+            connection.setCloseMethod(new Runnable() {
+                @Override
+                public void run() {
+                    handler.close();
+                    removeConnectionHandler(handler);
+                }
+            });
         }
     }
 

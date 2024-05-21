@@ -197,4 +197,17 @@ public class SQLConnection {
 
         return messages.toArray(Message[]::new);
     }
+
+    public boolean userExists(String username) throws SQLException {
+        String sql = "SELECT EXISTS(SELECT 1 FROM 'users' WHERE 'username' == ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        resultSet.next();
+
+        if(resultSet.getInt(1) == 0) return true;
+        return false;
+    }
 }

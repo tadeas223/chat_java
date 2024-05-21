@@ -10,6 +10,7 @@ import org.connection.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * This executable registers the user and then logs him in.
@@ -35,7 +36,12 @@ public class SIGN_UP implements Executable {
         }
 
         try {
-            User user = serverExecutionBundle.sqlConnection.signup(username, password);
+            if(!serverExecutionBundle.sqlConnection.userExists(username)){
+                executionBundle.connection.writeInstruction(InstructionBuilder.error("User already exists"));
+                return;
+            }
+
+                User user = serverExecutionBundle.sqlConnection.signup(username, password);
 
             if (user != null) {
                 AuthenticationData authData = new AuthenticationData(user);

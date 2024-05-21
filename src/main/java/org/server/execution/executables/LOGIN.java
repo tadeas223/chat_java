@@ -10,6 +10,7 @@ import org.connection.socketData.AuthenticationData;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * This class logs in a user.
@@ -26,8 +27,21 @@ public class LOGIN implements Executable {
             return;
         }
 
+
+
         String username = serverExecutionBundle.instruction.getParam("username");
         String password = serverExecutionBundle.instruction.getParam("password");
+
+        ArrayList<ServerConnectionHandler> handlers = serverHandler.getServer().getHandlers();
+        for(ServerConnectionHandler handler : handlers){
+            AuthenticationData authData = handler.getData(AuthenticationData.class);
+            if(authData != null){
+                if(authData.getUser().getUsername().equals(username)){
+                    serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("User is already logged in"));
+                    return;
+                }
+            }
+        }
 
         if (username == null || password == null) {
             serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Missing parameter"));

@@ -4,32 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Server migrated to SQLite">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientNotLoggedInException.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Multiple users can log into one app :)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_ID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/IS_ONLINE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/IS_ONLINE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/AuthenticationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/socketData/AuthenticationData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/AutoDBSaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/AutoDBSaveData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/InitCallData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/InitCallData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/socketData/SocketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/socketData/SocketData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716307236460</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Multiple users can log into one app :)">
+      <option name="closed" value="true" />
+      <created>1716310130447</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716310130447</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -292,7 +283,8 @@
     <MESSAGE value="MOREEEEE Documentation&#10;Also removed unnecessary comments" />
     <MESSAGE value="Connection Display working&#10;And small changes to the code" />
     <MESSAGE value="Server migrated to SQLite" />
-    <option name="LAST_COMMIT_MESSAGE" value="Server migrated to SQLite" />
+    <MESSAGE value="Multiple users can log into one app :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Multiple users can log into one app :)" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -32,6 +32,7 @@ public class SocketConnection implements Runnable {
     private final Socket socket;
     private final Thread readingThread = new Thread(this, "SocketReadingThread");
     private boolean close = false;
+    private Runnable closeMethod = null;
 
     //region constructors
     public SocketConnection(Socket socket) {
@@ -121,12 +122,10 @@ public class SocketConnection implements Runnable {
      * @throws IOException when an I/O error occurs when trying to write the message to the socket
      */
     public void writeString(String message) throws IOException {
-        // Writing the message char by char
         for (char c : message.toCharArray()) {
             socket.getOutputStream().write(c);
         }
 
-        // Adding the BREAK_CHAR at the end of the message to indicate that the message is over
         socket.getOutputStream().write(BREAK_CHAR);
     }
 
@@ -166,7 +165,6 @@ public class SocketConnection implements Runnable {
 
     @Override
     public void run() {
-        // This loop will stop only when the close method is run.
         while (!close) {
             try {
                 String msg = readString();
@@ -175,6 +173,7 @@ public class SocketConnection implements Runnable {
                 //logging code will be here
                 //update logging code will not be here :(
 
+                if(closeMethod != null) closeMethod.run();
                 // Close the socket and the thread when an error occurs
                 try {
                     close();
@@ -185,5 +184,13 @@ public class SocketConnection implements Runnable {
                 }
             }
         }
+    }
+
+    public Runnable getCloseMethod() {
+        return closeMethod;
+    }
+
+    public void setCloseMethod(Runnable closeMethod) {
+        this.closeMethod = closeMethod;
     }
 }
