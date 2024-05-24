@@ -45,7 +45,8 @@ public class SQLConnection {
                 "  id INTEGER PRIMARY KEY," +
                 "  receiver VARCHAR(45)," +
                 "  sender VARCHAR(45)," +
-                "  message VARCHAR(200));";
+                "  message VARCHAR(200)," +
+                "  date DATETIME);";
 
         statement.execute(usersTable);
         statement.execute(messagesTable);

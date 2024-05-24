@@ -74,8 +74,14 @@ public class SEND_MESSAGE implements Executable {
                     .getUsername();
 
             try{
+                if(serverExecutionBundle.sqlConnection.userExists(sender)){
+                    executionBundle.connection.writeInstruction(InstructionBuilder.error("User does not exist"));
+                    return;
+                }
+
                 serverExecutionBundle.sqlConnection.saveMessage(message,sender,username);
             } catch (SQLException e){
+                System.out.println(e.getMessage());
                 serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database Error"));
             }
             return;
