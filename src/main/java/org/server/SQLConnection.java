@@ -199,7 +199,7 @@ public class SQLConnection {
     }
 
     public boolean userExists(String username) throws SQLException {
-        String sql = "SELECT EXISTS(SELECT 1 FROM 'users' WHERE 'username' == ?)";
+        String sql = "SELECT EXISTS(SELECT 1 FROM users WHERE username = ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,username);
 
@@ -207,7 +207,7 @@ public class SQLConnection {
 
         resultSet.next();
 
-        if(resultSet.getInt(1) == 0) return true;
+        if(resultSet.getInt(1) == 1) return true;
         return false;
     }
 }

@@ -36,7 +36,7 @@ public class SIGN_UP implements Executable {
         }
 
         try {
-            if(!serverExecutionBundle.sqlConnection.userExists(username)){
+            if(serverExecutionBundle.sqlConnection.userExists(username)){
                 executionBundle.connection.writeInstruction(InstructionBuilder.error("User already exists"));
                 return;
             }
