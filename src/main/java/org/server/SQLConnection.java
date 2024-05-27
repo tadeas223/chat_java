@@ -4,6 +4,9 @@ import org.chat.Message;
 import org.security.User;
 
 import java.sql.*;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -14,17 +17,20 @@ public class SQLConnection {
     private final String DB_FILE = "data/server/messenger.db";
     private Connection connection;
 
+
+    public SQLConnection() throws SQLException {
+        if (!isInitialized()){
+            init();
+        }
+    }
+
     /**
      * Connects to the database.
      *
      * @throws SQLException when the connection fails
      */
-    public void connect() throws SQLException {
+    private void connect() throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:"+DB_FILE);
-
-        if (!isInitialized()){
-            init();
-        }
     }
 
     /**
@@ -34,6 +40,7 @@ public class SQLConnection {
      * @throws SQLException when SQL error occurs
      */
     private void init() throws SQLException {
+        connect();
         Statement statement = connection.createStatement();
 
         String usersTable = "CREATE TABLE users (" +
@@ -46,19 +53,21 @@ public class SQLConnection {
                 "  receiver VARCHAR(45)," +
                 "  sender VARCHAR(45)," +
                 "  message VARCHAR(200)," +
-                "  date DATETIME);";
+                "  date TEXT);";
 
         statement.execute(usersTable);
         statement.execute(messagesTable);
+        close();
     }
 
 
     /**
      * This method is used to find if the database is initialized correctly.
-     * @return true it the database is initialized, false if not.
+     * @return true, the database is initialized, false if not.
      * @throws SQLException when an SQL error occurs
      */
     private boolean isInitialized() throws SQLException {
+        connect();
         String sql = "SELECT name FROM sqlite_master WHERE type='table';";
 
         Statement statement = connection.createStatement();
@@ -74,6 +83,7 @@ public class SQLConnection {
             }
         }
 
+        close();
         return count == 2;
     }
 
@@ -82,7 +92,7 @@ public class SQLConnection {
      *
      * @throws SQLException when the close operation fails
      */
-    public void close() throws SQLException {
+    private void close() throws SQLException {
         connection.close();
     }
 
@@ -95,6 +105,7 @@ public class SQLConnection {
      * @throws SQLException when an SQL error occurs
      */
     public User login(String username, String password) throws SQLException {
+        connect();
         String sql = "SELECT id FROM users WHERE username=? AND password=?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -107,21 +118,25 @@ public class SQLConnection {
         if (resultSet.next()) {
             int id = resultSet.getInt("id");
 
+            close();
             return new User(username, id);
         } else {
+            close();
+
             return null;
         }
     }
 
     /**
-     * This method adds a user to the database and than calls the login() method.
+     * This method adds a user to the database and then calls the login() method.
      *
      * @param username of the new user
      * @param password of the new user
      * @return {@link User} that was sighed up
-     * @throws SQLException when a SQL error occurs
+     * @throws SQLException when an SQL error occurs
      */
     public User signup(String username, String password) throws SQLException {
+        connect();
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -130,6 +145,8 @@ public class SQLConnection {
         preparedStatement.setString(2, password);
 
         preparedStatement.executeUpdate();
+
+        close();
 
         return login(username, password);
     }
@@ -143,6 +160,7 @@ public class SQLConnection {
      * @throws SQLException when an SQL error occurs
      */
     public void saveMessage(String message, String sender, String receiver) throws SQLException {
+        connect();
         String sql = "INSERT INTO messages (message, sender, receiver, date) VALUES (?, ?, ?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -151,15 +169,14 @@ public class SQLConnection {
         preparedStatement.setString(2, sender);
         preparedStatement.setString(3, receiver);
 
-        long currentTimeInMillis = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String ts = sdf.format(timestamp);
 
-        Date currentDate = new Date(currentTimeInMillis);
-
-        String currentDateTime = currentDate.toString();
-
-        preparedStatement.setString(4, currentDateTime);
+        preparedStatement.setString(4,ts);
 
         preparedStatement.executeUpdate();
+        close();
     }
 
     /**
@@ -171,7 +188,9 @@ public class SQLConnection {
      * @throws SQLException when an SQL error occurs
      */
     public Message[] getMessages(String receiver) throws SQLException {
-        String sql = "SELECT message,sender,date FROM messages WHERE receiver=?";
+        connect();
+
+        String sql = "SELECT message, sender, date FROM messages WHERE receiver = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
@@ -184,22 +203,33 @@ public class SQLConnection {
         while (resultSet.next()) {
             String message = resultSet.getString("message");
             String sender = resultSet.getString("sender");
-            Date date = resultSet.getDate("date");
+
+            String dateString = resultSet.getString("date");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+            Date date = null;
+            try{
+                date = dateFormat.parse(dateString);
+            } catch (ParseException e){
+                throw new SQLException("Failed to parse date");
+            }
 
             messages.add(new Message(sender, message, date));
-            System.out.println(message);
         }
 
-        sql = "DELETE FROM `messenger`.`messages` WHERE (receiver = ?);";
+        sql = "DELETE FROM messages WHERE receiver = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, receiver);
         preparedStatement.execute();
 
+        close();
+
         return messages.toArray(Message[]::new);
     }
 
     public boolean userExists(String username) throws SQLException {
+        connect();
         String sql = "SELECT EXISTS(SELECT 1 FROM users WHERE username = ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,username);
@@ -208,7 +238,8 @@ public class SQLConnection {
 
         resultSet.next();
 
-        if(resultSet.getInt(1) == 1) return true;
-        return false;
+        int num = resultSet.getInt(1);
+        close();
+        return num == 1;
     }
 }

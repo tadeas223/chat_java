@@ -9,6 +9,7 @@ import org.server.SQLConnection;
 import org.server.ServerConnectionHandler;
 import org.server.execution.ServerExecutionBundle;
 import org.connection.socketData.AuthenticationData;
+import org.server.socketData.ArrayReading;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class GET_FROM_DATABASE implements Executable {
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) executionBundle.connectionHandler;
         SQLConnection sqlConnection = serverExecutionBundle.sqlConnection;
 
-        Message[] messages = new Message[0];
+        Message[] messages;
 
         if(!serverHandler.containsData(AuthenticationData.class)){
             executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
@@ -37,6 +38,8 @@ public class GET_FROM_DATABASE implements Executable {
                     .getUsername());
 
         } catch (SQLException e){
+            System.out.println(e.getMessage());
+
             executionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
             return;
         }
@@ -49,10 +52,13 @@ public class GET_FROM_DATABASE implements Executable {
 
         Instruction[] instructions = instructionList.toArray(Instruction[]::new);
 
-        instructions = InstructionBuilder.messageArrayWrap(instructions);
+        ArrayReading arrayReading = new ArrayReading(instructions);
 
-        for(Instruction i : instructions){
-            executionBundle.connection.writeInstruction(i);
+        if(serverHandler.containsData(ArrayReading.class)){
+            executionBundle.connection.writeInstruction(InstructionBuilder.error("Array Reading already in process"));
+        } else{
+            executionBundle.connection.writeInstruction(InstructionBuilder.array(instructions.length));
+            serverHandler.addData(arrayReading);
         }
     }
 }

@@ -4,15 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Multiple users can log into one app :)">
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="SQLException while sign up fixed&#10;Database msg save works only on registered users">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/DONE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/NEXT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/ArrayReading.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGIN.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SIGN_UP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/AUTO_MESSAGE_SAVE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/AUTO_MESSAGE_SAVE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,19 +117,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="ApplicationRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.client.app.ApplicationRunner" />
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.client.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.app.ClientApp" />
       <module name="messenger" />
@@ -136,24 +130,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerConnectForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.client.app.ServerConnectForm" />
+    <configuration name="Server" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.server.Server" />
       <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.client.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Server" />
+      <item itemvalue="Application.ClientApp" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApplicationRunner" />
         <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerConnectForm" />
       </list>
     </recent_temporary>
   </component>
@@ -254,7 +244,31 @@
       <option name="project" value="LOCAL" />
       <updated>1716310130447</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Sign up is working properly now&#10;Added AUTO_DB_INSTRUCTION into ServerExecutor">
+      <option name="closed" value="true" />
+      <created>1716534414220</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716534414220</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added back button in the SignUpPanel">
+      <option name="closed" value="true" />
+      <created>1716537084235</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716537084235</updated>
+    </task>
+    <task id="LOCAL-00014" summary="SQLException while sign up fixed&#10;Database msg save works only on registered users">
+      <option name="closed" value="true" />
+      <created>1716542923838</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716542923838</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -284,7 +298,10 @@
     <MESSAGE value="Connection Display working&#10;And small changes to the code" />
     <MESSAGE value="Server migrated to SQLite" />
     <MESSAGE value="Multiple users can log into one app :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Multiple users can log into one app :)" />
+    <MESSAGE value="Sign up is working properly now&#10;Added AUTO_DB_INSTRUCTION into ServerExecutor" />
+    <MESSAGE value="Added back button in the SignUpPanel" />
+    <MESSAGE value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
+    <option name="LAST_COMMIT_MESSAGE" value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

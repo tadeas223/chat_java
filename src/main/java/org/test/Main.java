@@ -14,14 +14,11 @@ public class Main {
 
         Client client = new Client("localhost");
 
-        System.out.println("connected to server");
+        client.loginWithoutEncryption("test2","test2");
 
-        client.loginWithoutEncryption("", "");
+//        client.saveToDatabase("test2","hello");
+//        client.saveToDatabase("test2","hello");
 
-        client.invokeOutput("hello from user 1");
-
-
-        System.out.println("waiting for incoming messages...");
-
+        client.getFromDatabase();
     }
 }

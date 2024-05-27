@@ -19,14 +19,14 @@ import java.sql.SQLException;
  * This class also creates a new {@link SQLConnection} session that is not closed anywhere :(.
  */
 public class ServerExecutor extends InstructionExecutor {
-    private final SQLConnection sqlConnection = new SQLConnection();
+    private final SQLConnection sqlConnection;
 
-    public ServerExecutor(){
+    public ServerExecutor() {
         try {
-            sqlConnection.connect();
+            sqlConnection = new SQLConnection();
         } catch (SQLException e) {
-            // IDK
             throw new RuntimeException(e);
+            // IDK :(
         }
 
         instMethodList.put("DEFAULT", new DEFAULT());
@@ -46,6 +46,9 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("SAVE_TO_DATABASE", new SAVE_TO_DATABASE());
         instMethodList.put("GET_FROM_DATABASE", new GET_FROM_DATABASE());
         instMethodList.put("AUTO_DB_SAVE", new AUTO_MESSAGE_SAVE());
+        instMethodList.put("NEXT",new NEXT());
+        instMethodList.put("GET",new GET());
+        instMethodList.put("DONE",new DONE());
 
     }
 

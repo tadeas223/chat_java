@@ -1,6 +1,7 @@
 package org.server.execution.executables;
 
 import org.connection.SocketConnection;
+import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;
 import org.protocol.protocolHandling.ExecutionBundle;
@@ -30,5 +31,7 @@ public class AUTO_MESSAGE_SAVE implements Executable {
         else {
             handler.getData(AutoDBSaveData.class).setAutoSave(false);
         }
+
+        connection.writeInstruction(InstructionBuilder.done());
     }
 }

@@ -10,6 +10,7 @@ import org.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * This class is used for handling connection between a client and a server.
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class ConnectionHandler implements MsgReadListener {
     protected SocketConnection connection;
     protected InstructionExecutor executor;
-    protected ArrayList<SocketData> socketDataList = new ArrayList<>();
+    protected final HashSet<SocketData> socketDataList = new HashSet<>();
 
     @Override
     public void messageRead(String msg) {
@@ -94,39 +95,43 @@ public class ConnectionHandler implements MsgReadListener {
     }
 
     public <T extends SocketData> T getData(Class<T> dataClass){
-        for(SocketData sd : socketDataList){
-            if(sd.getClass().equals(dataClass)){
-                return (T) sd;
+        synchronized (socketDataList){
+            for(SocketData sd : socketDataList){
+                if(sd.getClass().equals(dataClass)){
+                    return (T) sd;
+                }
             }
+            return null;
         }
-        return null;
     }
 
     public boolean addData(SocketData socketData){
-        for(SocketData s : socketDataList){
-            if(s.getClass().equals(socketData.getClass())){
-                return false;
+        synchronized (socketDataList){
+            for(SocketData s : socketDataList){
+                if(s.getClass().equals(socketData.getClass())){
+                    return false;
+                }
             }
-        }
 
-        socketDataList.add(socketData);
-        return true;
+            socketDataList.add(socketData);
+            return true;
+        }
     }
 
-    public <T extends SocketData>boolean containsData(Class<T> dataClass){
-        for(SocketData s : socketDataList){
-            if(s.getClass().equals(dataClass)){
-                return true;
+    public  <T extends SocketData>boolean containsData(Class<T> dataClass){
+        synchronized (socketDataList){
+            for(SocketData s : socketDataList){
+                if(s.getClass().equals(dataClass)){
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
     }
 
-    public <T extends SocketData> void removeData(Class<T> dataClass){
-        for(SocketData s : socketDataList){
-            if(s.getClass().equals(dataClass)){
-                socketDataList.remove(s);
-            }
+    public  <T extends SocketData> void removeData(Class<T> dataClass){
+        synchronized (socketDataList){
+            socketDataList.removeIf(s -> s.getClass().equals(dataClass));
         }
     }
 }

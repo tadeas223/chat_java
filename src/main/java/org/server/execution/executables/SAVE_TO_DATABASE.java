@@ -25,17 +25,34 @@ public class SAVE_TO_DATABASE implements Executable {
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) executionBundle.connectionHandler;
         SQLConnection sqlConnection = serverExecutionBundle.sqlConnection;
 
-        User user = serverHandler.getData(AuthenticationData.class).getUser();
-
         Instruction instruction = executionBundle.instruction;
+
+        if(!serverHandler.containsData(AuthenticationData.class)){
+            executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
+            return;
+        }
+
+        User user = serverHandler.getData(AuthenticationData.class).getUser();
 
         String sender = user.getUsername();
         String receiver = instruction.getParam("username");
         String message = instruction.getParam("message");
 
+
+        if(receiver == null || message == null){
+            executionBundle.connection.writeInstruction(InstructionBuilder.error("Missing parameter"));
+            return;
+        }
+
         try{
+            if(!serverExecutionBundle.sqlConnection.userExists(receiver)){
+                executionBundle.connection.writeInstruction(InstructionBuilder.error("User does not exist"));
+                return;
+            }
+
             sqlConnection.saveMessage(message,sender,receiver);
         } catch (SQLException e){
+            e.printStackTrace();
             executionBundle.connection.writeInstruction(InstructionBuilder.error("Database error"));
             return;
         }

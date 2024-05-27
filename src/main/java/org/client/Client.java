@@ -8,8 +8,10 @@ import org.protocol.*;
 import org.security.SHA256;
 import org.security.User;
 
+import java.io.CharConversionException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -64,6 +66,8 @@ public class Client implements MsgReadListener {
         }
         return messageDB;
     }
+
+    //region client_commands
 
     /**
      * Logs in the user in the server.
@@ -279,6 +283,89 @@ public class Client implements MsgReadListener {
         messageDB.close();
     }
 
+    public void autoSave(boolean value) throws IOException, ChatProtocolException {
+        Instruction instruction = InstructionBuilder.autoMessageSave(value);
+
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ERROR")){
+            throw new ChatProtocolException(response.getParam("message"));
+        }
+    }
+
+    public void saveToDatabase(String username,String message) throws IOException, ChatProtocolException {
+        Instruction instruction = InstructionBuilder.saveToDatabase(username,message);
+
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ERROR")){
+            throw new ChatProtocolException(response.getParam("message"));
+        }
+    }
+
+    public void getFromDatabase() throws IOException, ChatProtocolException {
+        Instruction instruction = InstructionBuilder.getFromDatabase();
+
+        Instruction[] msgs = readArray(instruction);
+
+        for(Instruction i : msgs){
+            String username = i.getParam("sender");
+            String message = i.getParam("message");
+
+            try{
+                MessageDB messageDB = getDatabase();
+
+                if (!messageDB.containsChat(username)) {
+                    messageDB.createChat(username);
+                }
+
+                System.out.println(message);
+                messageDB.addMessage(new Message(username, message), user.getUsername());
+
+            } catch (SQLException e){
+                throw new ChatProtocolException("Failed to save message");
+            } catch (ClientNotLoggedInException e){
+                throw new ChatProtocolException("User is not logged in");
+            }
+        }
+
+    }
+
+    private Instruction[] readArray(Instruction instruction) throws IOException, ChatProtocolException {
+        ArrayList<Instruction> instructionList = new ArrayList<>();
+
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ARRAY")){
+            int count = Integer.parseInt(response.getParam("count"));
+
+            for(int i = 0; i < count;i++){
+                socketConnection.writeInstruction(InstructionBuilder.next());
+                Instruction inst = stringToInst(waitForMessage());
+
+                if(inst.getName().equals("END")){
+                    return instructionList.toArray(Instruction[]::new);
+                } else if(inst.getName().equals("ERROR")){
+                    throw new ChatProtocolException(instruction.getParam("message"));
+                }
+
+                instructionList.add(inst);
+            }
+        } else {
+            System.out.println(response);
+            throw new ChatProtocolException("Unexpected response");
+        }
+        return new Instruction[0];
+    }
+
+
+    //endregion
     /**
      * Waits until the next message from the server is sent.
      * @return the message that the server sent

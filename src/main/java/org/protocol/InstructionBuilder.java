@@ -76,24 +76,38 @@ public class InstructionBuilder {
         return new Instruction("MESSAGE", paramList);
     }
 
-    public static Instruction messageArray(int count){
+    public static Instruction array(int count){
         return new Instruction("ARRAY",new ParamList("count",String.valueOf(count)));
     }
 
-    public static Instruction arrayEnd(){
-        return new Instruction("ARRAY_END");
-    }
-
-    public static Instruction[] messageArrayWrap(Instruction[] arrayContent){
-        ArrayList<Instruction> arrayList = new ArrayList<>(List.of(arrayContent));
-
-        arrayList.add(0,messageArray(arrayContent.length));
-        arrayList.add(arrayEnd());
-
-        return arrayList.toArray(Instruction[]::new);
+    public static Instruction end(){
+        return new Instruction("END");
     }
 
     public static Instruction getId(){
         return new Instruction("GET_ID");
+    }
+
+    public static Instruction autoMessageSave(boolean value){
+        return new Instruction("AUTO_MESSAGE_SAVE",new ParamList("value",String.valueOf(value)));
+    }
+
+    public static Instruction saveToDatabase(String username,String message){
+        ParamList paramList = new ParamList();
+
+        paramList.put("username",username);
+        paramList.put("message",message);
+
+        return new Instruction("SAVE_TO_DATABASE",paramList);
+    }
+
+    public static Instruction getFromDatabase(){
+        return new Instruction("GET_FROM_DATABASE");
+    }
+    public static Instruction next(){
+        return new Instruction("NEXT");
+    }
+    public static Instruction get(int index){
+        return new Instruction("GET",new ParamList("index",String.valueOf(index)));
     }
 }

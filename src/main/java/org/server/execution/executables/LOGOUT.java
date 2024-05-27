@@ -17,8 +17,8 @@ public class LOGOUT implements Executable {
     public void execute(ExecutionBundle executionBundle) throws IOException {
         ServerConnectionHandler serverHandler = (ServerConnectionHandler) executionBundle.connectionHandler;
 
-        if(serverHandler.containsData(AuthenticationData.class)){
-            executionBundle.connection.writeInstruction(InstructionBuilder.error("User is already logged in"));
+        if(!serverHandler.containsData(AuthenticationData.class)){
+            executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not logged in"));
             return;
         }
 
