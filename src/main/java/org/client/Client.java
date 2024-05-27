@@ -272,6 +272,7 @@ public class Client implements MsgReadListener {
 
         MessageDB messageDB = new MessageDB();
         messageDB.connect(user.getUsername());
+
         if (!messageDB.containsChat(username)) {
             messageDB.createChat(username);
         }
@@ -323,7 +324,6 @@ public class Client implements MsgReadListener {
                     messageDB.createChat(username);
                 }
 
-                System.out.println(message);
                 messageDB.addMessage(new Message(username, message), user.getUsername());
 
             } catch (SQLException e){
@@ -333,6 +333,24 @@ public class Client implements MsgReadListener {
             }
         }
 
+    }
+    //endregion
+    /**
+     * Waits until the next message from the server is sent.
+     * @return the message that the server sent
+     */
+    public String waitForMessage() {
+        message = null;
+
+        while (Objects.equals(null, message)) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                // I don't care yet
+            }
+        }
+
+        return message;
     }
 
     private Instruction[] readArray(Instruction instruction) throws IOException, ChatProtocolException {
@@ -362,26 +380,6 @@ public class Client implements MsgReadListener {
             throw new ChatProtocolException("Unexpected response");
         }
         return new Instruction[0];
-    }
-
-
-    //endregion
-    /**
-     * Waits until the next message from the server is sent.
-     * @return the message that the server sent
-     */
-    public String waitForMessage() {
-        message = null;
-
-        while (Objects.equals(null, message)) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                // I don't care yet
-            }
-        }
-
-        return message;
     }
 
     /**

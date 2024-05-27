@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="SQLException while sign up fixed&#10;Database msg save works only on registered users">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/DONE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/NEXT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/socketData/ArrayReading.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/connection/ConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/AUTO_MESSAGE_SAVE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/AUTO_MESSAGE_SAVE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/GET_FROM_DATABASE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/LOGOUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SAVE_TO_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,13 +111,39 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.app.ClientApp" />
       <module name="messenger" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.client.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConnectionDisplay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.debug.ConnectionDisplay" />
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.debug.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.test.Main" />
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -139,10 +160,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.Server" />
+      <item itemvalue="Application.ConnectionDisplay" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.ClientApp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ConnectionDisplay" />
         <item itemvalue="Application.ClientApp" />
       </list>
     </recent_temporary>

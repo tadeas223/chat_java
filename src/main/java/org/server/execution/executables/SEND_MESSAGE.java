@@ -57,9 +57,7 @@ public class SEND_MESSAGE implements Executable {
                     if(authData.getUser().getUsername().equals(username)){
                         handler.getConnection()
                                 .writeInstruction(InstructionBuilder
-                                        .message(message, authData
-                                                .getUser()
-                                                .getUsername()));
+                                        .message(message, username));
 
                         executionBundle.connection.writeInstruction(InstructionBuilder.done());
                         return;
@@ -74,7 +72,7 @@ public class SEND_MESSAGE implements Executable {
                     .getUsername();
 
             try{
-                if(serverExecutionBundle.sqlConnection.userExists(sender)){
+                if(!serverExecutionBundle.sqlConnection.userExists(username)){
                     executionBundle.connection.writeInstruction(InstructionBuilder.error("User does not exist"));
                     return;
                 }

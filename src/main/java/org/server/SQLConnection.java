@@ -230,8 +230,10 @@ public class SQLConnection {
 
     public boolean userExists(String username) throws SQLException {
         connect();
+
         String sql = "SELECT EXISTS(SELECT 1 FROM users WHERE username = ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
         preparedStatement.setString(1,username);
 
         ResultSet resultSet = preparedStatement.executeQuery();

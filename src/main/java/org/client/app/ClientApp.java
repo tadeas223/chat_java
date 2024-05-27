@@ -3,6 +3,8 @@ package org.client.app;
 import org.client.Client;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.sql.SQLException;
 
@@ -17,14 +19,22 @@ public class ClientApp extends JFrame {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         serverConnectPanel = new ServerConnectPanel(this);
-        loginPanel = new LoginPanel(this);
+        serverConnectPanel.setLayout(new GridLayout(1, 1));
+
         signUpPanel = new SignUpPanel(this);
+        signUpPanel.setLayout(new GridLayout(1, 1));
+
+        loginPanel = new LoginPanel(this);
+        loginPanel.setLayout(new GridLayout(1, 1));
+
         appPanel = new AppPanel(this);
+        appPanel.setLayout(new GridLayout(1, 1));
+
     }
 
     public static void main(String[] args) {
         ClientApp clientApp = new ClientApp();
-        clientApp.add(clientApp.mainPanel);
+        clientApp.getContentPane().add(clientApp.mainPanel, BorderLayout.CENTER);
         clientApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         clientApp.setSize(500, 500);
         clientApp.setVisible(true);
@@ -65,6 +75,7 @@ public class ClientApp extends JFrame {
         if (card.equals("appPanel")) {
             ((AppPanel) appPanel).loadContacts();
         }
+
         ((CardLayout) mainPanel.getLayout()).show(mainPanel, card);
     }
 

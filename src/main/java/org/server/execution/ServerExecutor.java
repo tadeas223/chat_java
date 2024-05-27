@@ -45,7 +45,7 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("ERROR", new ERROR());
         instMethodList.put("SAVE_TO_DATABASE", new SAVE_TO_DATABASE());
         instMethodList.put("GET_FROM_DATABASE", new GET_FROM_DATABASE());
-        instMethodList.put("AUTO_DB_SAVE", new AUTO_MESSAGE_SAVE());
+        instMethodList.put("AUTO_MESSAGE_SAVE", new AUTO_MESSAGE_SAVE());
         instMethodList.put("NEXT",new NEXT());
         instMethodList.put("GET",new GET());
         instMethodList.put("DONE",new DONE());

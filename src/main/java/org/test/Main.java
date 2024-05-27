@@ -13,12 +13,14 @@ public class Main {
     public static void main(String[] args) throws IOException, ChatProtocolException, SQLException {
 
         Client client = new Client("localhost");
+//        client.signup("test","test");
 
-        client.loginWithoutEncryption("test2","test2");
+        client.login("test2","tes2");
 
-//        client.saveToDatabase("test2","hello");
-//        client.saveToDatabase("test2","hello");
+        client.autoSave(true);
 
-        client.getFromDatabase();
+        client.sendMessage("hello auto save","test");
+
+        client.close();
     }
 }
