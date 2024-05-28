@@ -4,26 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/EXISTS.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI partially works&#10;bug fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/INIT.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/socketData/MessageListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/socketData/MessageListenerData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/chat/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716812696909</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="GUI partially works&#10;bug fixes">
+      <option name="closed" value="true" />
+      <created>1716912242716</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1716912242716</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -344,7 +344,8 @@
     <MESSAGE value="Added back button in the SignUpPanel" />
     <MESSAGE value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
     <MESSAGE value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
+    <MESSAGE value="GUI partially works&#10;bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI partially works&#10;bug fixes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

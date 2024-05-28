@@ -1,6 +1,8 @@
 package org.client.app;
 
 import org.client.Client;
+import org.client.socketData.MessageListener;
+import org.client.socketData.MessageListenerData;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -78,7 +80,7 @@ public class ClientApp extends JFrame {
 
     public void setCard(String card) {
         if (card.equals("appPanel")) {
-            ((AppPanel) appPanel).loadContacts();
+            ((AppPanel) appPanel).reset();
         }
 
         ((CardLayout) mainPanel.getLayout()).show(mainPanel, card);
@@ -93,6 +95,19 @@ public class ClientApp extends JFrame {
     }
 
     public void setClient(Client client) {
+        client.getClientConnectionHandler()
+                .getData(MessageListenerData.class)
+                .addListener(new MessageListener() {
+                    @Override
+                    public void messageReceived() {
+                        ((AppPanel) appPanel).reset();
+                    }
+                });
         this.client = client;
+    }
+
+    public void redraw() {
+        revalidate();
+        repaint();
     }
 }

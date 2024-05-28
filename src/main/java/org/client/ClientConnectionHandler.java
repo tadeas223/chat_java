@@ -26,6 +26,13 @@ public class ClientConnectionHandler extends ConnectionHandler {
     public ClientConnectionHandler(Client client) {
         this.client = client;
         this.connection = client.getSocketConnection();
+
+        try {
+            executor.execute(new Instruction("INIT"),this);
+        } catch (IOException | MissingDefaultException e) {
+            // AHA SMŮLA :(
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

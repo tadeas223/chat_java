@@ -4,6 +4,7 @@ import org.chat.Message;
 import org.client.ClientConnectionHandler;
 import org.client.ClientNotLoggedInException;
 import org.client.MessageDB;
+import org.client.socketData.MessageListenerData;
 import org.protocol.Instruction;
 import org.protocol.InstructionBuilder;
 import org.protocol.protocolHandling.Executable;
@@ -19,7 +20,6 @@ import java.sql.SQLException;
 public class MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {
-        System.out.println("message executable");
         ClientConnectionHandler clientHandler = (ClientConnectionHandler) executionBundle.connectionHandler;
 
 
@@ -32,11 +32,9 @@ public class MESSAGE implements Executable {
 
             if (!messageDB.containsChat(username)) {
                 messageDB.createChat(username);
-                System.out.println("jhhjkhj");
             }
 
             messageDB.addMessage(new Message(username, message), username);
-            System.out.println(new Message(username, message));
 
             messageDB.close();
         } catch (SQLException e) {
@@ -45,5 +43,7 @@ public class MESSAGE implements Executable {
         } catch (ClientNotLoggedInException e) {
             // This should not happen
         }
+
+        clientHandler.getData(MessageListenerData.class).callListeners();
     }
 }

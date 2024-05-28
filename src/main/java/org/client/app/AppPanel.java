@@ -55,6 +55,9 @@ public class AppPanel extends JPanel {
 
                     loadContacts();
                     showChat(currentChat);
+
+                    clientApp.redraw();
+                    resetScrollBar();
                 }
             }
         });
@@ -76,17 +79,20 @@ public class AppPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     showChat(chat);
+                    resetScrollBar();
                 }
             });
 
             contactsHolder.add(but);
         }
+
+        clientApp.redraw();
     }
 
     public void showChat(String chat) {
+        if (chat == null) return;
+
         messageHolder.removeAll();
-        messageHolder.revalidate();
-        messageHolder.repaint();
 
         chatLabel.setText(chat);
         currentChat = chat;
@@ -99,15 +105,14 @@ public class AppPanel extends JPanel {
             throw new RuntimeException(e);
         }
 
+
         for (Message msg : messages) {
             JLabel label = new JLabel(msg.getMessage() +
                     "  |  " + msg.getUsername() +
                     "  |  " + msg.getDate().toString());
 
-            System.out.println(label.getText());
-
-            messageHolder.add(label);
-
+            messageHolder.add(label, 0);
+            clientApp.redraw();
         }
     }
 
@@ -166,6 +171,7 @@ public class AppPanel extends JPanel {
         panel3.add(sendBut, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         msgField = new JTextField();
         panel3.add(msgField, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        messagePane.setOpaque(false);
         panel2.add(messagePane, BorderLayout.CENTER);
     }
 
@@ -198,4 +204,13 @@ public class AppPanel extends JPanel {
         return mainPanel;
     }
 
+    public void reset() {
+        loadContacts();
+        showChat(currentChat);
+        resetScrollBar();
+    }
+
+    public void resetScrollBar() {
+        messagePane.getVerticalScrollBar().setValue(messagePane.getVerticalScrollBar().getMaximum());
+    }
 }

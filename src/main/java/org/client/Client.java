@@ -277,9 +277,9 @@ public class Client implements MsgReadListener {
             messageDB.createChat(username);
         }
 
-        Message msg = new Message(username, message);
+        Message msg = new Message(user.getUsername(), message);
 
-        messageDB.addMessage(msg, user.getUsername());
+        messageDB.addMessage(msg, username);
 
         messageDB.close();
     }
@@ -498,5 +498,9 @@ public class Client implements MsgReadListener {
      */
     public void close() throws IOException {
         socketConnection.close();
+    }
+
+    public ClientConnectionHandler getClientConnectionHandler() {
+        return clientConnectionHandler;
     }
 }

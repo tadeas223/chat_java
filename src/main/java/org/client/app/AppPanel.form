@@ -80,7 +80,9 @@
           </grid>
           <scrollpane id="10d73" binding="messagePane" custom-create="true">
             <constraints border-constraint="Center"/>
-            <properties/>
+            <properties>
+              <opaque value="false"/>
+            </properties>
             <border type="none"/>
             <children/>
           </scrollpane>
