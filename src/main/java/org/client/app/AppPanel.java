@@ -1,58 +1,126 @@
 package org.client.app;
 
-import org.client.ClientNotLoggedInException;
+import org.chat.Message;
+import org.client.Client;
+import org.protocol.ChatProtocolException;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class AppPanel extends JPanel {
     private ClientApp clientApp;
     private JPanel mainPanel;
-    private JScrollPane contactsScrollPane;
-    private JLabel errLabel;
-    private JPanel messagePanel;
-    private JPanel contactsPanel;
+    private JButton newChatBut;
+    private JButton sendBut;
+    private JTextField msgField;
+    private JScrollPane contactsPane;
+    private JScrollPane messagePane;
+    private JLabel chatLabel;
+
+    private JPanel contactsHolder;
+    private JPanel messageHolder;
+
+    private String currentChat;
 
     public AppPanel(ClientApp clientApp) {
         this.clientApp = clientApp;
 
-        contactsPanel = new JPanel();
-        contactsPanel.setLayout(new BoxLayout(contactsPanel, BoxLayout.Y_AXIS));
-
         $$$setupUI$$$();
         add(mainPanel);
+        newChatBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                clientApp.setCard("newChatPanel");
+            }
+        });
+
+        sendBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (currentChat != null) {
+                    String message = msgField.getText();
+
+                    try {
+                        clientApp.getClient().sendMessage(message, currentChat);
+                    } catch (IOException | ChatProtocolException | SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    loadContacts();
+                    showChat(currentChat);
+                }
+            }
+        });
     }
 
     public void loadContacts() {
-        contactsPanel.removeAll();
-        contactsScrollPane.setViewportView(contactsPanel);
-
-        String[] contacts;
+        contactsHolder.removeAll();
+        String[] chats;
         try {
-            contacts = clientApp.getClient().getChats();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClientNotLoggedInException e) {
+            chats = clientApp.getClient().getChats();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        for (String contact : contacts) {
-            JButton button = new JButton(contact);
+        for (String chat : chats) {
+            JButton but = new JButton(chat);
 
-            button.addActionListener(e -> {
-                ((ChatPanel) messagePanel).loadMessages(contact);
+            but.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    showChat(chat);
+                }
             });
 
-            contactsPanel.add(button);
+            contactsHolder.add(but);
+        }
+    }
+
+    public void showChat(String chat) {
+        messageHolder.removeAll();
+        messageHolder.revalidate();
+        messageHolder.repaint();
+
+        chatLabel.setText(chat);
+        currentChat = chat;
+
+        Client client = clientApp.getClient();
+        Message[] messages;
+        try {
+            messages = client.getMessages(chat, Integer.MAX_VALUE);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        for (Message msg : messages) {
+            JLabel label = new JLabel(msg.getMessage() +
+                    "  |  " + msg.getUsername() +
+                    "  |  " + msg.getDate().toString());
+
+            System.out.println(label.getText());
+
+            messageHolder.add(label);
+
         }
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        messagePanel = new ChatPanel(clientApp);
+        contactsHolder = new JPanel();
+        contactsHolder.setLayout(new BoxLayout(contactsHolder, BoxLayout.Y_AXIS));
+
+        messageHolder = new JPanel();
+        messageHolder.setLayout(new BoxLayout(messageHolder, BoxLayout.Y_AXIS));
+
+        contactsPane = new JScrollPane(contactsHolder);
+        messagePane = new JScrollPane(messageHolder);
     }
 
     /**
@@ -65,21 +133,62 @@ public class AppPanel extends JPanel {
     private void $$$setupUI$$$() {
         createUIComponents();
         mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout(0, 0));
+        mainPanel.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.setMinimumSize(new Dimension(54, 54));
-        panel1.setPreferredSize(new Dimension(54, 54));
-        mainPanel.add(panel1, BorderLayout.CENTER);
-        contactsScrollPane = new JScrollPane();
-        panel1.add(contactsScrollPane, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 1), null, 0, false));
-        panel1.add(messagePanel, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(-1, 1), new Dimension(-1, 1), null, 0, false));
+        panel1.setLayout(new BorderLayout(0, 0));
+        mainPanel.add(panel1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        newChatBut = new JButton();
+        newChatBut.setText("new chat");
+        panel1.add(newChatBut, BorderLayout.SOUTH);
         final JLabel label1 = new JLabel();
-        label1.setText("Label");
-        mainPanel.add(label1, BorderLayout.NORTH);
-        errLabel = new JLabel();
-        errLabel.setText("Label");
-        mainPanel.add(errLabel, BorderLayout.SOUTH);
+        Font label1Font = this.$$$getFont$$$(null, -1, 16, label1.getFont());
+        if (label1Font != null) label1.setFont(label1Font);
+        label1.setHorizontalAlignment(0);
+        label1.setHorizontalTextPosition(0);
+        label1.setText("contacts");
+        panel1.add(label1, BorderLayout.NORTH);
+        panel1.add(contactsPane, BorderLayout.CENTER);
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new BorderLayout(0, 0));
+        mainPanel.add(panel2, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        chatLabel = new JLabel();
+        Font chatLabelFont = this.$$$getFont$$$(null, -1, 16, chatLabel.getFont());
+        if (chatLabelFont != null) chatLabel.setFont(chatLabelFont);
+        chatLabel.setHorizontalAlignment(0);
+        chatLabel.setHorizontalTextPosition(0);
+        chatLabel.setText("chat");
+        panel2.add(chatLabel, BorderLayout.NORTH);
+        final JPanel panel3 = new JPanel();
+        panel3.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.add(panel3, BorderLayout.SOUTH);
+        sendBut = new JButton();
+        sendBut.setText("send");
+        panel3.add(sendBut, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        msgField = new JTextField();
+        panel3.add(msgField, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel2.add(messagePane, BorderLayout.CENTER);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+        if (currentFont == null) return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        } else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            } else {
+                resultName = currentFont.getName();
+            }
+        }
+        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
+        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
 
     /**

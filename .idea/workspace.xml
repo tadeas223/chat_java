@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="SQLException while sign up fixed&#10;Database msg save works only on registered users">
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/EXISTS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/chat/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/executables/MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/InstructionBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/test/Main.java" afterDir="false" />
@@ -72,26 +81,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ConnectionDisplay.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;371&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28850573&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.ClientApp.executor": "Run",
+    "Application.ConnectionDisplay.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Server.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28850573",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -111,7 +120,7 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ClientApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.app.ClientApp" />
       <module name="messenger" />
@@ -166,9 +175,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.ConnectionDisplay" />
-        <item itemvalue="Application.ClientApp" />
       </list>
     </recent_temporary>
   </component>
@@ -293,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716542923838</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes">
+      <option name="closed" value="true" />
+      <created>1716812696909</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716812696909</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -326,7 +343,8 @@
     <MESSAGE value="Sign up is working properly now&#10;Added AUTO_DB_INSTRUCTION into ServerExecutor" />
     <MESSAGE value="Added back button in the SignUpPanel" />
     <MESSAGE value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
-    <option name="LAST_COMMIT_MESSAGE" value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
+    <MESSAGE value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -340,5 +358,10 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/messenger$ClientApp.ic" NAME="ClientApp Coverage Results" MODIFIED="1716813042790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>org.client.app.*</FILTER>
+    </SUITE>
   </component>
 </project>

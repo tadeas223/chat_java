@@ -110,4 +110,8 @@ public class InstructionBuilder {
     public static Instruction get(int index){
         return new Instruction("GET",new ParamList("index",String.valueOf(index)));
     }
+
+    public static Instruction exists(String username){
+        return new Instruction("EXISTS",new ParamList("username",username));
+    }
 }

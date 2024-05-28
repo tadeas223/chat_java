@@ -19,6 +19,7 @@ import java.sql.SQLException;
 public class MESSAGE implements Executable {
     @Override
     public void execute(ExecutionBundle executionBundle) throws IOException {
+        System.out.println("message executable");
         ClientConnectionHandler clientHandler = (ClientConnectionHandler) executionBundle.connectionHandler;
 
 
@@ -31,9 +32,11 @@ public class MESSAGE implements Executable {
 
             if (!messageDB.containsChat(username)) {
                 messageDB.createChat(username);
+                System.out.println("jhhjkhj");
             }
 
             messageDB.addMessage(new Message(username, message), username);
+            System.out.println(new Message(username, message));
 
             messageDB.close();
         } catch (SQLException e) {

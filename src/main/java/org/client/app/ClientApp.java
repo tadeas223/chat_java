@@ -15,6 +15,7 @@ public class ClientApp extends JFrame {
     private JPanel loginPanel;
     private JPanel signUpPanel;
     private JPanel appPanel;
+    private JPanel newChatPanel;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
@@ -29,6 +30,9 @@ public class ClientApp extends JFrame {
 
         appPanel = new AppPanel(this);
         appPanel.setLayout(new GridLayout(1, 1));
+
+        newChatPanel = new NewChatPanel(this);
+        newChatPanel.setLayout(new GridLayout(1, 1));
 
     }
 
@@ -62,6 +66,7 @@ public class ClientApp extends JFrame {
         mainPanel.add(loginPanel, "loginPanel");
         mainPanel.add(signUpPanel, "signUpPanel");
         mainPanel.add(appPanel, "appPanel");
+        mainPanel.add(newChatPanel, "newChatPanel");
     }
 
     /**

@@ -277,9 +277,9 @@ public class Client implements MsgReadListener {
             messageDB.createChat(username);
         }
 
-        Message msg = new Message(user.getUsername(), message);
+        Message msg = new Message(username, message);
 
-        messageDB.addMessage(msg, username);
+        messageDB.addMessage(msg, user.getUsername());
 
         messageDB.close();
     }
@@ -333,6 +333,33 @@ public class Client implements MsgReadListener {
             }
         }
 
+    }
+
+    public boolean userExists(String username) throws IOException, ChatProtocolException {
+        Instruction instruction = InstructionBuilder.exists(username);
+
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ERROR")){
+            throw new ChatProtocolException(response.getParam("messasge"));
+        } else if(response.getName().equals("TRUE")){
+            return true;
+        }
+
+        return false;
+    }
+
+    public void addChat(String chat) throws SQLException {
+        MessageDB messageDB = new MessageDB();
+
+        messageDB.connect(user.getUsername());
+        if(!messageDB.containsChat(chat)){
+            messageDB.createChat(chat);
+        }
+
+        messageDB.close();
     }
     //endregion
     /**
@@ -457,6 +484,10 @@ public class Client implements MsgReadListener {
         }
 
         return configureDBNoClose();
+    }
+
+    public User getUser() {
+        return user;
     }
 
     /**

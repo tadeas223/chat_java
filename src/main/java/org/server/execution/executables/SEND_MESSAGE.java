@@ -57,7 +57,9 @@ public class SEND_MESSAGE implements Executable {
                     if(authData.getUser().getUsername().equals(username)){
                         handler.getConnection()
                                 .writeInstruction(InstructionBuilder
-                                        .message(message, username));
+                                        .message(message, executionBundle
+                                                .connectionHandler
+                                                .getData(AuthenticationData.class).getUser().getUsername()));
 
                         executionBundle.connection.writeInstruction(InstructionBuilder.done());
                         return;

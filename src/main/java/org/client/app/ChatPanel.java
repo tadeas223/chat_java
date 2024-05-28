@@ -52,6 +52,8 @@ public class ChatPanel extends JPanel {
         createUIComponents();
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(0, 0));
+        mainPanel.setMinimumSize(new Dimension(57, 57));
+        mainPanel.setPreferredSize(new Dimension(57, 57));
         messageScrollPane = new JScrollPane();
         messageScrollPane.setPreferredSize(new Dimension(14, 350));
         messageScrollPane.setVerticalScrollBarPolicy(22);
@@ -59,6 +61,8 @@ public class ChatPanel extends JPanel {
         messageScrollPane.setViewportView(messagePanel);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setMinimumSize(new Dimension(57, 57));
+        panel1.setPreferredSize(new Dimension(57, 57));
         mainPanel.add(panel1, BorderLayout.SOUTH);
         sendButton = new JButton();
         sendButton.setText("send");

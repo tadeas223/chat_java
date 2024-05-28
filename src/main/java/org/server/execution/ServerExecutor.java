@@ -49,6 +49,7 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("NEXT",new NEXT());
         instMethodList.put("GET",new GET());
         instMethodList.put("DONE",new DONE());
+    instMethodList.put("EXISTS",new EXISTS());
 
     }
 

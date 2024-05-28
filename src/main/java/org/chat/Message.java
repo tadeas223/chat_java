@@ -33,4 +33,13 @@ public class Message {
         this.username = username;
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "username='" + username + '\'' +
+                ", message='" + message + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }
