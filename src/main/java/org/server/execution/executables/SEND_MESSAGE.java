@@ -80,6 +80,8 @@ public class SEND_MESSAGE implements Executable {
                 }
 
                 serverExecutionBundle.sqlConnection.saveMessage(message,sender,username);
+
+                executionBundle.connection.writeInstruction(InstructionBuilder.done());
             } catch (SQLException e){
                 System.out.println(e.getMessage());
                 serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database Error"));

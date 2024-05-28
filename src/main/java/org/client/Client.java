@@ -134,6 +134,18 @@ public class Client implements MsgReadListener {
         configureDB();
     }
 
+    public void logout() throws IOException, ChatProtocolException {
+        Instruction instruction = InstructionBuilder.logout();
+
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ERROR")){
+            throw new ChatProtocolException(response.getParam("message"));
+        }
+    }
+
     /**
      * Registers and logs in the user without hashing the password.
      * If a user registers by this method, then he can only log in by the loginWithoutEncryption() method.
@@ -402,6 +414,8 @@ public class Client implements MsgReadListener {
 
                 instructionList.add(inst);
             }
+
+            socketConnection.writeInstruction(InstructionBuilder.done());
         } else {
             System.out.println(response);
             throw new ChatProtocolException("Unexpected response");
