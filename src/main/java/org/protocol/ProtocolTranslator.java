@@ -1,8 +1,4 @@
 package org.protocol;
-
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 public class ProtocolTranslator {
     /**
      * Converts instruction into a valid string that can be converted back into a {@link Instruction};
@@ -10,7 +6,7 @@ public class ProtocolTranslator {
      * @param instruction that needs to be converted
      * @return converted string
      */
-    public static @NotNull String encode(Instruction instruction) {
+    public static String encode(Instruction instruction) {
         StringBuilder msg = new StringBuilder(instruction.getName());
 
         msg.append("{");
@@ -30,8 +26,7 @@ public class ProtocolTranslator {
         return msg.toString();
     }
 
-    @Contract("_ -> new")
-    public static @NotNull Instruction decode(String message) throws InvalidStringException {
+    public static Instruction decode(String message) throws InvalidStringException {
         if (!checkValidity(message)) {
             throw new InvalidStringException("This is not a valid protocol message");
         }
@@ -95,9 +90,8 @@ public class ProtocolTranslator {
      * @param message that needs to be checked
      * @return true if the string is valid as an instruction, returns false if the string isn't valid
      */
-    @Contract(pure = true)
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean checkValidity(String message) {
-        return message.matches(".+([{](.+=.+;)*[}])?");
+        return message.matches("\\w+([{](.+=.+;)*[}])?");
     }
 }

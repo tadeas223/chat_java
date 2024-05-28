@@ -4,27 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="GUI partially works&#10;bug fixes">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="LETS GOOOOOOOO">
+      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/protocol/ProtocolTranslatorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/AppPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ChatPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ContactsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/LoginPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/MessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/MessagePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/NewChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ServerConnectPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/Instruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +26,7 @@
         <option value="FxmlFile" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -82,27 +71,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Application.ClientApp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ConnectionDisplay.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;371&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/tad/Documents/java/messenger&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28850573&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.ClientApp.executor": "Run",
+    "Application.ConnectionDisplay.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Server.executor": "Run",
+    "JUnit.ProtocolTranslatorTest.checkValidity.executor": "Run",
+    "JUnit.ProtocolTranslatorTest.decode.executor": "Run",
+    "JUnit.ProtocolTranslatorTest.encode.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/programy/Java/JavaSocketReader",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28850573",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
@@ -113,6 +107,12 @@
       <recent name="$PROJECT_DIR$/lib" />
       <recent name="$PROJECT_DIR$/lib/sqlite" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.protocol" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -122,39 +122,13 @@
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.ClientApp">
+  <component name="RunManager" selected="JUnit.ProtocolTranslatorTest">
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.client.app.ClientApp" />
       <module name="messenger" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.client.app.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConnectionDisplay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.debug.ConnectionDisplay" />
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.debug.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.test.Main" />
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -169,17 +143,84 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProtocolTranslatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.protocol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.protocol" />
+      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProtocolTranslatorTest.checkValidity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.protocol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.protocol" />
+      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
+      <option name="METHOD_NAME" value="checkValidity" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProtocolTranslatorTest.decode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.protocol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.protocol" />
+      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
+      <option name="METHOD_NAME" value="decode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProtocolTranslatorTest.encode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="messenger" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.protocol.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.protocol" />
+      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
+      <option name="METHOD_NAME" value="encode" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.ConnectionDisplay" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.ClientApp" />
+      <item itemvalue="JUnit.ProtocolTranslatorTest" />
+      <item itemvalue="JUnit.ProtocolTranslatorTest.checkValidity" />
+      <item itemvalue="JUnit.ProtocolTranslatorTest.decode" />
+      <item itemvalue="JUnit.ProtocolTranslatorTest.encode" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProtocolTranslatorTest" />
+        <item itemvalue="JUnit.ProtocolTranslatorTest.encode" />
         <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.ConnectionDisplay" />
+        <item itemvalue="JUnit.ProtocolTranslatorTest.decode" />
+        <item itemvalue="JUnit.ProtocolTranslatorTest.checkValidity" />
       </list>
     </recent_temporary>
   </component>
@@ -328,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716912242716</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="LETS GOOOOOOOO">
+      <option name="closed" value="true" />
+      <created>1716919614454</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1716919614454</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -363,7 +412,8 @@
     <MESSAGE value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
     <MESSAGE value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
     <MESSAGE value="GUI partially works&#10;bug fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI partially works&#10;bug fixes" />
+    <MESSAGE value="LETS GOOOOOOOO" />
+    <option name="LAST_COMMIT_MESSAGE" value="LETS GOOOOOOOO" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -33,7 +33,7 @@ public class SHA256 {
             byte[] encodedHash = digest.digest(string.getBytes(StandardCharsets.UTF_8));
             return bytesToHex(encodedHash);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e + " - this exception should never happened. If you see" + " this then something very horrible happened :-(");
+            throw new RuntimeException(e + " - this exception should never happened. If you see this then something very horrible happened :-(");
         }
     }
 }

@@ -1,12 +1,28 @@
 package org.protocol;
 
+import java.util.Objects;
+
 /**
  * This class can be used for communication between two programs.
  * This class can be entirely converted into {@link String} and back by the {@link ProtocolTranslator}.
  * Because of this, it can be passed into a {@link java.io.OutputStream} enabling it to work as a communication medium.
  */
-public class Instruction {
+public class Instruction  {
     private final String name;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Instruction that = (Instruction) o;
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getParamList(), that.getParamList());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getParamList());
+    }
+
     private ParamList paramList = new ParamList();
 
     /**

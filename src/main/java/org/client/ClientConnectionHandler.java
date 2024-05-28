@@ -42,12 +42,12 @@ public class ClientConnectionHandler extends ConnectionHandler {
 
             executor.execute(instruction, this);
         } catch (InvalidStringException | IOException | MissingDefaultException e){
-            try{
-                connection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
-            } catch (IOException ex){
-                // Failed to send an error message
-                throw new RuntimeException(ex);
-            }
+//            try{
+//                connection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
+//            } catch (IOException ex){
+//                // Failed to send an error message
+//                throw new RuntimeException(ex);
+//            }
         }
     }
 
