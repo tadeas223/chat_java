@@ -1,9 +1,12 @@
 package org.protocol.protocolHandling;
 
-import org.client.ClientConnectionHandler;
-import org.connection.ConnectionHandler;
+import org.messenger.connection.ConnectionHandler;
 import org.junit.jupiter.api.Test;
-import org.protocol.Instruction;
+import org.messenger.protocol.Instruction;
+import org.messenger.protocol.protocolHandling.Executable;
+import org.messenger.protocol.protocolHandling.ExecutionBundle;
+import org.messenger.protocol.protocolHandling.InstructionExecutor;
+import org.messenger.protocol.protocolHandling.MissingDefaultException;
 
 import java.io.IOException;
 

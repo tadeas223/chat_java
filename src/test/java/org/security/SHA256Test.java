@@ -1,6 +1,7 @@
 package org.security;
 
 import org.junit.jupiter.api.Test;
+import org.messenger.security.SHA256;
 
 import static org.junit.jupiter.api.Assertions.*;
 

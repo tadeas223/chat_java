@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="LETS GOOOOOOOO">
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/protocol/ProtocolTranslatorTest.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="InstructionExecutor test added">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fileCreation/FileCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/ClientConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/Instruction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/protocol/ProtocolTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/test/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +30,8 @@
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -40,6 +45,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -78,23 +84,32 @@
     "Application.ConnectionDisplay.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.Server.executor": "Run",
-    "JUnit.ProtocolTranslatorTest.checkValidity.executor": "Run",
-    "JUnit.ProtocolTranslatorTest.decode.executor": "Run",
-    "JUnit.ProtocolTranslatorTest.encode.executor": "Run",
+    "JAR Application.messenger-1.0-SNAPSHOT-server.jar.executor": "Run",
+    "JUnit.InstructionExecutorTest.execute.executor": "Run",
+    "JUnit.InstructionExecutorTest.executor": "Run",
+    "JUnit.SHA256Test.encode.executor": "Run",
+    "Maven.messenger [clean].executor": "Run",
+    "Maven.messenger [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.messenger [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy].executor": "Run",
+    "Maven.messenger [package,-P,client].executor": "Run",
+    "Maven.messenger [package,-P,full].executor": "Run",
+    "Maven.messenger [package,compile].executor": "Run",
+    "Maven.messenger [package,deploy].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "371",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/programy/Java/JavaSocketReader",
+    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.28850573",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -111,7 +126,8 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.protocol" />
+      <recent name="org.protocol.protocolHandling" />
+      <recent name="org.security" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -119,16 +135,20 @@
       <command value="mvn --settings" />
       <command value="mvn --global-settings" />
       <command value="mvn install" />
+      <command value="mvn package compile" />
+      <command value="mvn package deploy" />
+      <command value="mvn package -P full" />
+      <command value="mvn package -P client" />
       <command value="mvn clean" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ProtocolTranslatorTest">
-    <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.client.app.ClientApp" />
+  <component name="RunManager" selected="Application.Server">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.test.Main" />
       <module name="messenger" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.client.app.*" />
+          <option name="PATTERN" value="org.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,94 +163,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProtocolTranslatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.protocol.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.protocol" />
-      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProtocolTranslatorTest.checkValidity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.protocol.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.protocol" />
-      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
-      <option name="METHOD_NAME" value="checkValidity" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProtocolTranslatorTest.decode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.protocol.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.protocol" />
-      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
-      <option name="METHOD_NAME" value="decode" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProtocolTranslatorTest.encode" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.protocol.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.protocol" />
-      <option name="MAIN_CLASS_NAME" value="org.protocol.ProtocolTranslatorTest" />
-      <option name="METHOD_NAME" value="encode" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="Application.ClientApp" />
-      <item itemvalue="JUnit.ProtocolTranslatorTest" />
-      <item itemvalue="JUnit.ProtocolTranslatorTest.checkValidity" />
-      <item itemvalue="JUnit.ProtocolTranslatorTest.decode" />
-      <item itemvalue="JUnit.ProtocolTranslatorTest.encode" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProtocolTranslatorTest" />
-        <item itemvalue="JUnit.ProtocolTranslatorTest.encode" />
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="JUnit.ProtocolTranslatorTest.decode" />
-        <item itemvalue="JUnit.ProtocolTranslatorTest.checkValidity" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -369,15 +310,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716912242716</updated>
     </task>
-    <task id="LOCAL-00017" summary="LETS GOOOOOOOO">
+    <task id="LOCAL-00017" summary="SHA256 test added and passed">
       <option name="closed" value="true" />
-      <created>1716919614454</created>
+      <created>1717055874616</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1716919614454</updated>
+      <updated>1717055874616</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="InstructionExecutor test added">
+      <option name="closed" value="true" />
+      <created>1717056665011</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1717056665011</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -412,8 +361,9 @@
     <MESSAGE value="SQLException while sign up fixed&#10;Database msg save works only on registered users" />
     <MESSAGE value="GUI resizing works&#10;Messages not saving to DB properly fixed&#10;Bug fixes" />
     <MESSAGE value="GUI partially works&#10;bug fixes" />
-    <MESSAGE value="LETS GOOOOOOOO" />
-    <option name="LAST_COMMIT_MESSAGE" value="LETS GOOOOOOOO" />
+    <MESSAGE value="SHA256 test added and passed" />
+    <MESSAGE value="InstructionExecutor test added" />
+    <option name="LAST_COMMIT_MESSAGE" value="InstructionExecutor test added" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,7 +1,10 @@
 package org.protocol;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
+import org.messenger.protocol.Instruction;
+import org.messenger.protocol.InvalidStringException;
+import org.messenger.protocol.ParamList;
+import org.messenger.protocol.ProtocolTranslator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
