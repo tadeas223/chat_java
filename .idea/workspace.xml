@@ -5,19 +5,106 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="InstructionExecutor test added">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/client/app/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/fileCreation/FileCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/server/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/META-INF/maven/archetype.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/archetype-resources/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/archetype-resources/src/main/java/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/resources/archetype-resources/src/test/java/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/MessageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/client/app/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/SQLConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/ServerConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/server/execution/ServerExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/ClientConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/ClientConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/ClientExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/ClientExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/ClientNotLoggedInException.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/ClientNotLoggedInException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ClientApp.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ClientApp.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ContactsPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ContactsPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ContactsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ContactsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/LoginPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/MessagePanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/MessagePanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/MessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/MessagePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/NewChatPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/NewChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ServerConnectPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ServerConnectPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/ServerConnectPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ServerConnectPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/SignUpPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/executables/DEFAULT.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/DEFAULT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/executables/ERROR.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/ERROR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/executables/INIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/INIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/executables/MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/socketData/MessageListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/socketData/MessageListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/client/socketData/MessageListenerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/socketData/MessageListenerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/connection/ConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/ConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/connection/MsgReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/MsgReadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/connection/SocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/SocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/connection/socketData/AuthenticationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/socketData/AuthenticationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/connection/socketData/SocketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/socketData/SocketData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/fileCreation/FileCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/ChatProtocolException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/ChatProtocolException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/Instruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InstructionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/InvalidStringException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InvalidStringException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/ParamList.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/ParamList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/ProtocolTranslator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/protocolHandling/Executable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/protocolHandling/Executable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/protocolHandling/ExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/protocolHandling/ExecutionBundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/protocolHandling/InstructionExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/protocolHandling/InstructionExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/protocol/protocolHandling/MissingDefaultException.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/protocolHandling/MissingDefaultException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/security/SHA256.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/security/SHA256.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/security/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/security/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/AUTO_MESSAGE_SAVE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/AUTO_MESSAGE_SAVE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/DEFAULT.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/DEFAULT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/DONE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/DONE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/ERROR.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/ERROR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/EXISTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/EXISTS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/GET.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/GET.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/GET_FROM_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/GET_FROM_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/GET_ID.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/GET_ID.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/HELLO_WORLD.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/HELLO_WORLD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/INIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/INIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/INVOKE_DONE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/INVOKE_DONE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/INVOKE_OUTPUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/INVOKE_OUTPUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/IS_ONLINE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/IS_ONLINE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/LOGIN.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/LOGIN.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/LOGOUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/LOGOUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/NEXT.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/NEXT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/SAVE_TO_DATABASE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SAVE_TO_DATABASE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/SEND_MESSAGE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SEND_MESSAGE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/execution/executables/SIGN_UP.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SIGN_UP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/log/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/log/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/socketData/ArrayReading.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/socketData/ArrayReading.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/socketData/AutoDBSaveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/socketData/AutoDBSaveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/messenger/server/socketData/InitCallData.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/socketData/InitCallData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/protocol/ProtocolTranslatorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/protocol/protocolHandling/InstructionExecutorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/security/SHA256Test.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +175,7 @@
     "JUnit.InstructionExecutorTest.execute.executor": "Run",
     "JUnit.InstructionExecutorTest.executor": "Run",
     "JUnit.SHA256Test.encode.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.messenger [clean].executor": "Run",
     "Maven.messenger [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.messenger [org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy].executor": "Run",
@@ -117,10 +205,11 @@
       <recent name="E:\programy\Java\messenger\src\main\java\org\example" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data/client" />
-      <recent name="$PROJECT_DIR$/src/main/java/org/client/app" />
-      <recent name="$PROJECT_DIR$/lib" />
-      <recent name="$PROJECT_DIR$/lib/sqlite" />
+      <recent name="$PROJECT_DIR$/server/src/main" />
+      <recent name="$PROJECT_DIR$/src/main/java/org/messenger/server" />
+      <recent name="$PROJECT_DIR$/src/main/java/org" />
+      <recent name="$PROJECT_DIR$/src/main/java" />
+      <recent name="$PROJECT_DIR$/common/src/main" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -141,37 +230,6 @@
       <command value="mvn package -P client" />
       <command value="mvn clean" />
     </option>
-  </component>
-  <component name="RunManager" selected="Application.Server">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.test.Main" />
-      <module name="messenger" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Server" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.server.Server" />
-      <module name="messenger" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Main" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
