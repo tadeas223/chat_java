@@ -1,9 +1,6 @@
 package org.messenger.client;
 
-import org.messenger.client.executables.DEFAULT;
-import org.messenger.client.executables.ERROR;
-import org.messenger.client.executables.INIT;
-import org.messenger.client.executables.MESSAGE;
+import org.messenger.client.executables.*;
 import org.messenger.protocol.protocolHandling.InstructionExecutor;
 
 /**
@@ -16,6 +13,7 @@ public class ClientExecutor extends InstructionExecutor {
         instMethodList.put("INIT", new INIT());
 
         instMethodList.put("MESSAGE",new MESSAGE());
+        instMethodList.put("FILE", new FILE());
         instMethodList.put("ERROR", new ERROR());
     }
 }

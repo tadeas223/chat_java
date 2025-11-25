@@ -1,5 +1,6 @@
 package org.messenger.client;
 
+import org.messenger.chat.File;
 import org.messenger.chat.Message;
 
 import java.io.IOException;
@@ -184,5 +185,9 @@ public class MessageDB {
      */
     public void close() throws SQLException {
         connection.close();
+    }
+
+    public void addFile(File file, String username) {
+        System.out.println("MessageDB.addFile -> not implemented :(");
     }
 }

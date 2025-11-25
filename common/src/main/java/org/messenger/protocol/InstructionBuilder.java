@@ -39,6 +39,17 @@ public class InstructionBuilder {
 
         return new Instruction("SEND_MESSAGE", paramList);
     }
+
+    public static Instruction sendFile(String username, String fileName, String contents) {
+        ParamList paramList = new ParamList();
+
+        paramList.put("fileName", fileName);
+        paramList.put("contents", contents);
+        paramList.put("username",username);
+
+        return new Instruction("FILE", paramList);
+    }
+
     public static Instruction signup(String username, String password){
         ParamList paramList = new ParamList();
 
@@ -71,6 +82,16 @@ public class InstructionBuilder {
         paramList.put("sender",sender);
 
         return new Instruction("MESSAGE", paramList);
+    }
+
+    public static Instruction file( String contents, String fileName, String sender) {
+        ParamList paramList = new ParamList();
+
+        paramList.put("fileName", fileName);
+        paramList.put("contents", contents);
+        paramList.put("sender",sender);
+
+        return new Instruction("FILE", paramList);
     }
 
     public static Instruction array(int count){

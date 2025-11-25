@@ -248,4 +248,8 @@ public class SQLConnection {
         close();
         return num == 1;
     }
+
+    public void saveFile(String contents, String fileName, String sender, String receiver) {
+        System.out.println("SQLConnection.saveFile -> Not Implemented :(");
+    }
 }

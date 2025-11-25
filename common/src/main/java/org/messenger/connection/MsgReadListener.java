@@ -8,6 +8,9 @@ public interface MsgReadListener {
     /**
      * This Method is called every time the message was read
      *
+     *
+     * 25.11 2025: this documentation is stupid.
+     *
      * @param msg the message that was read
      */
     void messageRead(String msg);

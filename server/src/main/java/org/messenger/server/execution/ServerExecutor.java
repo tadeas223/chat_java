@@ -52,7 +52,8 @@ public class ServerExecutor extends InstructionExecutor {
         instMethodList.put("NEXT",new NEXT());
         instMethodList.put("GET",new GET());
         instMethodList.put("DONE",new DONE());
-    instMethodList.put("EXISTS",new EXISTS());
+        instMethodList.put("SEND_FILE", new SEND_FILE());
+        instMethodList.put("EXISTS",new EXISTS());
 
     }
 

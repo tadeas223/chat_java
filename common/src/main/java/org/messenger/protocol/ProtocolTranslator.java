@@ -60,6 +60,11 @@ public class ProtocolTranslator {
      */
     // I am trying to get code with no warnings,
     // and this class gives me a warning that ParamList is a map not a list in the JavaDocs
+    //
+    // this is a reply to my old me at 25.11 2025
+    // Bro that is not the point you don't need to have 0 warnings, your stupid.
+    // And why the fuck did you make your own Json parser and called it Protocol like its some kind of
+    // new invention. You are making things very complicated bro.
     @SuppressWarnings("MismatchedJavadocCode")
     private static ParamList getParamList(String message, int bracketIndex) throws InvalidStringException {
         ParamList paramList = new ParamList();

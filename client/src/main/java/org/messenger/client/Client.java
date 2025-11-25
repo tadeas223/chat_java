@@ -485,6 +485,10 @@ public class Client implements MsgReadListener {
             socketConnection.writeInstruction(InstructionBuilder.error("Invalid instruction"));
 
             return new Instruction("PlS DoN'T UsE tHiS eXaCt TeXt FoR InStRuCtIoN");
+            // 25.11 2025: what is that, this is very bad
+            // TODO: do something with this stupid code
+            // make it not send a fucking request to the server
+            // after a local String to Instruction conversion this is stupid
         }
     }
 
