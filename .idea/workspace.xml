@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="client" />
+      <artifact name="full" />
+      <artifact name="server" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="InstructionExecutor test added">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/client.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/client.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin.">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/TestMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/ChatMedia.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileStore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/ClientExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/ClientExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ContactsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ContactsPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/MessagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/MessagePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ServerConnectPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/ServerConnectPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/FILE.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/FILE.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/MsgReadListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/connection/MsgReadListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InstructionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/ProtocolTranslator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/ProtocolTranslator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/SQLConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/SQLConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/ServerConnectionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SEND_FILE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SEND_FILE.java" afterDir="false" />
     </list>
@@ -39,9 +42,9 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -94,6 +97,9 @@
     "Application.ConnectionDisplay.executor": "Run",
     "Application.Main.executor": "Run",
     "Application.Server.executor": "Run",
+    "Application.TestMain.executor": "Run",
+    "Application.org.messenger.server.Main.executor": "Run",
+    "JAR Application.client.jar.executor": "Run",
     "JAR Application.messenger-1.0-SNAPSHOT-server.jar.executor": "Run",
     "JUnit.InstructionExecutorTest.execute.executor": "Run",
     "JUnit.InstructionExecutorTest.executor": "Run",
@@ -119,12 +125,12 @@
     "deletionFromPopupRequiresConfirmation": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/tad/Documents/java/messenger",
+    "last_opened_file_path": "/home/tad/Downloads/Java/chat_java",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.28850573",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "project.propGUI"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -160,7 +166,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TestMain">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.messenger.client.app.Main" />
       <module name="client" />
@@ -174,9 +180,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestMain" />
+      <module name="client" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="client.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/client/client.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestMain" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JAR Application.client.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -333,7 +352,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717056665011</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin.">
+      <option name="closed" value="true" />
+      <created>1764099941645</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1764099941645</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -370,9 +397,23 @@
     <MESSAGE value="GUI partially works&#10;bug fixes" />
     <MESSAGE value="SHA256 test added and passed" />
     <MESSAGE value="InstructionExecutor test added" />
-    <option name="LAST_COMMIT_MESSAGE" value="InstructionExecutor test added" />
+    <MESSAGE value="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin." />
+    <option name="LAST_COMMIT_MESSAGE" value="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileStore.java</url>
+          <line>20</line>
+          <properties class="org.messenger.fileCreation.FileStore" method="store">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.server.Server" memberName="log" />

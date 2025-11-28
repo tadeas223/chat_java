@@ -64,28 +64,33 @@ public class SEND_FILE implements Executable {
                 }
             }
             return;
-        } else if(autoSave.isAutoSave()){
-            String sender = serverHandler
-                    .getData(AuthenticationData.class)
-                    .getUser()
-                    .getUsername();
+        }
+        // else if(autoSave.isAutoSave()){
+        //     String sender = serverHandler
+        //             .getData(AuthenticationData.class)
+        //             .getUser()
+        //             .getUsername();
 
-            try{
-                if(!serverExecutionBundle.sqlConnection.userExists(username)){
-                    executionBundle.connection.writeInstruction(InstructionBuilder.error("User does not exist"));
-                    return;
-                }
+        //     try{
+        //         if(!serverExecutionBundle.sqlConnection.userExists(username)){
+        //             executionBundle.connection.writeInstruction(InstructionBuilder.error("User does not exist"));
+        //             return;
+        //         }
 
-                serverExecutionBundle.sqlConnection.saveFile(contents,fileName, sender,username);
+        //         serverExecutionBundle.fileStore.store(username, fileName, contents);
 
-                executionBundle.connection.writeInstruction(InstructionBuilder.done());
-            } catch (SQLException e){
-                System.out.println(e.getMessage());
-                serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database Error"));
-            }
+        //         executionBundle.connection.writeInstruction(InstructionBuilder.done());
+        //     } catch (SQLException e){
+        //         System.out.println(e.getMessage());
+        //         serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Database Error"));
+        //     }
+        //     return;
+        // }
+        else if(autoSave.isAutoSave()){
+            serverExecutionBundle.connection.writeInstruction(InstructionBuilder.error("Files can be send only to online clients"));
             return;
         }
-
         executionBundle.connection.writeInstruction(InstructionBuilder.error("User is not online"));
+
     }
 }

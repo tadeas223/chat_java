@@ -2,8 +2,7 @@ package org.messenger.chat;
 
 import java.util.Date;
 
-public class File {
-    String contents;
+public class File implements ChatMedia {
     String username;
     String fileName;
     Date date;
@@ -12,9 +11,6 @@ public class File {
         return username;
     }
 
-    public String getContents() {
-        return contents;
-    }
 
     public String getFileName() {
         return fileName;
@@ -24,24 +20,21 @@ public class File {
         return date;
     }
 
-    public File(String username, String fileName, String contents, Date date) {
+    public File(String username, String fileName, Date date) {
         this.username = username;
         this.fileName = fileName;
-        this.contents = contents;
         this.date = date;
     }
 
-    public File(String username, String fileName, String contents) {
+    public File(String username, String fileName) {
         this.username = username;
         this.fileName = fileName;
-        this.contents = contents;
     }
 
     @Override
     public String toString() {
         return "FILE{" +
                 "username='" + username + '\'' +
-                ", contents='" + contents + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", date=" + date +
                 '}';

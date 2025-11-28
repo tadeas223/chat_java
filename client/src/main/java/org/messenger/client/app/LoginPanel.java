@@ -29,7 +29,7 @@ public class LoginPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    clientApp.getClient().login(textField.getText(), Arrays.toString(passwordField.getPassword()));
+                    clientApp.getClient().login(textField.getText(), String.valueOf(passwordField.getPassword()));
 
                     clientApp.getClient().getFromDatabase();
 

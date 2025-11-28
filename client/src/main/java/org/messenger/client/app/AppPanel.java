@@ -1,5 +1,7 @@
 package org.messenger.client.app;
 
+import org.messenger.chat.ChatMedia;
+import org.messenger.chat.File;
 import org.messenger.chat.Message;
 import org.messenger.client.Client;
 import org.messenger.client.ClientNotLoggedInException;
@@ -125,7 +127,7 @@ public class AppPanel extends JPanel {
         currentChat = chat;
 
         Client client = clientApp.getClient();
-        Message[] messages = new Message[0];
+        ChatMedia[] messages = new Message[0];
         try {
             messages = client.getMessages(chat, Integer.MAX_VALUE);
         } catch (ClientNotLoggedInException | SQLException e) {
@@ -133,10 +135,17 @@ public class AppPanel extends JPanel {
         }
 
 
-        for (Message msg : messages) {
-            JLabel label = new JLabel(msg.getMessage() +
-                    "  |  " + msg.getUsername() +
-                    "  |  " + msg.getDate().toString());
+        for (ChatMedia msg : messages) {
+            JLabel label = null;
+            if (msg instanceof Message cast) {
+                label = new JLabel(cast.getMessage() +
+                        "  |  " + cast.getUsername() +
+                        "  |  " + cast.getDate().toString());
+            } else if (msg instanceof File cast) {
+                label = new JLabel(cast.getFileName() +
+                        "  |  " + cast.getUsername() +
+                        "  |  " + cast.getDate().toString());
+            }
 
             messageHolder.add(label, 0);
             clientApp.redraw();
@@ -251,4 +260,5 @@ public class AppPanel extends JPanel {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

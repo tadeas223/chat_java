@@ -1,13 +1,19 @@
 package org.messenger.client;
 
+import org.messenger.chat.ChatMedia;
 import org.messenger.chat.File;
 import org.messenger.chat.Message;
+import org.messenger.fileCreation.FileCreator;
+import org.messenger.fileCreation.FileStore;
+import org.messenger.security.User;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+// TODO: fix sql injections
 /**
  * This class is used to communicate with a local SQLite database.
  * The database is used to save chats and messages.
@@ -16,9 +22,11 @@ public class MessageDB {
     private final String DB_FILE = "client/";
     private final Client client;
     private Connection connection;
+    private FileCreator fileCreator;
 
     public MessageDB(Client client) {
         this.client = client;
+        this.fileCreator = client.getFileCreator();
     }
 
     /**
@@ -60,6 +68,7 @@ public class MessageDB {
                 "  `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "  `username` VARCHAR(45)," +
                 "  `message` VARCHAR(255)," +
+                "  `isFile` INT DEFAULT 0," +
                 "  `date` DATETIME);";
 
         PreparedStatement statement = connection.prepareStatement(query);
@@ -90,6 +99,22 @@ public class MessageDB {
         statement.execute();
     }
 
+    public void addFile(User user, File file, String contents, String chat) throws IOException, SQLException {
+        FileStore fileStore = new FileStore(fileCreator);
+        Path path = Path.of(user.getUsername());
+        fileStore.store(path.resolve(chat).toString(), file.getFileName(), contents);
+
+        String query = "INSERT INTO "+chat+" (username,message,date, isFile) " +
+                "VALUES (?,?,DATETIME('now'));";
+
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1,file.getUsername());
+        statement.setString(2,file.getFileName());
+        statement.setInt(3,1);
+
+        statement.execute();
+    }
+
     /**
      * This method returns the last messages from a chat.
      * @param chatName name of the chat with the messages
@@ -97,8 +122,8 @@ public class MessageDB {
      * @return the messages from the chat
      * @throws SQLException when an error occurs when getting the messages
      */
-    public Message[] getMessages(String chatName,int count) throws SQLException {
-        ArrayList<Message> messageList = new ArrayList<>();
+    public ChatMedia[] getMessages(String chatName, int count) throws SQLException {
+        ArrayList<ChatMedia> messageList = new ArrayList<>();
 
         String query = "SELECT * FROM "+chatName+" ORDER BY id DESC LIMIT " + count;
         PreparedStatement statement = connection.prepareStatement(query);
@@ -111,11 +136,16 @@ public class MessageDB {
             String username = resultSet.getString("username");
             String message = resultSet.getString("message");
             Date date = resultSet.getDate("date");
+            int isFile = resultSet.getInt("isFile");
 
-            messageList.add(new Message(username,message,date));
+            if(isFile == 0) {
+                messageList.add(new Message(username,message,date));
+            } else {
+                messageList.add(new File(username,message,date));
+            }
         }
 
-        return messageList.toArray(Message[]::new);
+        return messageList.toArray(ChatMedia[]::new);
     }
 
     /**
@@ -185,9 +215,5 @@ public class MessageDB {
      */
     public void close() throws SQLException {
         connection.close();
-    }
-
-    public void addFile(File file, String username) {
-        System.out.println("MessageDB.addFile -> not implemented :(");
     }
 }

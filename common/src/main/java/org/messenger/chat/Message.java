@@ -6,7 +6,7 @@ import java.util.Date;
  * This class is a code representation of a message.
  * It only holds a username, message, date variables.
  */
-public class Message {
+public class Message implements ChatMedia {
     String username;
     String message;
     Date date;

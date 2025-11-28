@@ -33,7 +33,7 @@ public class FILE implements Executable {
                 messageDB.createChat(username);
             }
 
-            messageDB.addFile(new File(username, fileName, contents), username);
+            messageDB.addFile(clientHandler.getClient().getUser(), new File(username, fileName), contents, username);
 
             messageDB.close();
         } catch (SQLException e) {

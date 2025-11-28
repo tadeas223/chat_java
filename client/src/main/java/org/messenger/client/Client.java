@@ -1,6 +1,8 @@
 package org.messenger.client;
 
+import org.messenger.chat.ChatMedia;
 import org.messenger.chat.Message;
+import org.messenger.client.app.Main;
 import org.messenger.connection.socketData.AuthenticationData;
 import org.messenger.connection.MsgReadListener;
 import org.messenger.connection.SocketConnection;
@@ -10,8 +12,11 @@ import org.messenger.security.SHA256;
 import org.messenger.security.User;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Objects;
 
 /**
@@ -23,7 +28,7 @@ import java.util.Objects;
 public class Client implements MsgReadListener {
     private final SocketConnection socketConnection;
     private final ClientConnectionHandler clientConnectionHandler;
-    private final FileCreator fileCreator = new FileCreator("data/client/");
+    private final FileCreator fileCreator = new FileCreator(Main.class, "data/client/");
     private String message = null;
     private User user;
     /**
@@ -86,6 +91,7 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      */
     public void login(String username, String password) throws IOException, ChatProtocolException, SQLException {
+        System.out.println(password);
         password = SHA256.encode(password);
 
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
@@ -301,6 +307,23 @@ public class Client implements MsgReadListener {
         messageDB.close();
     }
 
+    public void sendFile(String filePath, String username) throws IOException, ChatProtocolException {
+        Path path = Path.of(filePath);
+        String fileName = path.getFileName().toString();
+        byte[] bytes = Files.readAllBytes(path);
+        String base64 = Base64.getEncoder().encodeToString(bytes);
+
+        Instruction instruction = InstructionBuilder.sendFile(username, fileName, base64);
+        socketConnection.writeInstruction(instruction);
+
+        Instruction response = stringToInst(waitForMessage());
+
+        if(response.getName().equals("ERROR")){
+            throw new ChatProtocolException(response.getParam("message"));
+        }
+
+    }
+
     public void autoSave(boolean value) throws IOException, ChatProtocolException {
         Instruction instruction = InstructionBuilder.autoMessageSave(value);
 
@@ -383,6 +406,8 @@ public class Client implements MsgReadListener {
      * Waits until the next message from the server is sent.
      * @return the message that the server sent
      */
+    // What the fuck!!!
+    // I hate my past self.
     public String waitForMessage() {
         message = null;
 
@@ -455,7 +480,7 @@ public class Client implements MsgReadListener {
      * @return the messages
      * @throws SQLException when SQL error occurs
      */
-    public Message[] getMessages(String chat, int count) throws SQLException, ClientNotLoggedInException {
+    public ChatMedia[] getMessages(String chat, int count) throws SQLException, ClientNotLoggedInException {
         if(user == null){
             throw new ClientNotLoggedInException("Client is not logged in");
         }
@@ -464,7 +489,7 @@ public class Client implements MsgReadListener {
 
         messageDB.connect(user.getUsername());
 
-        Message[] messages = messageDB.getMessages(chat,count);
+        ChatMedia[] messages = messageDB.getMessages(chat,count);
 
         messageDB.close();
 

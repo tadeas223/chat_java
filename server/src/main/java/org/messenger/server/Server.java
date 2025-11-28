@@ -18,10 +18,10 @@ public class Server {
     private final ServerExecutor serverExecutor;
     private final Log log = new Log();
     private boolean close = false;
-    private FileCreator fileCreator;
+    private final FileCreator fileCreator;
 
     public Server(String saveFilePath) {
-        this.fileCreator = new FileCreator(saveFilePath);
+        this.fileCreator = new FileCreator(Main.class,saveFilePath);
         serverExecutor = new  ServerExecutor(this);
     }
 

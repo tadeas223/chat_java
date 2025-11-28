@@ -47,7 +47,7 @@ public class InstructionBuilder {
         paramList.put("contents", contents);
         paramList.put("username",username);
 
-        return new Instruction("FILE", paramList);
+        return new Instruction("SEND_FILE", paramList);
     }
 
     public static Instruction signup(String username, String password){
