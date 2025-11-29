@@ -1,6 +1,7 @@
 package org.messenger.client;
 
 import org.messenger.chat.ChatMedia;
+import org.messenger.chat.File;
 import org.messenger.chat.Message;
 import org.messenger.client.app.Main;
 import org.messenger.connection.socketData.AuthenticationData;
@@ -91,7 +92,6 @@ public class Client implements MsgReadListener {
      * @throws ChatProtocolException when an error occurs with the message communication
      */
     public void login(String username, String password) throws IOException, ChatProtocolException, SQLException {
-        System.out.println(password);
         password = SHA256.encode(password);
 
         socketConnection.writeInstruction(InstructionBuilder.login(username, password));
@@ -307,7 +307,7 @@ public class Client implements MsgReadListener {
         messageDB.close();
     }
 
-    public void sendFile(String filePath, String username) throws IOException, ChatProtocolException {
+    public void sendFile(String filePath, String username) throws IOException, ChatProtocolException, SQLException {
         Path path = Path.of(filePath);
         String fileName = path.getFileName().toString();
         byte[] bytes = Files.readAllBytes(path);
@@ -321,6 +321,19 @@ public class Client implements MsgReadListener {
         if(response.getName().equals("ERROR")){
             throw new ChatProtocolException(response.getParam("message"));
         }
+
+        MessageDB messageDB = new MessageDB(this);
+        messageDB.connect(user.getUsername());
+
+        if (!messageDB.containsChat(username)) {
+            messageDB.createChat(username);
+        }
+
+        File file = new File(user.getUsername(), fileName);
+
+        messageDB.addFile(user, file, base64, username);
+
+        messageDB.close();
 
     }
 

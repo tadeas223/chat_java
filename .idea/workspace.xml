@@ -11,26 +11,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin.">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/TestMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/ChatMedia.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileStore.java" afterDir="false" />
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="File base64 encoding + client MessageDB&#10;&#10;client MessageDB now crashes when storing a file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/FILE.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/executables/FILE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/File.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/File.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/chat/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InstructionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/messenger/protocol/InstructionBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/ServerConnectionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/ServerConnectionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutionBundle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/ServerExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SEND_FILE.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/org/messenger/server/execution/executables/SEND_FILE.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +83,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.ClientApp.executor": "Run",
     "Application.ConnectionDisplay.executor": "Run",
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "Application.Server.executor": "Run",
     "Application.TestMain.executor": "Run",
     "Application.org.messenger.server.Main.executor": "Run",
@@ -360,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764099941645</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="File base64 encoding + client MessageDB&#10;&#10;client MessageDB now crashes when storing a file">
+      <option name="closed" value="true" />
+      <created>1764359934542</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1764359934542</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -398,7 +394,8 @@
     <MESSAGE value="SHA256 test added and passed" />
     <MESSAGE value="InstructionExecutor test added" />
     <MESSAGE value="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin." />
-    <option name="LAST_COMMIT_MESSAGE" value="idea build and UI Designer settings change&#10;&#10;The project is buildable again with idea, maven does not work (i don't know how it works)&#10;&#10;The UI Designer code in the client app is generated into the source code its self.&#10;That is because if it's not generated in the source code the app can be compiled only in intellij idea with the UI Designer plugin." />
+    <MESSAGE value="File base64 encoding + client MessageDB&#10;&#10;client MessageDB now crashes when storing a file" />
+    <option name="LAST_COMMIT_MESSAGE" value="File base64 encoding + client MessageDB&#10;&#10;client MessageDB now crashes when storing a file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -412,12 +409,22 @@
           </properties>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java</url>
+          <line>101</line>
+          <properties class="org.messenger.client.MessageDB" method="addFile">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="org.server.Server" memberName="log" />
         <PinnedItemInfo parentTag="org.server.Server" memberName="handlers" />
+        <PinnedItemInfo parentTag="org.messenger.client.MessageDB" memberName="connection" />
         <PinnedItemInfo parentTag="org.server.Server" memberName="serverExecutor" />
       </pinned-members>
     </pin-to-top-manager>

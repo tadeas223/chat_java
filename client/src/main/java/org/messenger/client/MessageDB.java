@@ -104,8 +104,8 @@ public class MessageDB {
         Path path = Path.of(user.getUsername());
         fileStore.store(path.resolve(chat).toString(), file.getFileName(), contents);
 
-        String query = "INSERT INTO "+chat+" (username,message,date, isFile) " +
-                "VALUES (?,?,DATETIME('now'));";
+        String query = "INSERT INTO "+chat+" (username,message,isFile, date) " +
+                "VALUES (?,?,?, DATETIME('now'));";
 
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1,file.getUsername());

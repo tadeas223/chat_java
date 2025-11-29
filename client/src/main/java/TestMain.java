@@ -8,7 +8,7 @@ public class TestMain {
     public static void main(String[] args) throws IOException, SQLException, ChatProtocolException {
         Client client = new Client("localhost");
 
-        client.login("a", "a");
+        client.login("a", "");
 
         client.sendFile("/home/tad/Downloads/Java/chat_java/client/src/main/java/TestMain.java", "b");
 

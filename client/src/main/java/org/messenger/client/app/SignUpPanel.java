@@ -30,7 +30,6 @@ public class SignUpPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     clientApp.getClient().signup(textField.getText(), String.valueOf(passwordField.getPassword()));
-                    System.out.println(String.copyValueOf(passwordField.getPassword()));
                     clientApp.getClient().getFromDatabase();
 
                     clientApp.setCard("appPanel");
