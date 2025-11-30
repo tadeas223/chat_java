@@ -1,5 +1,6 @@
 package org.messenger.client.app;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import org.messenger.chat.ChatMedia;
 import org.messenger.chat.File;
 import org.messenger.chat.Message;
@@ -10,6 +11,9 @@ import org.messenger.protocol.ChatProtocolException;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
 
 public class AppPanel extends JPanel {
     private ClientApp clientApp;
@@ -58,18 +63,23 @@ public class AppPanel extends JPanel {
                 if (currentChat != null) {
                     String message = msgField.getText();
 
-                    try {
-                        clientApp.getClient().sendMessage(message, currentChat);
-                    } catch (IOException | ChatProtocolException | SQLException ex) {
-                        clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                    }
+                    CompletableFuture<Void> sendMessageFuture = clientApp.getClient().sendMessageFuture(message, currentChat);
+                    sendMessageFuture.thenAccept((Void v) -> {
+                        SwingUtilities.invokeLater(() -> {
+                            loadContacts();
+                            showChat(currentChat);
 
+                            clientApp.redraw();
+                            reset();
+                        });
+                    }).exceptionally((ex) -> {
+                        SwingUtilities.invokeLater(() -> {
+                            clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+                        });
+                        return null;
+                    });
 
-                    loadContacts();
-                    showChat(currentChat);
-
-                    clientApp.redraw();
-                    resetScrollBar();
+                    //resetScrollBar();
                 }
             }
         });
@@ -85,13 +95,13 @@ public class AppPanel extends JPanel {
 
                     if (result == JFileChooser.APPROVE_OPTION) {
                         java.io.File file = fileChooser.getSelectedFile();
-                        try {
-                            clientApp.getClient().sendFile(file.getAbsolutePath(), currentChat);
-                        } catch (IOException ex) {
-                            clientApp.getErrLabel().setText("Error: failed to open the file");
-                        } catch (ChatProtocolException | SQLException ex) {
-                            clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                        }
+                        CompletableFuture<Void> sendFileFuture = clientApp.getClient().sendFileFuture(file.getAbsolutePath(), currentChat);
+                        sendFileFuture.thenAccept((v) -> SwingUtilities.invokeLater(() -> reset())).exceptionally((ex) -> {
+                            SwingUtilities.invokeLater(() -> {
+                                clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+                            });
+                            return null;
+                        });
                     }
                 }
             }
@@ -102,22 +112,41 @@ public class AppPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 JCheckBox source = (JCheckBox) e.getSource();
 
-                try {
-                    clientApp.getClient().autoSave(source.isSelected());
-                } catch (IOException | ChatProtocolException ex) {
-                    clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                }
+                boolean isSelected = source.isSelected();
+                CompletableFuture<Void> autoSaveFuture = clientApp.getClient().autoSaveFuture(isSelected);
+                autoSaveFuture.exceptionally((ex) -> {
+                    SwingUtilities.invokeLater(() -> clientApp.getErrLabel().setText("Error: " + ex.getMessage()));
+                    return null;
+                });
             }
         });
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    clientApp.getClient().logout();
+                CompletableFuture<Void> logoutFuture = clientApp.getClient().logoutFuture();
+                logoutFuture
+                    .thenAccept((Void v) -> {
+                        SwingUtilities.invokeLater(() -> {
+                            clientApp.setCard("loginPanel");
+                        });
+                    })
+                    .exceptionally((ex) -> {
+                        clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+                        return null;
+                    });
+            }
+        });
 
-                    clientApp.setCard("loginPanel");
-                } catch (IOException | ChatProtocolException ex) {
-                    clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+
+        msgField.setDocument(new PlainDocument() {
+            @Override
+            public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
+                if (str == null) return;
+
+                if ((getLength() + str.length()) <= 50) {
+                    super.insertString(offset, str, attr);
+                } else {
+                    //SwingUtilities.invokeLater(() -> clientApp.getErrLabel().setText("Error: maximum message length is 50"));
                 }
             }
         });
@@ -205,8 +234,8 @@ public class AppPanel extends JPanel {
                         }
                     }
                 });
-            u
 
+            }
             messageHolder.add(label, 0);
             clientApp.redraw();
         }

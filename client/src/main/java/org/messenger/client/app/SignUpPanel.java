@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 
 public class SignUpPanel extends JPanel {
     private ClientApp clientApp;
@@ -28,14 +30,25 @@ public class SignUpPanel extends JPanel {
         signUpBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    clientApp.getClient().signup(textField.getText(), String.valueOf(passwordField.getPassword()));
-                    clientApp.getClient().getFromDatabase();
+                CompletableFuture<Void> signupFuture = clientApp.getClient().signupFuture(textField.getText(), String.valueOf(passwordField.getPassword()));
+                signupFuture.thenAccept((Void v) -> {
+                    CompletableFuture<Void> getFromDatabaseFuture = clientApp.getClient().getFromDatabaseFuture();
+                    getFromDatabaseFuture.exceptionally((ex) -> {
+                        SwingUtilities.invokeLater(() -> {
+                            clientApp.getErrLabel().setText(ex.getMessage());
+                        });
+                        return null;
+                    });
+
 
                     clientApp.setCard("appPanel");
-                } catch (IOException | SQLException | ChatProtocolException ex) {
-                    clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                }
+                })
+                .exceptionally(ex -> {
+                    SwingUtilities.invokeLater(() -> {
+                        clientApp.getErrLabel().setText(ex.getMessage());
+                    });
+                    return null;
+                });
             }
         });
         backBut.addActionListener(new ActionListener() {

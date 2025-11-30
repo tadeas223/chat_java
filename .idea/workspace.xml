@@ -11,13 +11,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="File base64 encoding + client MessageDB&#10;&#10;client MessageDB now crashes when storing a file">
+    <list default="true" id="fa7ae4cf-c0c0-4d53-9c24-394213a78c19" name="Changes" comment="Sending files now works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/TestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/NewChatPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/SignUpPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +31,8 @@
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -83,7 +83,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.ClientApp.executor": "Run",
     "Application.ConnectionDisplay.executor": "Run",
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Application.Server.executor": "Run",
     "Application.TestMain.executor": "Run",
     "Application.org.messenger.server.Main.executor": "Run",
@@ -154,7 +154,7 @@
       <command value="mvn clean install" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestMain">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.messenger.client.app.Main" />
       <module name="client" />
@@ -181,8 +181,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestMain" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.TestMain" />
         <item itemvalue="JAR Application.client.jar" />
       </list>
     </recent_temporary>
@@ -401,15 +401,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/messenger/fileCreation/FileStore.java</url>
-          <line>20</line>
-          <properties class="org.messenger.fileCreation.FileStore" method="store">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java</url>
           <line>101</line>
           <properties class="org.messenger.client.MessageDB" method="addFile">
@@ -417,6 +408,21 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/org/messenger/client/app/AppPanel.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/org/messenger/client/Client.java</url>
+          <line>573</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/client/src/main/java/org/messenger/client/MessageDB.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

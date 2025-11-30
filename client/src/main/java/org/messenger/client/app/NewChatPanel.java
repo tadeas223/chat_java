@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class NewChatPanel extends JPanel {
     private ClientApp clientApp;
@@ -28,15 +30,26 @@ public class NewChatPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Client client = clientApp.getClient();
 
-                try {
-                    if (client.userExists(chatField.getText())) {
-                        client.addChat(chatField.getText());
+                String chat = chatField.getText();
+                CompletableFuture<Boolean> userExistsFuture = client.userExistsFuture(chat);
+                userExistsFuture.thenAccept((exists) -> {
+                    if (exists) {
+                        CompletableFuture<Void> addChatFuture = client.addChatFuture(chat);
+                        addChatFuture.thenAccept((v) -> SwingUtilities.invokeLater(() -> clientApp.setCard("appPanel"))).exceptionally((ex) -> {
+                            SwingUtilities.invokeLater(() -> {
+                                clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+                            });
+                            return null;
+
+                        });
                     }
 
-                    clientApp.setCard("appPanel");
-                } catch (IOException | ChatProtocolException | SQLException ex) {
-                    clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                }
+                }).exceptionally((ex) -> {
+                    SwingUtilities.invokeLater(() -> {
+                        clientApp.getErrLabel().setText("Error: " + ex.getMessage());
+                    });
+                    return null;
+                });
             }
         });
 

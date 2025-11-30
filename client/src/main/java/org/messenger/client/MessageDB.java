@@ -64,11 +64,11 @@ public class MessageDB {
      * @throws SQLException when an error occurs when adding the chat
      */
     public void createChat(String name) throws SQLException {
-        String query = "CREATE TABLE "+name+" (" +
+        String query = "CREATE TABLE `"+name+"` (" +
                 "  `id` INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "  `username` VARCHAR(45)," +
                 "  `message` VARCHAR(255)," +
-                "  `isFile` INT DEFAULT 0," +
+                "  `isFile` INTEGER DEFAULT 0," +
                 "  `date` DATETIME);";
 
         PreparedStatement statement = connection.prepareStatement(query);
@@ -89,7 +89,7 @@ public class MessageDB {
      * @throws SQLException when an error occurs when adding the message
      */
     public void addMessage(Message message,String chat) throws SQLException {
-        String query = "INSERT INTO "+chat+" (username,message,date) " +
+        String query = "INSERT INTO `"+chat+"` (username,message,date) " +
                 "VALUES (?,?,DATETIME('now'));";
 
         PreparedStatement statement = connection.prepareStatement(query);
@@ -104,7 +104,7 @@ public class MessageDB {
         Path path = Path.of(user.getUsername());
         fileStore.store(path.resolve(chat).toString(), file.getFileName(), contents);
 
-        String query = "INSERT INTO "+chat+" (username,message,isFile, date) " +
+        String query = "INSERT INTO `"+chat+"` (username,message,isFile, date) " +
                 "VALUES (?,?,?, DATETIME('now'));";
 
         PreparedStatement statement = connection.prepareStatement(query);
@@ -125,7 +125,7 @@ public class MessageDB {
     public ChatMedia[] getMessages(String chatName, int count) throws SQLException {
         ArrayList<ChatMedia> messageList = new ArrayList<>();
 
-        String query = "SELECT * FROM "+chatName+" ORDER BY id DESC LIMIT " + count;
+        String query = "SELECT * FROM `"+chatName+"` ORDER BY id DESC LIMIT " + count;
         PreparedStatement statement = connection.prepareStatement(query);
 
         ResultSet resultSet = statement.executeQuery();

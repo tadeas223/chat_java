@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.concurrent.CompletableFuture;
 
 public class LoginPanel extends JPanel {
     private ClientApp clientApp;
@@ -28,15 +29,20 @@ public class LoginPanel extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    clientApp.getClient().login(textField.getText(), String.valueOf(passwordField.getPassword()));
-
-                    clientApp.getClient().getFromDatabase();
-
+                CompletableFuture<Void> loginFuture = clientApp.getClient().loginFuture(textField.getText(), String.valueOf(passwordField.getPassword()));
+                loginFuture.thenAccept((Void v) -> {
+                    try {
+                        clientApp.getClient().getFromDatabase();
+                    } catch (IOException | ChatProtocolException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     clientApp.setCard("appPanel");
-                } catch (IOException | ChatProtocolException | SQLException ex) {
-                    clientApp.getErrLabel().setText("Error: " + ex.getMessage());
-                }
+                }).exceptionally((ex) -> {
+                    SwingUtilities.invokeLater(() -> {
+                        clientApp.getErrLabel().setText(ex.getMessage());
+                    });
+                    return null;
+                });
             }
         });
         signUpButton.addActionListener(new ActionListener() {

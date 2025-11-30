@@ -19,6 +19,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * This class is a code representation of the server-client connection from the client's perspective.
@@ -30,8 +33,12 @@ public class Client implements MsgReadListener {
     private final SocketConnection socketConnection;
     private final ClientConnectionHandler clientConnectionHandler;
     private final FileCreator fileCreator = new FileCreator(Main.class, "data/client/");
+    private final ExecutorService threadPool = Executors.newFixedThreadPool(1);
     private String message = null;
+    private final Object messageLock = new Object();
     private User user;
+
+
     /**
      * Connects to the server at the default server port.
      * Starts a listening thread for server messages.
@@ -114,6 +121,18 @@ public class Client implements MsgReadListener {
         configureDB();
     }
 
+    public CompletableFuture<Void> loginFuture(String username, String password) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                login(username, password);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
+
     /**
      * Registers and logs in the user to the app.
      * This method registers the user with the password hashed.
@@ -145,6 +164,17 @@ public class Client implements MsgReadListener {
         configureDB();
     }
 
+    public CompletableFuture<Void> signupFuture(String username, String password) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                signup(username, password);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public void logout() throws IOException, ChatProtocolException {
         Instruction instruction = InstructionBuilder.logout();
 
@@ -155,6 +185,17 @@ public class Client implements MsgReadListener {
         if(response.getName().equals("ERROR")){
             throw new ChatProtocolException(response.getParam("message"));
         }
+    }
+
+    public CompletableFuture<Void> logoutFuture() {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                logout();
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
     }
 
     /**
@@ -185,6 +226,17 @@ public class Client implements MsgReadListener {
         configureDB();
     }
 
+    public CompletableFuture<Void> signupWithoutEncryptionFuture(String username, String password) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                signupWithoutEncryption(username, password);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     /**
      * Logs in the user without hashing the password.
      * @param username of the user
@@ -212,6 +264,17 @@ public class Client implements MsgReadListener {
         configureDB();
     }
 
+    public CompletableFuture<Void> loginWithoutEncryptionFuture(String username, String password) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                loginWithoutEncryption(username, password);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     /**
      * This method sends an INVOKE_DONE instruction and waits for a response.
      * @return true if the response returned, false if not
@@ -230,6 +293,17 @@ public class Client implements MsgReadListener {
         } else{
             return false;
         }
+    }
+
+    public CompletableFuture<Boolean> invokeDoneFuture() {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            try {
+                return invokeDone();
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        },threadPool);
+        return f;
     }
 
     /**
@@ -254,6 +328,17 @@ public class Client implements MsgReadListener {
 
     }
 
+    public CompletableFuture<String> invokeOutputFuture(String message) {
+        CompletableFuture<String> f = CompletableFuture.supplyAsync(() -> {
+            try {
+                return invokeOutput(message);
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     /**
      * This method is used to find if the user is logged into the server.
      * @param username that needs to be checked
@@ -273,6 +358,17 @@ public class Client implements MsgReadListener {
         } else {
             throw new ChatProtocolException("Something went horribly wrong");
         }
+    }
+
+    public CompletableFuture<Boolean> isOnlineFuture(String username) {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            try {
+                return isOnline(username);
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
     }
 
     /**
@@ -307,8 +403,23 @@ public class Client implements MsgReadListener {
         messageDB.close();
     }
 
+    public CompletableFuture<Void> sendMessageFuture(String message, String username) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                sendMessage(message, username);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public void sendFile(String filePath, String username) throws IOException, ChatProtocolException, SQLException {
         Path path = Path.of(filePath);
+        long fileSize = Files.size(path);
+        if(fileSize > 2 * 1024 * 1024) {
+            throw new IOException("sending files supports only 2MB max");
+        }
         String fileName = path.getFileName().toString();
         byte[] bytes = Files.readAllBytes(path);
         String base64 = Base64.getEncoder().encodeToString(bytes);
@@ -337,6 +448,17 @@ public class Client implements MsgReadListener {
 
     }
 
+    public CompletableFuture<Void> sendFileFuture(String filePath, String username) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                sendFile(filePath, username);
+            } catch (IOException | ChatProtocolException | SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public void autoSave(boolean value) throws IOException, ChatProtocolException {
         Instruction instruction = InstructionBuilder.autoMessageSave(value);
 
@@ -349,6 +471,17 @@ public class Client implements MsgReadListener {
         }
     }
 
+    public CompletableFuture<Void> autoSaveFuture(boolean value) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                autoSave(value);
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public void saveToDatabase(String username,String message) throws IOException, ChatProtocolException {
         Instruction instruction = InstructionBuilder.saveToDatabase(username,message);
 
@@ -359,6 +492,17 @@ public class Client implements MsgReadListener {
         if(response.getName().equals("ERROR")){
             throw new ChatProtocolException(response.getParam("message"));
         }
+    }
+
+    public CompletableFuture<Void> saveToDatabaseFuture(String username, String message) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                saveToDatabase(username, message);
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
     }
 
     public void getFromDatabase() throws IOException, ChatProtocolException {
@@ -388,6 +532,17 @@ public class Client implements MsgReadListener {
 
     }
 
+    public CompletableFuture<Void> getFromDatabaseFuture() {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                getFromDatabase();
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public boolean userExists(String username) throws IOException, ChatProtocolException {
         Instruction instruction = InstructionBuilder.exists(username);
 
@@ -404,6 +559,17 @@ public class Client implements MsgReadListener {
         return false;
     }
 
+    public CompletableFuture<Boolean> userExistsFuture(String username) {
+        CompletableFuture<Boolean> f = CompletableFuture.supplyAsync(() -> {
+            try {
+                return userExists(username);
+            } catch (IOException | ChatProtocolException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     public void addChat(String chat) throws SQLException {
         MessageDB messageDB = new MessageDB(this);
 
@@ -414,6 +580,18 @@ public class Client implements MsgReadListener {
 
         messageDB.close();
     }
+
+    public CompletableFuture<Void> addChatFuture(String username) {
+        CompletableFuture<Void> f = CompletableFuture.runAsync(() -> {
+            try {
+                addChat(username);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, threadPool);
+        return f;
+    }
+
     //endregion
     /**
      * Waits until the next message from the server is sent.
@@ -423,12 +601,13 @@ public class Client implements MsgReadListener {
     // I hate my past self.
     public String waitForMessage() {
         message = null;
-
-        while (Objects.equals(null, message)) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                // I don't care yet
+        synchronized (messageLock) {
+            while(message == null) {
+                try {
+                    messageLock.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -533,6 +712,9 @@ public class Client implements MsgReadListener {
     @Override
     public void messageRead(String msg) {
         message = msg;
+        synchronized(messageLock) {
+            messageLock.notify();
+        }
     }
 
     public SocketConnection getSocketConnection() {
